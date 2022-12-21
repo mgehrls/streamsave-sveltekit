@@ -1,19 +1,20 @@
 <script>
   /**
-   * @type {{ name: string; backdrop_path:string; id:string; overview:string; }}
+   * @type {{ title: string; backdrop_path:string; id:string; overview:string; }}
    */
-  export let show;
+  export let movie;
+  console.log(movie);
 </script>
 
 <div class="card">
   <img
-    src={`https://image.tmdb.org/t/p/w342/${show.backdrop_path}`}
-    alt={`${show.name} backdrop`}
+    src={`https://image.tmdb.org/t/p/w342/${movie.backdrop_path}`}
+    alt={`${movie.title} backdrop`}
   />
   <div class="link">
-    <a href={`/shows/${show.id}`}>
-      <h2>{show.name}</h2>
-      <p>{show.overview.slice(0, 40)}...</p>
+    <a href={`/movies/${movie.id}`}>
+      <h2>{movie.title}</h2>
+      <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
   <button>Does Nothing</button>

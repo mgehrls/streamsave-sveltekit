@@ -1,18 +1,19 @@
 <script>
-  import ShowPreview from "./ShowPreview.svelte";
+  import { page } from "$app/stores";
+  import MoviePreview from "./MoviePreview.svelte";
   /**
    * @type {string | any[]}
    */
-  export let shows;
+  export let movies;
 </script>
 
-{#if shows.length === 0}
-  <div class="movies-preview">No shows are here...</div>
+{#if movies.length === 0}
+  <div class="movies-preview">No movies are here...</div>
 {:else}
-  <h2>Trending Shows</h2>
+  <h2>Popular Movies</h2>
   <div class="trendingRow">
-    {#each shows as show}
-      <ShowPreview {show} />
+    {#each movies as movie}
+      <MoviePreview {movie} />
     {/each}
   </div>
 {/if}

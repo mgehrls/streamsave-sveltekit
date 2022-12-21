@@ -2,9 +2,10 @@
   import Counter from "./Counter.svelte";
   import type { PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
+  import MoviePreview from "$lib/MoviePreview/index.svelte";
   export let data: PageData;
 
-  const { trendingData } = data;
+  const { trendingShowData, popularMovieData } = data;
 </script>
 
 <svelte:head>
@@ -14,9 +15,11 @@
 
 <section>
   <div class="trending">
-    <ShowPreview shows={trendingData.results} />
+    <ShowPreview shows={trendingShowData.results} />
   </div>
-  <Counter />
+  <div class="trending">
+    <MoviePreview movies={popularMovieData.results} />
+  </div>
 </section>
 
 <style>
