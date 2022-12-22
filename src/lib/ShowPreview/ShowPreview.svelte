@@ -22,7 +22,7 @@
 
 <style>
   div.card {
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    background-image: linear-gradient(to top, #4075a6 0%, #1a4e7f 100%);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
     margin-bottom: 0.5rem;
     padding: 1rem;

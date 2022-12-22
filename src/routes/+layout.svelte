@@ -12,7 +12,9 @@
 
   <footer>
     <p>
-      visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+      data and images curtosy of <a href="https://www.themoviedb.org/"
+        >themoviedb.org</a
+      >
     </p>
   </footer>
 </div>

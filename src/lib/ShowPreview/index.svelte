@@ -4,12 +4,16 @@
    * @type {string | any[]}
    */
   export let shows;
+  /**
+   * @type {string}
+   */
+  export let title;
 </script>
 
 {#if shows.length === 0}
   <div class="movies-preview">No shows are here...</div>
 {:else}
-  <h2>Trending Shows</h2>
+  <h2>{title}</h2>
   <div class="trendingRow">
     {#each shows as show}
       <ShowPreview {show} />
