@@ -1,10 +1,28 @@
-<script>
+<script lang="ts">
   import Header from "./Header.svelte";
+  import { supabaseClient } from "$lib/supabase";
   import "./styles.css";
+  import { onMount } from "svelte";
+  import { invalidateAll } from "$app/navigation";
+  import type { PageData } from "./$types";
+  export let data: PageData;
+
+  onMount(() => {
+    const {
+      data: { subscription },
+    } = supabaseClient.auth.onAuthStateChange(() => {
+      console.log("Auth state change detected");
+      invalidateAll();
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  });
 </script>
 
 <div class="app">
-  <Header />
+  <Header {data} />
 
   <main>
     <slot />
