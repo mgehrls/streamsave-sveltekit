@@ -6,7 +6,5 @@ export const load = (async ({params}) =>{
     const item = (await res).json()
     return{
         item,
-        sb,
-        session
     }
 })satisfies PageServerLoad;

@@ -10,4 +10,7 @@
     <input type="password" name="password" />
     <button class="btn btn-primary">Login</button>
   </form>
+  <form class="socials" method="POST">
+    <button formaction="?/login&provider=google">Google</button>
+  </form>
 </main>

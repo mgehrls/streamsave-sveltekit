@@ -14,11 +14,8 @@
     <p>Welcome {data.session.user.email}</p>
   {:else}
     <div class="unauthedUser">
-      <p>Login in or Register!</p>
-      <div>
-        <a href="/login" class="btn btn-primary">Login</a>
-        <a href="/register" class="btn btn-secondary">Register</a>
-      </div>
+      <a href="/login" class="btn btn-primary">Login</a>
+      <a href="/register" class="btn btn-secondary">Register</a>
     </div>
   {/if}
 </header>
@@ -44,9 +41,9 @@
   }
   .unauthedUser {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
   }
   .logo {
     display: none;

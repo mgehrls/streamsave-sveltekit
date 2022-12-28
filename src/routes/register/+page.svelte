@@ -10,4 +10,7 @@
     <input type="password" name="password" />
     <button class="btn btn-primary">Register</button>
   </form>
+  <form action="?/login&provider=google" method="POST">
+    <button>Google</button>
+  </form>
 </div>

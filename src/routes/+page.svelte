@@ -6,7 +6,7 @@
   import { supabaseClient } from "$lib/supabase";
   export let data: PageData;
 
-  const { session } = data;
+  const { session, trendingShowData, popularMovieData, popularShowData } = data;
 
   const submitLogout: SubmitFunction = async ({ cancel }) => {
     const { error } = await supabaseClient.auth.signOut();
@@ -22,20 +22,17 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<!--
-  Trying to figure out auth so data isn't coming in like normal right now.
-  <section>
-    <div class="trending">
-      <ShowPreview title={"Trending Shows"} shows={trendingShowData.results} />
-    </div>
-    <div class="trending">
-      <ShowPreview title={"Popular Shows"} shows={popularShowData.results} />
-    </div>
-    <div class="trending">
-      <MoviePreview title={"Popular Movies"} movies={popularMovieData.results} />
-    </div>
-  </section>
--->
+<section>
+  <div class="trending">
+    <ShowPreview title={"Trending Shows"} shows={trendingShowData.results} />
+  </div>
+  <div class="trending">
+    <ShowPreview title={"Popular Shows"} shows={popularShowData.results} />
+  </div>
+  <div class="trending">
+    <MoviePreview title={"Popular Movies"} movies={popularMovieData.results} />
+  </div>
+</section>
 
 <main>
   <h1>SvelteKit & Supabase Auth</h1>
