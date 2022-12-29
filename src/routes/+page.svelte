@@ -5,6 +5,8 @@
   import { enhance, type SubmitFunction } from "$app/forms";
   import { supabaseClient } from "$lib/supabase";
   export let data: PageData;
+  export let form;
+  console.log(form);
 
   const { session, trendingShowData, popularMovieData, popularShowData } = data;
 
@@ -22,20 +24,7 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-  <div class="trending">
-    <ShowPreview title={"Trending Shows"} shows={trendingShowData.results} />
-  </div>
-  <div class="trending">
-    <ShowPreview title={"Popular Shows"} shows={popularShowData.results} />
-  </div>
-  <div class="trending">
-    <MoviePreview title={"Popular Movies"} movies={popularMovieData.results} />
-  </div>
-</section>
-
 <main>
-  <h1>SvelteKit & Supabase Auth</h1>
   {#if data.session}
     <p>Welcome, {data.session.user.email}</p>
     <form action="/logout" method="POST" use:enhance={submitLogout}>
@@ -48,23 +37,31 @@
       <a href="/register" class="btn btn-secondary">Register</a>
     </div>
   {/if}
+  <section>
+    <div class="trending">
+      <ShowPreview title={"Trending Shows"} shows={trendingShowData} />
+    </div>
+    <div class="trending">
+      <ShowPreview title={"Popular Shows"} shows={popularShowData} />
+    </div>
+    <div class="trending">
+      <MoviePreview title={"Popular Movies"} movies={popularMovieData} />
+    </div>
+  </section>
 </main>
 
 <style>
-  /* 
-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 0.6;
-}
-div.trending {
-  overflow-y: hidden;
-  position: relative;
-  overflow: auto;
-  width: 100%;
-}
-
-*/
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0.6;
+  }
+  div.trending {
+    overflow-y: hidden;
+    position: relative;
+    overflow: auto;
+    width: 100%;
+  }
 </style>

@@ -1,4 +1,6 @@
 <script>
+  import { enhance } from "$app/forms";
+
   /**
    * @type {{ title: string; backdrop_path:string; id:string; overview:string; }}
    */
@@ -16,7 +18,9 @@
       <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <button>Does Nothing</button>
+  <form method="POST" use:enhance>
+    <button formaction="?/addMedia">Add</button>
+  </form>
   <button>Does Nothing</button>
 </div>
 

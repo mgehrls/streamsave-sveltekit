@@ -20,7 +20,9 @@
     <h1>{data.item.title}</h1>
     <p>{data.item.overview}</p>
     <div class="buttonsec">
-      <button>Does nothing</button>
+      <form action="/addNew" method="POST">
+        <button>Add New</button>
+      </form>
       <button>Placeholder</button>
     </div>
   </div>

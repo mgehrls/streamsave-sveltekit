@@ -1,4 +1,6 @@
 <script lang="ts">
+  export let form;
+  console.log(form);
 </script>
 
 <div>
