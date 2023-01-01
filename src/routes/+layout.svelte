@@ -1,11 +1,13 @@
 <script lang="ts">
   import Header from "./Header.svelte";
+  import Auth from "./Auth.svelte";
+  import Account from "./Account.svelte";
   import { supabaseClient } from "$lib/supabase";
   import "./styles.css";
   import { onMount } from "svelte";
   import { invalidateAll } from "$app/navigation";
   import type { PageData } from "./$types";
-  export let data: PageData;
+  import { page } from "$app/stores";
 
   onMount(() => {
     const {
@@ -22,8 +24,11 @@
 </script>
 
 <div class="app">
-  <Header {data} />
-
+  {#if !$page.data.session}
+    <Auth />
+  {:else}
+    <Account session={$page.data.session} />
+  {/if}
   <main>
     <slot />
   </main>

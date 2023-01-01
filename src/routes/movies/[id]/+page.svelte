@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { API_KEY_SECRET } from "$env/static/private";
   import type { PageData } from "./$types";
   export let data: PageData;
 </script>
@@ -20,9 +21,7 @@
     <h1>{data.item.title}</h1>
     <p>{data.item.overview}</p>
     <div class="buttonsec">
-      <form action="/addNew" method="POST">
-        <button>Add New</button>
-      </form>
+      <button>Does Nothing</button>
       <button>Placeholder</button>
     </div>
   </div>

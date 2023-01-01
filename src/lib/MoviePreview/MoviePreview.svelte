@@ -1,10 +1,33 @@
-<script>
-  import { enhance } from "$app/forms";
+<script lang="ts">
+  import { page } from "$app/stores";
+  import { supabaseClient } from "$lib/supabase";
+  let loading = false;
 
-  /**
-   * @type {{ title: string; backdrop_path:string; id:string; overview:string; }}
-   */
-  export let movie;
+  export let movie: {
+    title: string;
+    backdrop_path: string;
+    id: string;
+    overview: string;
+  };
+
+  const handleClick = async () => {
+    try {
+      loading = true;
+      const userid = $page.data.session?.user.id;
+      console.log(userid, movie.id);
+      let { error } = await supabaseClient
+        .from("listItem")
+        .upsert({ userId: userid, mediaID: movie.id });
+
+      if (error) throw error;
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    } finally {
+      loading = false;
+    }
+  };
 </script>
 
 <div class="card">
@@ -18,9 +41,9 @@
       <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <form method="POST" use:enhance>
-    <button formaction="?/addMedia">Add</button>
-  </form>
+
+  <button on:click={handleClick}>Add</button>
+
   <button>Does Nothing</button>
 </div>
 
