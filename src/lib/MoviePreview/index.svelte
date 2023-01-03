@@ -1,5 +1,4 @@
 <script>
-  import { page } from "$app/stores";
   import MoviePreview from "./MoviePreview.svelte";
   /**
    * @type {string | any[]}

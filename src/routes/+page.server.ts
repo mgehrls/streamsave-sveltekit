@@ -64,9 +64,45 @@ export const actions: Actions = {
 		throw redirect(303, "/")
 	},
     addMedia: async ({locals, request})=>{
-        return fail(400, {
-            error:"this function isn't set up yet",
-            event:{locals, request}
-        })
+
+		const formData = Object.fromEntries(await request.formData())
+		/*
+		const { error: mediaErr } = await locals.sb.from('media').upsert({
+			title: formData.title as string,
+			description: formData.description as string,
+			type: formData.type as string,
+			poster_path: formData.poster_path as string,
+			backdrop_path: formData.backdrop_path as string,
+			id: formData.id as unknown as number
+		})
+		
+		if(mediaErr instanceof AuthApiError && mediaErr.status === 400){
+			return fail(400,{
+				error: "auth error probably. here's what supabase says: " + mediaErr
+			})
+		}else if(mediaErr){
+			return fail(400, {
+				error: mediaErr
+			})
+		}
+		*/
+		
+		const { error: listItemErr } = await locals.sb.from('listItem').upsert({
+			media_id: formData.id as unknown as number
+		})
+
+		if(listItemErr instanceof AuthApiError && listItemErr.status === 400){
+			return fail(400,{
+				error: "auth error probably. here's what supabase says: " + listItemErr
+			})
+		}else if(listItemErr){
+			return fail(400, {
+				error: listItemErr
+			})
+		}
+		
+		
+		throw redirect(303, "/")
+
     }
 }

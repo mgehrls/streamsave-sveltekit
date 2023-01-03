@@ -1,14 +1,11 @@
 <script lang="ts">
   import Header from "./Header.svelte";
   import Auth from "./Auth.svelte";
-  import Account from "./Account.svelte";
   import { supabaseClient } from "$lib/supabase";
   import "./styles.css";
   import { onMount } from "svelte";
   import { invalidateAll } from "$app/navigation";
-  import type { PageData } from "./$types";
   import { page } from "$app/stores";
-
   onMount(() => {
     const {
       data: { subscription },
@@ -25,9 +22,12 @@
 
 <div class="app">
   {#if !$page.data.session}
+    <Header data={null} />
+    <div class="spacer" />
     <Auth />
   {:else}
-    <Account session={$page.data.session} />
+    <Header data={$page.data.session} />
+    <div class="spacer" />
   {/if}
   <main>
     <slot />
@@ -47,6 +47,9 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+  .spacer {
+    height: 100px;
   }
 
   main {

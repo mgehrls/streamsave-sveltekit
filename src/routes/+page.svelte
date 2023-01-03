@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import type { ActionData, PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
   export let data: PageData;
-  export let form;
-  console.log(form);
+  export let form: ActionData;
 
-  const { session, trendingShowData, popularMovieData, popularShowData } = data;
+  console.log(form);
 </script>
 
 <svelte:head>
@@ -17,13 +16,13 @@
 <main>
   <section>
     <div class="trending">
-      <ShowPreview title={"Trending Shows"} shows={trendingShowData} />
+      <ShowPreview title={"Trending Shows"} shows={data.trendingShowData} />
     </div>
     <div class="trending">
-      <ShowPreview title={"Popular Shows"} shows={popularShowData} />
+      <ShowPreview title={"Popular Shows"} shows={data.popularShowData} />
     </div>
     <div class="trending">
-      <MoviePreview title={"Popular Movies"} movies={popularMovieData} />
+      <MoviePreview title={"Popular Movies"} movies={data.popularMovieData} />
     </div>
   </section>
 </main>

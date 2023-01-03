@@ -1,8 +1,3 @@
-<script lang="ts">
-  export let form;
-  console.log(form);
-</script>
-
 <div>
   <h1>Register</h1>
   <form action="?/register" method="POST" class="auth-form">

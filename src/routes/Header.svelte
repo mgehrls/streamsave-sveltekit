@@ -1,7 +1,6 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-
-  export let data: PageData;
+  export let data;
+  let session = data;
 </script>
 
 <header>
@@ -10,12 +9,19 @@
       <h2>StreamSave</h2>
     </a>
   </div>
-  {#if data.session}
-    <p>Welcome {data.session.user.email}</p>
-  {:else}
+  {#if !session}
     <div class="unauthedUser">
       <a href="/login" class="btn btn-primary">Login</a>
       <a href="/register" class="btn btn-secondary">Register</a>
+    </div>
+  {:else}
+    <div class="authedUser">
+      <p>Welcome {session.user.user_metadata.name.split(" ")[0]}!</p>
+      <img
+        class="userAvatar"
+        src={session.user.user_metadata.avatar_url}
+        alt="user avatar"
+      />
     </div>
   {/if}
 </header>
@@ -34,10 +40,21 @@
     top: 0px;
     width: 100vw;
     z-index: 1000;
+    max-height: 100px;
   }
   a {
     margin: 0;
     padding: 0;
+  }
+  .userAvatar {
+    border-radius: 50%;
+    height: 50px;
+  }
+  .authedUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
   .unauthedUser {
     display: flex;

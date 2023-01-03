@@ -1,50 +1,32 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { supabaseClient } from "$lib/supabase";
-  let loading = false;
-
   export let movie: {
     title: string;
     backdrop_path: string;
+    poster_path: string;
     id: string;
     overview: string;
   };
-
-  const handleClick = async () => {
-    try {
-      loading = true;
-      const userid = $page.data.session?.user.id;
-      console.log(userid, movie.id);
-      let { error } = await supabaseClient
-        .from("listItem")
-        .upsert({ userId: userid, mediaID: movie.id });
-
-      if (error) throw error;
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      }
-    } finally {
-      loading = false;
-    }
-  };
+  movie.backdrop_path = `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`;
+  movie.poster_path = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
 </script>
 
 <div class="card">
-  <img
-    src={`https://image.tmdb.org/t/p/w342/${movie.backdrop_path}`}
-    alt={`${movie.title} backdrop`}
-  />
+  <img src={movie.backdrop_path} alt={`${movie.title} backdrop`} />
   <div class="link">
     <a href={`/movies/${movie.id}`}>
       <h2>{movie.title}</h2>
       <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
-
-  <button on:click={handleClick}>Add</button>
-
-  <button>Does Nothing</button>
+  <form method="post" action="?/addMedia">
+    <input hidden name="title" value={movie.title} />
+    <input hidden name="description" value={movie.overview} />
+    <input hidden name="type" value="movie" />
+    <input hidden name="id" value={movie.id} />
+    <input hidden name="backdrop_path" value={movie.backdrop_path} />
+    <input hidden name="poster_path" value={movie.poster_path} />
+    <button type="submit">Add</button>
+  </form>
 </div>
 
 <style>

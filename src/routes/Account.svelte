@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import type { AuthSession } from "@supabase/supabase-js";
   import { supabaseClient } from "../lib/supabase";
+  import { redirect } from "@sveltejs/kit";
   export let session: AuthSession;
 
   let loading = false;
@@ -76,6 +77,7 @@
       }
     } finally {
       loading = false;
+      redirect(300, "/");
     }
   }
 </script>
