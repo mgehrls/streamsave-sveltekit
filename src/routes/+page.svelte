@@ -16,9 +16,11 @@
 </svelte:head>
 
 <main>
-  <div>
-    <UserList {listItems} />
-  </div>
+  {#if listItems}
+    <div>
+      <UserList {listItems} />
+    </div>
+  {/if}
   <section>
     <div class="trending">
       <ShowPreview title={"Trending Shows"} shows={data.trendingShowData} />
