@@ -22,6 +22,9 @@
         src={session.user.user_metadata.avatar_url}
         alt="user avatar"
       />
+      <form method="post" action="/logout">
+        <button type="submit">Sign Out</button>
+      </form>
     </div>
   {/if}
 </header>

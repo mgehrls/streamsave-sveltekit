@@ -1,6 +1,6 @@
 <script>
   /**
-   * @type {{ name: string; backdrop_path:string; id:string; overview:string; }}
+   * @type {{ name: string; backdrop_path:string; id:string; overview:string; poster_path:string; }}
    */
   export let show;
 </script>
@@ -16,8 +16,15 @@
       <p>{show.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <button>Does Nothing</button>
-  <button>Does Nothing</button>
+  <form method="post" action="?/addMedia">
+    <input hidden name="title" value={show.name} />
+    <input hidden name="description" value={show.overview} />
+    <input hidden name="type" value="show" />
+    <input hidden name="id" value={show.id} />
+    <input hidden name="backdrop_path" value={show.backdrop_path} />
+    <input hidden name="poster_path" value={show.poster_path} />
+    <button type="submit">Add</button>
+  </form>
 </div>
 
 <style>

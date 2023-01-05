@@ -25,10 +25,9 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
-	login: async ({ request, locals, url }) => {
+	signIn: async ({ request, locals, url }) => {
 
 		const provider = url.searchParams.get("provider") as Provider
-
 		if(provider){
 			const {data, error:err} = await locals.sb.auth.signInWithOAuth({
 				provider: provider
@@ -63,10 +62,19 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
+	signOut: async ({locals}) =>{
+		const { error:err} = await locals.sb.auth.signOut()
+
+		if(err){
+			console.log(err)
+		}
+
+		throw redirect(300, "/")
+	},
     addMedia: async ({locals, request})=>{
 
 		const formData = Object.fromEntries(await request.formData())
-		/*
+		
 		const { error: mediaErr } = await locals.sb.from('media').upsert({
 			title: formData.title as string,
 			description: formData.description as string,
@@ -85,9 +93,9 @@ export const actions: Actions = {
 				error: mediaErr
 			})
 		}
-		*/
 		
 		const { error: listItemErr } = await locals.sb.from('listItem').upsert({
+			user_id: locals.session?.user.id as string,
 			media_id: formData.id as unknown as number
 		})
 
@@ -100,8 +108,7 @@ export const actions: Actions = {
 				error: listItemErr
 			})
 		}
-		
-		
+
 		throw redirect(303, "/")
 
     }

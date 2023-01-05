@@ -2,10 +2,12 @@
   import type { ActionData, PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
+  import UserList from "$lib/UserList/UserList.svelte";
   export let data: PageData;
   export let form: ActionData;
-
   console.log(form);
+  console.log(data.listItems);
+  const listItems = data.listItems ? data.listItems : "";
 </script>
 
 <svelte:head>
@@ -14,6 +16,9 @@
 </svelte:head>
 
 <main>
+  <div>
+    <UserList {listItems} />
+  </div>
   <section>
     <div class="trending">
       <ShowPreview title={"Trending Shows"} shows={data.trendingShowData} />
