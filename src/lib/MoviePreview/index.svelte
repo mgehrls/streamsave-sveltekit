@@ -24,7 +24,6 @@
 
 <style>
   h2 {
-    margin-top: 3rem;
     font-weight: bold;
     font-size: larger;
   }

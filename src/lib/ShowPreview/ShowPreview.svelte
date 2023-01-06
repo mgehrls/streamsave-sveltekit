@@ -7,7 +7,7 @@
 
 <div class="card">
   <img
-    src={`https://image.tmdb.org/t/p/w342/${show.backdrop_path}`}
+    src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
     alt={`${show.name} backdrop`}
   />
   <div class="link">
@@ -21,8 +21,16 @@
     <input hidden name="description" value={show.overview} />
     <input hidden name="type" value="show" />
     <input hidden name="id" value={show.id} />
-    <input hidden name="backdrop_path" value={show.backdrop_path} />
-    <input hidden name="poster_path" value={show.poster_path} />
+    <input
+      hidden
+      name="backdrop_path"
+      value={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
+    />
+    <input
+      hidden
+      name="poster_path"
+      value={`https://image.tmdb.org/t/p/w342${show.poster_path}`}
+    />
     <button type="submit">Add</button>
   </form>
 </div>

@@ -29,9 +29,8 @@
     <Header data={$page.data.session} />
     <div class="spacer" />
   {/if}
-  <main>
-    <slot />
-  </main>
+
+  <slot />
 
   <footer>
     <p>
@@ -49,18 +48,7 @@
     min-height: 100vh;
   }
   .spacer {
-    height: 100px;
-  }
-
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-    max-width: 64rem;
-    margin: 4rem auto;
-    box-sizing: border-box;
+    height: 80px;
   }
 
   footer {

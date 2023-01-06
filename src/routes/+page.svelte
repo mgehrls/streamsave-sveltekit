@@ -15,9 +15,9 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<main>
+<div class="main">
   {#if listItems}
-    <div>
+    <div class="userList">
       <UserList {listItems} />
     </div>
   {/if}
@@ -32,20 +32,34 @@
       <MoviePreview title={"Popular Movies"} movies={data.popularMovieData} />
     </div>
   </section>
-</main>
+</div>
 
 <style>
+  div.main {
+    justify-content: start;
+    align-items: start;
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    width: 100%;
+    margin: 4rem auto;
+    box-sizing: border-box;
+  }
+  div.userList {
+    min-width: 400px;
+  }
   section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    max-width: calc(100% - 400px);
     flex: 0.6;
   }
   div.trending {
     overflow-y: hidden;
     position: relative;
     overflow: auto;
-    width: 100%;
+    width: calc(100% - 2rem);
+    padding: 1rem;
   }
 </style>

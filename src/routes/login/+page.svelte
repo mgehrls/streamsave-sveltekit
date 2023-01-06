@@ -14,3 +14,12 @@
     <button formaction="?/login&provider=google">Google</button>
   </form>
 </main>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
