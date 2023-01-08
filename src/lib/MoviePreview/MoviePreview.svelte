@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   export let movie: {
     title: string;
     backdrop_path: string;
@@ -19,7 +20,7 @@
       <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <form method="post" action="?/addMedia">
+  <form method="post" action="?/addMedia" use:enhance>
     <input hidden name="title" value={movie.title} />
     <input hidden name="description" value={movie.overview} />
     <input hidden name="type" value="movie" />

@@ -1,6 +1,7 @@
 <script lang="ts">
   export let data;
-  let session = data;
+  const session = data;
+  let timer: string | number | NodeJS.Timeout | undefined;
 </script>
 
 <header>
@@ -8,6 +9,9 @@
     <a href="/">
       <h2>StreamSave</h2>
     </a>
+  </div>
+  <div>
+    <input id="searchBarInput" class="searchBarInput" type="search" />
   </div>
   {#if !session}
     <div class="unauthedUser">

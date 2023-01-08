@@ -108,8 +108,5 @@ export const actions: Actions = {
 				error: listItemErr
 			})
 		}
-
-		throw redirect(303, "/")
-
     }
 }

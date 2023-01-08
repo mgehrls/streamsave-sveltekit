@@ -1,4 +1,6 @@
 <script>
+  import { enhance } from "$app/forms";
+
   /**
    * @type {{ name: string; backdrop_path:string; id:string; overview:string; poster_path:string; }}
    */
@@ -16,7 +18,7 @@
       <p>{show.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <form method="post" action="?/addMedia">
+  <form method="post" use:enhance action="?/addMedia">
     <input hidden name="title" value={show.name} />
     <input hidden name="description" value={show.overview} />
     <input hidden name="type" value="show" />
