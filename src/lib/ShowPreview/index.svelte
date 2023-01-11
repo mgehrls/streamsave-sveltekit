@@ -1,5 +1,6 @@
 <script>
   import ShowPreview from "./ShowPreview.svelte";
+  import { fade } from "svelte/transition";
   /**
    * @type {string | any[]}
    */
@@ -12,7 +13,7 @@
 </script>
 
 {#if !shows}
-  <div class="movies-preview">No shows are here...</div>
+  <div transition:fade class="movies-preview">No shows are here...</div>
 {:else}
   <h2>{title}</h2>
   <div class="trendingRow">

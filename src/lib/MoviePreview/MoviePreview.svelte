@@ -1,22 +1,16 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
   import { addListItem } from "$lib/stores/listItems";
   import type { PageData } from "../../routes/$types";
-  export let movie: {
-    title: string;
-    backdrop_path: string;
-    poster_path: string;
-    id: string;
-    overview: string;
-  };
+  export let movie;
   export let data: PageData;
   const userID = data.session.user.id;
-  movie.backdrop_path = `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`;
-  movie.poster_path = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
 </script>
 
 <div class="card">
-  <img src={movie.backdrop_path} alt={`${movie.title} backdrop`} />
+  <img
+    src={`https://image.tmdb.org/t/p/w342${movie.backdrop_path}`}
+    alt={`${movie.title} backdrop`}
+  />
   <div class="link">
     <a href={`/movies/${movie.id}`}>
       <h2>{movie.title}</h2>
@@ -24,7 +18,20 @@
     </a>
   </div>
 
-  <button on:click={() => addListItem(movie, userID)}>Add</button>
+  <button
+    on:click={() =>
+      addListItem(
+        {
+          id: movie.id,
+          title: movie.title,
+          description: movie.overview,
+          type: movie.type,
+          backdrop_path: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
+          poster_path: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
+        },
+        userID
+      )}>Add</button
+  >
 </div>
 
 <style>
