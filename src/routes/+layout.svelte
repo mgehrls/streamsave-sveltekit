@@ -4,6 +4,7 @@
   import { supabaseClient } from "$lib/supabase";
   import { user } from "$lib/stores/userStore";
   import "./styles.css";
+  import "../app.css";
   import { invalidateAll } from "$app/navigation";
   import { page } from "$app/stores";
   import { loadListItems } from "$lib/stores/listItems";

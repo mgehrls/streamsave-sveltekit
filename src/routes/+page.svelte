@@ -14,6 +14,8 @@
 </svelte:head>
 
 <div class="main">
+  <div class="bg-pink-600 w-12 h-12">Howdy</div>
+
   {#if $listItems}
     <div class="userList">
       <UserList listItems={$listItems} />
