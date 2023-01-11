@@ -26,7 +26,7 @@
   });
 </script>
 
-<div class="app">
+<div class="flex flex-col min-h-screen">
   {#if !$page.data.session}
     <Header data={null} />
     <div class="spacer" />
@@ -48,11 +48,6 @@
 </div>
 
 <style>
-  .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
   .spacer {
     height: 80px;
   }

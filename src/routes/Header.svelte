@@ -4,9 +4,11 @@
   let timer: string | number | NodeJS.Timeout | undefined;
 </script>
 
-<header>
+<header
+  class="flex justify-around items-center p-5 gap-4 sticky text-white w-screen z-100 h-100 bg-slate-700"
+>
   <div class="logo">
-    <a href="/">
+    <a class="m-0 p-0" href="/">
       <h2>StreamSave</h2>
     </a>
   </div>
@@ -14,15 +16,15 @@
     <input id="searchBarInput" class="searchBarInput" type="search" />
   </div>
   {#if !session}
-    <div class="unauthedUser">
-      <a href="/login" class="btn btn-primary">Login</a>
-      <a href="/register" class="btn btn-secondary">Register</a>
+    <div class="flex justify-center items-center gap-8">
+      <a class="m-0 p-0" href="/login">Login</a>
+      <a class="m-0 p-0" href="/register">Register</a>
     </div>
   {:else}
-    <div class="authedUser">
+    <div class="flex justify-center items-center gap-2">
       <p>Welcome {session.user.user_metadata.name.split(" ")[0]}!</p>
       <img
-        class="userAvatar"
+        class="rounded-full h-12"
         src={session.user.user_metadata.avatar_url}
         alt="user avatar"
       />
@@ -32,49 +34,3 @@
     </div>
   {/if}
 </header>
-
-<style>
-  header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1.25rem;
-    gap: 1rem;
-    --tw-bg-opacity: 1;
-    background-color: rgb(71 85 105 / var(--tw-bg-opacity));
-    position: fixed;
-    color: white;
-    top: 0px;
-    width: 100vw;
-    z-index: 1000;
-    max-height: 100px;
-  }
-  a {
-    margin: 0;
-    padding: 0;
-  }
-  .userAvatar {
-    border-radius: 50%;
-    height: 50px;
-  }
-  .authedUser {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .unauthedUser {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-  }
-  .logo {
-    display: none;
-  }
-  @media (min-width: 768px) {
-    .logo {
-      display: block;
-    }
-  }
-</style>
