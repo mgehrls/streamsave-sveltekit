@@ -1,10 +1,22 @@
-<script>
+<script lang="ts">
   import { enhance } from "$app/forms";
+  import { addListItem } from "$lib/stores/listItems";
+  import type { PageData } from "../../routes/$types";
 
   /**
    * @type {{ name: string; backdrop_path:string; id:string; overview:string; poster_path:string; }}
    */
   export let show;
+  export let data: PageData;
+  const media = {
+    title: show.name,
+    description: show.overview,
+    type: "show",
+    poster_path: show.poster_path,
+    backdrop_path: show.backdrop_path,
+    id: show.id,
+  };
+  const userID = data.session.user.id;
 </script>
 
 <div class="card">
@@ -18,23 +30,8 @@
       <p>{show.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <form method="post" use:enhance action="?/addMedia">
-    <input hidden name="title" value={show.name} />
-    <input hidden name="description" value={show.overview} />
-    <input hidden name="type" value="show" />
-    <input hidden name="id" value={show.id} />
-    <input
-      hidden
-      name="backdrop_path"
-      value={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
-    />
-    <input
-      hidden
-      name="poster_path"
-      value={`https://image.tmdb.org/t/p/w342${show.poster_path}`}
-    />
-    <button type="submit">Add</button>
-  </form>
+
+  <button on:click={() => addListItem(media, userID)}>Add</button>
 </div>
 
 <style>

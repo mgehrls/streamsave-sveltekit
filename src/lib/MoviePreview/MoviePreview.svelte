@@ -1,5 +1,7 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import { addListItem } from "$lib/stores/listItems";
+  import type { PageData } from "../../routes/$types";
   export let movie: {
     title: string;
     backdrop_path: string;
@@ -7,6 +9,8 @@
     id: string;
     overview: string;
   };
+  export let data: PageData;
+  const userID = data.session.user.id;
 </script>
 
 <div class="card">
@@ -20,23 +24,8 @@
       <p>{movie.overview.slice(0, 40)}...</p>
     </a>
   </div>
-  <form method="post" action="?/addMedia" use:enhance>
-    <input hidden name="title" value={movie.title} />
-    <input hidden name="description" value={movie.overview} />
-    <input hidden name="type" value="movie" />
-    <input hidden name="id" value={movie.id} />
-    <input
-      hidden
-      name="backdrop_path"
-      value={`https://image.tmdb.org/t/p/w342${movie.backdrop_path}`}
-    />
-    <input
-      hidden
-      name="poster_path"
-      value={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-    />
-    <button type="submit">Add</button>
-  </form>
+
+  <button on:click={() => addListItem(movie, userID)}>Add</button>
 </div>
 
 <style>

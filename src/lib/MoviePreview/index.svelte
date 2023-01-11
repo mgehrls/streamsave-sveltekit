@@ -4,20 +4,20 @@
    * @type {string | any[]}
    */
   export let movies;
-
+  export let data;
   /**
    * @type {string}
    */
   export let title;
 </script>
 
-{#if movies.length === 0}
+{#if !movies}
   <div class="movies-preview">No movies are here...</div>
 {:else}
   <h2>{title}</h2>
   <div class="trendingRow">
     {#each movies as movie}
-      <MoviePreview {movie} />
+      <MoviePreview {movie} {data} />
     {/each}
   </div>
 {/if}

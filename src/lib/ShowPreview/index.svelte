@@ -8,15 +8,16 @@
    * @type {string}
    */
   export let title;
+  export let data;
 </script>
 
-{#if shows.length === 0}
+{#if !shows}
   <div class="movies-preview">No shows are here...</div>
 {:else}
   <h2>{title}</h2>
   <div class="trendingRow">
     {#each shows as show}
-      <ShowPreview {show} />
+      <ShowPreview {show} {data} />
     {/each}
   </div>
 {/if}

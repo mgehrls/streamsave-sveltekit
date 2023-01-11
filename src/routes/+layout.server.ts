@@ -2,6 +2,7 @@ import { getServerSession } from "@supabase/auth-helpers-sveltekit";
 import type { LayoutServerLoad } from "./$types";
 import { API_KEY_SECRET } from "$env/static/private";
 import { supabaseClient } from "$lib/supabase";
+import { PUBLIC_SUPABASE_ANON_KEY } from "$env/static/public";
 
 export const load: LayoutServerLoad = async (event) =>{
 
@@ -22,16 +23,10 @@ export const load: LayoutServerLoad = async (event) =>{
     }
     const session = await getServerSession(event)
 
-    const fetchUserListItems = async ()=>{
-        const listItems = await supabaseClient.from("listItem").select("user_id, media_id (*)",  ).eq("user_id", session?.user.id)
-        return listItems
-    }
-
     return{
         trendingShowData: fetchTrendingShows(),
         popularShowData: fetchPopularShows(),
         popularMovieData: fetchPopularMovies(),
         session,
-        listItems: fetchUserListItems()
     }
 }

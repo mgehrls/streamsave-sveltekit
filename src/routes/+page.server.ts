@@ -1,7 +1,9 @@
+import { loadListItems } from "$lib/stores/listItems"
 import { AuthApiError, type Provider } from "@supabase/supabase-js"
 import { fail, redirect } from "@sveltejs/kit"
 import type { Actions } from "./$types"
 
+loadListItems()
 
 export const actions: Actions = {
 	register: async ({ request, locals }) => {
@@ -108,5 +110,9 @@ export const actions: Actions = {
 				error: listItemErr
 			})
 		}
-    }
+    },
+	delete: async ({request, locals}) => {
+		const form = await request.formData();
+		await locals.sb.from('listItem').delete()
+	}
 }

@@ -2,21 +2,31 @@
   import Header from "./Header.svelte";
   import Auth from "./Auth.svelte";
   import { supabaseClient } from "$lib/supabase";
+  import { user } from "$lib/stores/userStore";
   import "./styles.css";
-  import { onMount } from "svelte";
   import { invalidateAll } from "$app/navigation";
   import { page } from "$app/stores";
-  onMount(() => {
-    const {
-      data: { subscription },
-    } = supabaseClient.auth.onAuthStateChange(() => {
+  import { listItems, loadListItems } from "$lib/stores/listItems";
+  import { onMount } from "svelte";
+
+  onMount(async () => {
+    console.log("ran");
+
+    if ($page.data.session?.user) {
+      user.set($page.data.session.user);
+      loadListItems();
+    }
+
+    supabaseClient.auth.onAuthStateChange((_, session) => {
+      console.log("ran2");
+      user.set(session?.user);
+      if (session?.user) {
+        loadListItems();
+        console.log($listItems);
+      }
       console.log("Auth state change detected");
       invalidateAll();
     });
-
-    return () => {
-      subscription.unsubscribe();
-    };
   });
 </script>
 

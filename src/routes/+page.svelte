@@ -2,12 +2,11 @@
   import type { ActionData, PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
+  import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
   export let data: PageData;
   export let form: ActionData;
-  console.log(form);
-  console.log(data.listItems);
-  const listItems = data.listItems ? data.listItems : "";
+  console.log($listItems);
 </script>
 
 <svelte:head>
@@ -16,20 +15,32 @@
 </svelte:head>
 
 <div class="main">
-  {#if listItems}
+  {#if $listItems}
     <div class="userList">
-      <UserList {listItems} />
+      <UserList listItems={$listItems} />
     </div>
   {/if}
   <section>
     <div class="trending">
-      <ShowPreview title={"Trending Shows"} shows={data.trendingShowData} />
+      <ShowPreview
+        title={"Trending Shows"}
+        shows={data.trendingShowData}
+        {data}
+      />
     </div>
     <div class="trending">
-      <ShowPreview title={"Popular Shows"} shows={data.popularShowData} />
+      <ShowPreview
+        title={"Popular Shows"}
+        shows={data.popularShowData}
+        {data}
+      />
     </div>
     <div class="trending">
-      <MoviePreview title={"Popular Movies"} movies={data.popularMovieData} />
+      <MoviePreview
+        title={"Popular Movies"}
+        movies={data.popularMovieData}
+        {data}
+      />
     </div>
   </section>
 </div>
