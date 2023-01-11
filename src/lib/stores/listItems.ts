@@ -13,6 +13,15 @@ export const loadListItems = async () => {
     listItems.set(data)
 }
 
+export const deleteListItem = async (id) => {
+	const {error} = await supabaseClient.from("listItem").delete().eq("media_id", id)
+	if(error){
+		return console.error(error)
+	}else{
+		loadListItems()
+	}
+}
+
 export const addListItem = async (media, userID) =>{
 
     const {error: mediaErr} = await supabaseClient.from('media').upsert({
@@ -47,4 +56,5 @@ export const addListItem = async (media, userID) =>{
 				error: listItemErr
 			})
 		}
+		loadListItems()
 }

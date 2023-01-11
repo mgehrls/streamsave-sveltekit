@@ -6,25 +6,20 @@
   import "./styles.css";
   import { invalidateAll } from "$app/navigation";
   import { page } from "$app/stores";
-  import { listItems, loadListItems } from "$lib/stores/listItems";
+  import { loadListItems } from "$lib/stores/listItems";
   import { onMount } from "svelte";
 
   onMount(async () => {
-    console.log("ran");
-
     if ($page.data.session?.user) {
       user.set($page.data.session.user);
       loadListItems();
     }
 
     supabaseClient.auth.onAuthStateChange((_, session) => {
-      console.log("ran2");
       user.set(session?.user);
       if (session?.user) {
         loadListItems();
-        console.log($listItems);
       }
-      console.log("Auth state change detected");
       invalidateAll();
     });
   });

@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { ActionData, PageData } from "./$types";
+  import type { PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
+
   export let data: PageData;
-  export let form: ActionData;
-  console.log($listItems);
 </script>
 
 <svelte:head>

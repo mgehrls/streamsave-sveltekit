@@ -4,7 +4,6 @@
    */
   export let listItems;
   import Card from "./Card.svelte";
-  console.log(listItems);
 </script>
 
 <div class="list">

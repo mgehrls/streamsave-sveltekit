@@ -2,12 +2,13 @@
   import { enhance } from "$app/forms";
   import { addListItem } from "$lib/stores/listItems";
   import type { PageData } from "../../routes/$types";
-
-  /**
-   * @type {{ name: string; backdrop_path:string; id:string; overview:string; poster_path:string; }}
-   */
-  export let show;
-  export let data: PageData;
+  export let show: {
+    name: string;
+    backdrop_path: string;
+    poster_path: string;
+    id: string;
+    overview: string;
+  };
   const media = {
     title: show.name,
     description: show.overview,
@@ -16,14 +17,14 @@
     backdrop_path: show.backdrop_path,
     id: show.id,
   };
+  export let data: PageData;
   const userID = data.session.user.id;
+  show.backdrop_path = `https://image.tmdb.org/t/p/w342${show.backdrop_path}`;
+  show.poster_path = `https://image.tmdb.org/t/p/w342${show.poster_path}`;
 </script>
 
 <div class="card">
-  <img
-    src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
-    alt={`${show.name} backdrop`}
-  />
+  <img src={show.backdrop_path} alt={`${show.name} backdrop`} />
   <div class="link">
     <a href={`/shows/${show.id}`}>
       <h2>{show.name}</h2>
