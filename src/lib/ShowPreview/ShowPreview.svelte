@@ -35,7 +35,7 @@
           id: show.id,
           title: show.name,
           description: show.overview,
-          type: show.type,
+          type: "show",
           backdrop_path: `https://image.tmdb.org/t/p/w342${show.backdrop_path}`,
           poster_path: `https://image.tmdb.org/t/p/w342${show.poster_path}`,
         },

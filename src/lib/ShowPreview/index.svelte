@@ -15,7 +15,7 @@
 {#if !shows}
   <div transition:fade class="movies-preview">No shows are here...</div>
 {:else}
-  <h2>{title}</h2>
+  <h2 class="font-bold text-lg text-white m-0">{title}</h2>
   <div class="trendingRow">
     {#each shows as show}
       <ShowPreview {show} {data} />
@@ -24,10 +24,6 @@
 {/if}
 
 <style>
-  h2 {
-    font-weight: bold;
-    font-size: larger;
-  }
   .trendingRow {
     margin-top: 1rem;
     scrollbar-width: thin;
