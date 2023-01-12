@@ -15,13 +15,11 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="bg-blue-900">
+<div class="grid grid-cols-12 pr-8 bg-slate-500">
   {#if $listItems}
-    <div class="w-96">
-      <UserList listItems={$listItems} />
-    </div>
+    <UserList listItems={$listItems} />
   {/if}
-  <section class="flex flex-col justify-center">
+  <section class="flex flex-col justify-center col-span-10 mr-10">
     <div class={trendingClasses}>
       <ShowPreview
         title={"Trending Shows"}

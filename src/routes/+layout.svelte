@@ -26,7 +26,7 @@
   });
 </script>
 
-<div class="flex flex-col min-h-screen bg-pink-300">
+<div class="flex flex-col min-h-screen">
   {#if !$page.data.session}
     <Header data={null} />
     <Auth />

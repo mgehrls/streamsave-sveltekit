@@ -6,19 +6,11 @@
   import Card from "./Card.svelte";
 </script>
 
-<div class="list">
+<div class="bg-orange-700 flex flex-col col-span-2 max-w-sm ml-10">
+  <h2 class="p-4 font-bold text-lg">Your List</h2>
   {#each listItems as listItem}
     {#if listItem}
       <Card {listItem} />
     {/if}
   {/each}
 </div>
-
-<style>
-  div.list {
-    background-color: #ff3e00;
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-  }
-</style>

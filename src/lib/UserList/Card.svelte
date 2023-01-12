@@ -8,55 +8,23 @@
   }
 </script>
 
-<div transition:fade class="mediaCard">
+<div transition:fade class="px-4 py-2 gap-4 flex">
   <img
+    class="w-1/2 shadow-md"
     src={listItem.media.poster_path}
     alt={listItem.media.title + " poster"}
   />
-  <div class="info">
-    <a href={`/${listItem.media.type}s/${listItem.media.id}`}>
-      <h2 class="mediaTitle">{listItem.media.title}</h2>
+  <div class="w-full flex flex-col justify-center items-center h-full">
+    <a
+      class="no-underline text-slate-800 block"
+      href={`/${listItem.media.type}s/${listItem.media.id}`}
+    >
+      <h2 class="no-underline font-bold text-black">{listItem.media.title}</h2>
     </a>
+
+    <button
+      class="border-none p-2 text-base inline-block relative self-end justify-self-end"
+      on:click={() => handleDelete(listItem.media.id)}>Delete</button
+    >
   </div>
 </div>
-<button on:click={() => handleDelete(listItem.media.id)}>
-  <span class="hide-except-from-screenreader">Delete</span>
-</button>
-
-<style>
-  div.mediaCard {
-    padding: 0.5rem 1rem;
-    display: flex;
-    gap: 1rem;
-  }
-  div.info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-  }
-  .mediaTitle {
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-  }
-  img {
-    width: 33%;
-    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.7), -4px 4px 4px rgba(0, 0, 0, 0.5);
-  }
-  button {
-    border: none;
-    padding: 8px;
-    background: none;
-    font-size: 16px;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-  }
-  a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-  }
-</style>
