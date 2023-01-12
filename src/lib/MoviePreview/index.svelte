@@ -32,10 +32,9 @@
     scrollbar-width: thin;
     display: flex;
     overflow-y: hidden;
-    overflow-x: hidden;
+    overflow-x: scroll;
     position: relative;
     overflow: auto;
-    width: 100%;
     gap: 1rem;
   }
   .trendingRow::-webkit-scrollbar:horizontal {

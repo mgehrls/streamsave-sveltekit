@@ -26,47 +26,22 @@
   });
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-screen bg-pink-300">
   {#if !$page.data.session}
     <Header data={null} />
-    <div class="spacer" />
     <Auth />
   {:else}
     <Header data={$page.data.session} />
-    <div class="spacer" />
   {/if}
 
   <slot />
 
-  <footer>
+  <footer class="flex flex-col justify-center items-center p-4">
     <p>
-      data and images curtosy of <a href="https://www.themoviedb.org/"
-        >themoviedb.org</a
+      data and images curtosy of <a
+        class="font-bold"
+        href="https://www.themoviedb.org/">themoviedb.org</a
       >
     </p>
   </footer>
 </div>
-
-<style>
-  .spacer {
-    height: 80px;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-  }
-
-  footer a {
-    font-weight: bold;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 12px 0;
-    }
-  }
-</style>

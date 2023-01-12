@@ -5,7 +5,7 @@
 </script>
 
 <header
-  class="flex justify-around items-center p-5 gap-4 sticky text-white w-screen z-100 h-100 bg-slate-700"
+  class="w-full flex justify-around items-center gap-4 sticky text-white p-4 z-100 h-100 bg-slate-700"
 >
   <div class="logo">
     <a class="m-0 p-0" href="/">

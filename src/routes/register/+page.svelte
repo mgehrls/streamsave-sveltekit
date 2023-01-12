@@ -1,4 +1,4 @@
-<div>
+<div class="flex flex-col justify-center items-center">
   <h1>Register</h1>
   <form action="?/register" method="POST" class="auth-form">
     <label for="email"> Email </label>

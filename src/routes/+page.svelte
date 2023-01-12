@@ -5,6 +5,8 @@
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
 
+  const trendingClasses =
+    "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
   export let data: PageData;
 </script>
 
@@ -13,30 +15,28 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="main">
-  <div class="bg-pink-600 w-12 h-12">Howdy</div>
-
+<div class="bg-blue-900">
   {#if $listItems}
-    <div class="userList">
+    <div class="w-96">
       <UserList listItems={$listItems} />
     </div>
   {/if}
-  <section>
-    <div class="trending">
+  <section class="flex flex-col justify-center">
+    <div class={trendingClasses}>
       <ShowPreview
         title={"Trending Shows"}
         shows={data.trendingShowData}
         {data}
       />
     </div>
-    <div class="trending">
+    <div class={trendingClasses}>
       <ShowPreview
         title={"Popular Shows"}
         shows={data.popularShowData}
         {data}
       />
     </div>
-    <div class="trending">
+    <div class={trendingClasses}>
       <MoviePreview
         title={"Popular Movies"}
         movies={data.popularMovieData}
@@ -45,33 +45,3 @@
     </div>
   </section>
 </div>
-
-<style>
-  div.main {
-    justify-content: start;
-    align-items: start;
-    padding: 1rem;
-    flex: 1;
-    display: flex;
-    width: 100%;
-    margin: 4rem auto;
-    box-sizing: border-box;
-  }
-  div.userList {
-    min-width: 400px;
-  }
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: calc(100% - 400px);
-    flex: 0.6;
-  }
-  div.trending {
-    overflow-y: hidden;
-    position: relative;
-    overflow: auto;
-    width: calc(100% - 2rem);
-    padding: 1rem;
-  }
-</style>

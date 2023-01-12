@@ -6,15 +6,25 @@
   const userID = data.session.user.id;
 </script>
 
-<div class="card">
+<div class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52">
   <img
     src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
     alt={`${show.name} backdrop`}
   />
   <div class="link">
-    <a href={`/shows/${show.id}`}>
-      <h2>{show.name}</h2>
-      <p>{show.overview.slice(0, 40)}...</p>
+    <a class="p-4" href={`/shows/${show.id}`}>
+      <h2
+        class="no-underline text-white m-0 text-lg font-bold"
+        style="text-shadow: 0 2px 4px black;"
+      >
+        {show.name}
+      </h2>
+      <p
+        class="no-underline text-white m-0 text-sm"
+        style="text-shadow: 0 2px 4px black;"
+      >
+        {show.overview.slice(0, 40)}...
+      </p>
     </a>
   </div>
 
@@ -33,29 +43,3 @@
       )}>Add</button
   >
 </div>
-
-<style>
-  div.card {
-    background-image: linear-gradient(to top, #4075a6 0%, #1a4e7f 100%);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
-    margin-bottom: 0.5rem;
-    padding: 1rem;
-  }
-  a {
-    padding: 1rem;
-  }
-  h2,
-  p {
-    text-decoration: none;
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    margin: 0;
-  }
-  h2 {
-    font-weight: bold;
-    font-size: large;
-  }
-  p {
-    font-size: small;
-  }
-</style>
