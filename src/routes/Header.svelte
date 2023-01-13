@@ -1,7 +1,6 @@
 <script lang="ts">
   export let data;
   const session = data;
-  let timer: string | number | NodeJS.Timeout | undefined;
 </script>
 
 <header
