@@ -1,25 +1,39 @@
-<script>
+<script lang="ts">
   import MoviePreview from "./MoviePreview.svelte";
-  /**
-   * @type {string | any[]}
-   */
-  export let movies;
+  import { fade } from "svelte/transition";
+  import { browser } from "$app/environment";
+  import { onMount } from "svelte";
+
+  let Carousel: ConstructorOfATypedSvelteComponent;
+
+  export let movies: string | any[];
+  export let title: string;
   export let data;
-  /**
-   * @type {string}
-   */
-  export let title;
+
+  onMount(async () => {
+    const module = await import("svelte-carousel");
+    Carousel = module.default;
+  });
 </script>
 
 {#if !movies}
   <div class="movies-preview">No movies are here...</div>
 {:else}
   <h2>{title}</h2>
-  <div class="trendingRow">
-    {#each movies as movie}
-      <MoviePreview {movie} {data} />
-    {/each}
-  </div>
+  {#if browser}
+    <svelte:component
+      this={Carousel}
+      particlesToShow={5}
+      particlesToScroll={4}
+      dots={true}
+      arrows={true}
+    >
+      ...
+      {#each movies as movie}
+        <MoviePreview {movie} {data} />
+      {/each}
+    </svelte:component>
+  {/if}
 {/if}
 
 <style>
