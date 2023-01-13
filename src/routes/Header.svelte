@@ -12,9 +12,6 @@
       <h2>StreamSave</h2>
     </a>
   </div>
-  <div>
-    <input id="searchBarInput" class="searchBarInput" type="search" />
-  </div>
   {#if !session}
     <div class="flex justify-center items-center gap-8">
       <a class="m-0 p-0" href="/login">Login</a>

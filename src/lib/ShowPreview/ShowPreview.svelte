@@ -29,6 +29,7 @@
     </a>
   </div>
   <button
+    class="p-2 hover:text-white hover:bg-slate-800 rounded-xl flex gap-2 font-bold"
     on:click={() =>
       addListItem(
         {
@@ -43,5 +44,6 @@
       )}
   >
     <PlusCircle />
+    Add
   </button>
 </div>

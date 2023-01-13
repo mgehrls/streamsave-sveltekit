@@ -20,7 +20,7 @@
   {#if $listItems}
     <UserList listItems={$listItems} />
   {/if}
-  <section class="flex flex-col justify-center col-span-10 mr-10 mt-8">
+  <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
     <div class={trendingClasses}>
       <ShowPreview
         title={"Trending Shows"}
