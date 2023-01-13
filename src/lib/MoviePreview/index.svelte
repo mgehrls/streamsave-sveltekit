@@ -19,7 +19,7 @@
 {#if !movies}
   <div class="movies-preview">No movies are here...</div>
 {:else}
-  <h2>{title}</h2>
+  <h2 class="font-bold text-xl">{title}</h2>
   {#if browser}
     <svelte:component
       this={Carousel}
@@ -35,29 +35,3 @@
     </svelte:component>
   {/if}
 {/if}
-
-<style>
-  h2 {
-    font-weight: bold;
-    font-size: larger;
-  }
-  .trendingRow {
-    margin-top: 1rem;
-    scrollbar-width: thin;
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    position: relative;
-    overflow: auto;
-    gap: 1rem;
-  }
-  .trendingRow::-webkit-scrollbar:horizontal {
-    height: 0;
-    width: 0;
-    display: none;
-  }
-
-  .trendingRow::-webkit-scrollbar-thumb:horizontal {
-    display: none;
-  }
-</style>

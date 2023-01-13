@@ -11,7 +11,7 @@
     src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
     alt={`${show.name} backdrop`}
   />
-  <div class="link">
+  <div>
     <a class="p-4" href={`/shows/${show.id}`}>
       <h2
         class="no-underline text-white m-0 text-lg font-bold"
