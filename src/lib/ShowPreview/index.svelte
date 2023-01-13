@@ -18,13 +18,13 @@
 {#if !shows}
   <div class="movies-preview">No shows are here...</div>
 {:else}
-  <h2 class="font-bold text-lg text-white m-0">{title}</h2>
+  <h2 class="font-bold text-xl ml-8">{title}</h2>
   {#if browser}
     <svelte:component
       this={Carousel}
       particlesToShow={4}
       particlesToScroll={3}
-      dots={true}
+      dots={false}
       arrows={true}
     >
       {#each shows as show}

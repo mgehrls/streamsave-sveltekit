@@ -1,5 +1,6 @@
 <script lang="ts">
   import { addListItem } from "$lib/stores/listItems";
+  import { PlusCircle, MinusCircle } from "lucide-svelte";
   import type { PageData } from "../../routes/$types";
   export let movie;
   export let data: PageData;
@@ -27,7 +28,6 @@
       </p>
     </a>
   </div>
-
   <button
     on:click={() =>
       addListItem(
@@ -35,11 +35,13 @@
           id: movie.id,
           title: movie.title,
           description: movie.overview,
-          type: movie.type,
+          type: "movie",
           backdrop_path: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
           poster_path: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
         },
         userID
-      )}>Add</button
+      )}
   >
+    <PlusCircle />
+  </button>
 </div>

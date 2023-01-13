@@ -16,26 +16,26 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="grid grid-cols-12 pr-8 bg-slate-500">
+<div class="grid grid-cols-12 pr-8 bg-slate-400">
   {#if $listItems}
     <UserList listItems={$listItems} />
   {/if}
-  <section class="flex flex-col justify-center col-span-10 mr-10">
-    <div transition:fade class={trendingClasses}>
+  <section class="flex flex-col justify-center col-span-10 mr-10 mt-8">
+    <div class={trendingClasses}>
       <ShowPreview
         title={"Trending Shows"}
         shows={data.trendingShowData}
         {data}
       />
     </div>
-    <div transition:fade class={trendingClasses}>
+    <div class={trendingClasses}>
       <ShowPreview
         title={"Popular Shows"}
         shows={data.popularShowData}
         {data}
       />
     </div>
-    <div transition:fade class={trendingClasses}>
+    <div class={trendingClasses}>
       <MoviePreview
         title={"Popular Movies"}
         movies={data.popularMovieData}
