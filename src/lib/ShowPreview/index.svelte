@@ -1,6 +1,5 @@
 <script lang="ts">
   import ShowPreview from "./ShowPreview.svelte";
-  import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
 
@@ -23,12 +22,11 @@
   {#if browser}
     <svelte:component
       this={Carousel}
-      particlesToShow={5}
-      particlesToScroll={4}
+      particlesToShow={4}
+      particlesToScroll={3}
       dots={true}
       arrows={true}
     >
-      ...
       {#each shows as show}
         <ShowPreview {show} {data} />
       {/each}
