@@ -4,10 +4,10 @@
   import MoviePreview from "$lib/MoviePreview/index.svelte";
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
-  import { fade } from "svelte/transition";
 
   const trendingClasses =
     "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
+
   export let data: PageData;
 </script>
 

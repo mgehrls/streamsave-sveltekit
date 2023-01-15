@@ -2,12 +2,13 @@
   import ShowPreview from "./ShowPreview.svelte";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
+  import type { PageData } from "../../routes/$types";
 
   let Carousel: ConstructorOfATypedSvelteComponent; // for saving Carousel component class
 
   export let shows: string | any[];
   export let title: string;
-  export let data;
+  export let data: PageData;
 
   onMount(async () => {
     const module = await import("svelte-carousel");

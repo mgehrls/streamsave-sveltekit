@@ -3,6 +3,12 @@ import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 
+const initialState = {
+	data: [],
+	status: "",
+	ids:[]
+}
+
 export const listItems = writable([]);
 
 export const loadListItems = async () => {

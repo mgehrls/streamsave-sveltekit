@@ -1,8 +1,6 @@
 import { getServerSession } from "@supabase/auth-helpers-sveltekit";
 import type { LayoutServerLoad } from "./$types";
 import { API_KEY_SECRET } from "$env/static/private";
-import { supabaseClient } from "$lib/supabase";
-import { PUBLIC_SUPABASE_ANON_KEY } from "$env/static/public";
 
 export const load: LayoutServerLoad = async (event) =>{
 
