@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { addListItem, deleteListItem } from "$lib/stores/listItems";
-  import type { PageData } from "../../routes/$types";
+  import {
+    addListItem,
+    deleteListItem,
+    listItems,
+  } from "$lib/stores/listItems";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
-  import { listItems } from "$lib/stores/listItems";
+  import type { PageData } from "../../routes/$types";
 
   export let show;
   export let data: PageData;
@@ -15,7 +18,7 @@
   }
 </script>
 
-<div class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52 mr-1">
+<div class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52">
   <img
     src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
     alt={`${show.name} backdrop`}
@@ -36,7 +39,7 @@
       </p>
     </a>
   </div>
-  {#if listItemIdArray.includes(show.id)}
+  {#if data.listItems.data.find((item) => item.media_id === show.id)}
     <button
       class="p-2 hover:text-white hover:bg-slate-800 rounded-xl flex gap-2 font-bold border-solid border-2 border-slate-800 hover:border-slate-500"
       on:click={() => deleteListItem(show.id)}

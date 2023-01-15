@@ -2,12 +2,7 @@ import { writable } from "svelte/store";
 import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
-
-const initialState = {
-	data: [],
-	status: "",
-	ids:[]
-}
+import { invalidateAll } from "$app/navigation";
 
 export const listItems = writable([]);
 
@@ -24,6 +19,7 @@ export const deleteListItem = async (id) => {
 	if(error){
 		return console.error(error)
 	}else{
+		invalidateAll()
 		loadListItems()
 	}
 }
@@ -62,5 +58,6 @@ export const addListItem = async (media, userID) =>{
 				error: listItemErr
 			})
 		}
+		invalidateAll()
 		loadListItems()
 }
