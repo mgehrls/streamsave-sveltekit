@@ -1,9 +1,32 @@
-import { loadListItems } from "$lib/stores/listItems"
+import { API_KEY_SECRET } from "$env/static/private"
+import type { apiMovieResult, apiShowResult } from "$lib/types"
 import { AuthApiError, type Provider } from "@supabase/supabase-js"
 import { fail, redirect } from "@sveltejs/kit"
-import type { Actions } from "./$types"
+import type { Actions, PageServerLoad } from "./$types"
 
-loadListItems()
+export const load = (async (event) => {
+	const fetchTrendingShows = async ()=>{
+        const res = await event.fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY_SECRET}&language=en-US`)
+        const trendingShowsData = await res.json()
+        return trendingShowsData.results as apiShowResult[]
+    }
+    const fetchPopularMovies = async ()=>{
+        const res = await event.fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_SECRET}&language=en-US`)
+        const popularMoviesData = await res.json()
+        return popularMoviesData.results  as apiMovieResult[]
+    }
+    const fetchPopularShows = async ()=>{
+        const res = await event.fetch(` https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY_SECRET}&language=en-US`)
+        const popularShowsData = await res.json()
+        return popularShowsData.results as apiShowResult[]
+    }
+	return {
+		trendingShowData: fetchTrendingShows(),
+        popularShowData: fetchPopularShows(),
+        popularMovieData: fetchPopularMovies(),
+	}
+
+}) satisfies PageServerLoad
 
 export const actions: Actions = {
 	register: async ({ request, locals }) => {
@@ -73,46 +96,4 @@ export const actions: Actions = {
 
 		throw redirect(300, "/")
 	},
-    addMedia: async ({locals, request})=>{
-
-		const formData = Object.fromEntries(await request.formData())
-		
-		const { error: mediaErr } = await locals.sb.from('media').upsert({
-			title: formData.title as string,
-			description: formData.description as string,
-			type: formData.type as string,
-			poster_path: formData.poster_path as string,
-			backdrop_path: formData.backdrop_path as string,
-			id: formData.id as unknown as number
-		})
-		
-		if(mediaErr instanceof AuthApiError && mediaErr.status === 400){
-			return fail(400,{
-				error: "auth error probably. here's what supabase says: " + mediaErr
-			})
-		}else if(mediaErr){
-			return fail(400, {
-				error: mediaErr
-			})
-		}
-		
-		const { error: listItemErr } = await locals.sb.from('listItem').upsert({
-			user_id: locals.session?.user.id as string,
-			media_id: formData.id as unknown as number
-		})
-
-		if(listItemErr instanceof AuthApiError && listItemErr.status === 400){
-			return fail(400,{
-				error: "auth error probably. here's what supabase says: " + listItemErr
-			})
-		}else if(listItemErr){
-			return fail(400, {
-				error: listItemErr
-			})
-		}
-    },
-	delete: async ({request, locals}) => {
-		const form = await request.formData();
-		await locals.sb.from('listItem').delete()
-	}
 }

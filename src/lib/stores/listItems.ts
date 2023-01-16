@@ -1,10 +1,11 @@
-import { writable } from "svelte/store";
+import { writable, type Writable } from "svelte/store";
 import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 import { invalidateAll } from "$app/navigation";
+import type { fullListItem, sbMedia } from "$lib/types";
 
-export const listItems = writable([]);
+export const listItems: Writable<fullListItem[]> = writable([]);
 
 export const loadListItems = async () => {
     const {data, error} = await supabaseClient.from('listItem').select("*, media(*)")
@@ -14,7 +15,7 @@ export const loadListItems = async () => {
     listItems.set(data)
 }
 
-export const deleteListItem = async (id) => {
+export const deleteListItem = async (id: number) => {
 	const {error} = await supabaseClient.from("listItem").delete().eq("media_id", id)
 	if(error){
 		return console.error(error)
@@ -24,7 +25,7 @@ export const deleteListItem = async (id) => {
 	}
 }
 
-export const addListItem = async (media, userID) =>{
+export const addListItem = async (media: sbMedia, userID:string) =>{
 
     const {error: mediaErr} = await supabaseClient.from('media').upsert({
         title:media.title as string,
@@ -46,7 +47,7 @@ export const addListItem = async (media, userID) =>{
 
         const { error: listItemErr } = await supabaseClient.from('listItem').upsert({
 			user_id: userID,
-			media_id: media.id as unknown as string
+			media_id: media.id
 		})
 
 		if(listItemErr instanceof AuthApiError && listItemErr.status === 400){

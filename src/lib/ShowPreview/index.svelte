@@ -1,12 +1,13 @@
 <script lang="ts">
   import ShowPreview from "./ShowPreview.svelte";
   import { browser } from "$app/environment";
-  import { onMount } from "svelte";
+  import { onMount, SvelteComponentTyped, type ComponentType } from "svelte";
   import type { PageData } from "../../routes/$types";
+  import type { apiShowResult } from "$lib/types";
 
-  let Carousel: ConstructorOfATypedSvelteComponent; // for saving Carousel component class
+  let Carousel: ComponentType<SvelteComponentTyped>;
 
-  export let shows: string | any[];
+  export let shows: apiShowResult[];
   export let title: string;
   export let data: PageData;
 

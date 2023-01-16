@@ -4,14 +4,15 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
+  import type { apiMovieResult } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
   import type { PageData } from "../../routes/$types";
 
-  export let movie;
+  export let movie: apiMovieResult;
   export let data: PageData;
 
   const userID = data.session.user.id;
-  let listItemIdArray;
+  let listItemIdArray: number[];
 
   if ($listItems) {
     listItemIdArray = $listItems.map((item) => item.media_id);

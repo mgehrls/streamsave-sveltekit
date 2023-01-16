@@ -4,14 +4,15 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
+  import type { apiShowResult } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
   import type { PageData } from "../../routes/$types";
 
-  export let show;
+  export let show: apiShowResult;
   export let data: PageData;
 
   const userID = data.session.user.id;
-  let listItemIdArray;
+  let listItemIdArray: number[];
 
   if ($listItems) {
     listItemIdArray = $listItems.map((item) => item.media_id);

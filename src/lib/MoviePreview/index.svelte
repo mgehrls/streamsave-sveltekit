@@ -1,13 +1,15 @@
 <script lang="ts">
   import MoviePreview from "./MoviePreview.svelte";
   import { browser } from "$app/environment";
-  import { onMount } from "svelte";
+  import { onMount, SvelteComponentTyped, type ComponentType } from "svelte";
+  import type { apiMovieResult } from "$lib/types";
+  import type { PageData } from "../../routes/$types";
 
-  let Carousel: ConstructorOfATypedSvelteComponent;
+  let Carousel: ComponentType<SvelteComponentTyped>;
 
-  export let movies: string | any[];
+  export let movies: apiMovieResult[];
   export let title: string;
-  export let data;
+  export let data: PageData;
 
   onMount(async () => {
     const module = await import("svelte-carousel");

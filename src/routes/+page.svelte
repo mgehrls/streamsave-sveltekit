@@ -12,8 +12,9 @@
   export let data: PageData;
 
   onMount(() => {
-    listItems.set(data.listItems.data);
-    console.log($listItems);
+    if (data.listItems.data) {
+      listItems.set(data.listItems.data);
+    }
   });
 </script>
 
