@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let listItems: any[];
+  import type { fullListItem } from "$lib/types";
+  export let listItems: fullListItem[];
   import Card from "./Card.svelte";
 </script>
 

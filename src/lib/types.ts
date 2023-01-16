@@ -36,7 +36,7 @@ export type apiMovieResult = {
 
 export type sbMedia ={
     backdrop_path:string,
-    created_at:string,
+    created_at?:string,
     description:string,
     id:number,
     poster_path:string,

@@ -42,15 +42,14 @@
   </div>
   {#if data.listItems.data.find((item) => item.media_id === movie.id)}
     <button
-      class="p-2 hover:text-white hover:bg-slate-800 rounded-xl flex gap-2 font-bold border-solid border-2 border-slate-800 hover:border-slate-500"
+      class="p-2 text-white bg-slate-800 rounded-md flex gap-2 hover:bg-red-600 hover:scale-110"
       on:click={() => deleteListItem(movie.id)}
     >
       <MinusCircle />
-      Remove
     </button>
   {:else}
     <button
-      class="p-2 hover:text-white hover:bg-slate-800 rounded-xl flex gap-2 font-bold border-solid border-2 border-slate-800 hover:border-slate-500"
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110"
       on:click={() =>
         addListItem(
           {
@@ -65,7 +64,6 @@
         )}
     >
       <PlusCircle />
-      Add
     </button>
   {/if}
 </div>

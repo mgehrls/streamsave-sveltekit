@@ -3,7 +3,6 @@
   import { fade } from "svelte/transition";
   import { deleteListItem } from "$lib/stores/listItems";
   import { Trash2, Tv, Film } from "lucide-svelte";
-  import { list } from "postcss";
   let mediaType;
 
   if (listItem.media.type === "show") {
@@ -25,9 +24,9 @@
   />
   <div class="w-full flex flex-col justify-center items-start h-full">
     {#if listItem.media.type === "show"}
-      <Tv />
+      <Tv size={20} />
     {:else}
-      <Film />
+      <Film size={20} />
     {/if}
     <a
       class="no-underline text-slate-800 block"
@@ -39,8 +38,8 @@
     </a>
     <button class="self-end" on:click={handleDelete}>
       <Trash2
-        size={40}
-        class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer"
+        size={35}
+        class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:bg-red-600 rounded-full hover:scale-110"
       />
     </button>
   </div>
