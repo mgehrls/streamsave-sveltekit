@@ -1,6 +1,5 @@
 <script lang="ts">
   import Header from "./Header.svelte";
-  import Auth from "./Auth.svelte";
   import { supabaseClient } from "$lib/supabase";
   import { user } from "$lib/stores/userStore";
   import "./styles.css";
@@ -32,12 +31,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  {#if !data.session}
-    <Header />
-    <Auth />
-  {:else}
-    <Header />
-  {/if}
+  <Header />
 
   <slot />
 
