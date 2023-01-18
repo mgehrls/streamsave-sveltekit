@@ -1,4 +1,4 @@
-<main class="flex flex-col justify-center items-center">
+<main class="flex flex-col h-full justify-center items-center">
   <h1>Login</h1>
   <form action="?/login" method="POST" class="auth-form">
     <label for=""> Email </label>
