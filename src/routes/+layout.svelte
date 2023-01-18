@@ -2,7 +2,6 @@
   import Header from "./Header.svelte";
   import { supabaseClient } from "$lib/supabase";
   import { user } from "$lib/stores/userStore";
-  import "./styles.css";
   import "../app.css";
   import { invalidateAll } from "$app/navigation";
   import { listItems, loadListItems } from "$lib/stores/listItems";
@@ -30,10 +29,13 @@
   });
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div
+  class="flex flex-col min-h-screen bg-gradient-to-b from-gray-400 via-gray-600 to-blue-800"
+>
   <Header />
-
-  <slot />
+  <div style="min-height: calc(100vh - 112px);">
+    <slot />
+  </div>
 
   <footer
     class="flex flex-col justify-center items-center p-4 bg-slate-800 text-white"

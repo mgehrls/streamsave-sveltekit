@@ -4,7 +4,7 @@
   import MoviePreview from "$lib/MoviePreview/index.svelte";
   import UserList from "$lib/UserList/UserList.svelte";
   import { listItems, loadListItems } from "$lib/stores/listItems";
-  import Auth from "./Auth.svelte";
+  import Welcome from "./Welcome.svelte";
   import { user } from "$lib/stores/userStore";
   import { onMount } from "svelte";
 
@@ -16,13 +16,10 @@
     console.log(userData);
     console.log(listItemsArray);
   }
-
+  loadListItems();
   const trendingClasses =
     "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
   const { popularMovieData, popularShowData, trendingShowData } = data;
-  onMount(() => {
-    loadListItems();
-  });
 </script>
 
 <svelte:head>
@@ -30,9 +27,9 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="grid grid-cols-12 pr-8 bg-slate-400">
-  {#if !userData && !listItemsArray}
-    <Auth />
+<div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">
+  {#if !userData && !listItemsArray.length}
+    <Welcome />
   {:else}
     <UserList listItems={listItemsArray} />
     <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
