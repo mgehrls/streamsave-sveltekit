@@ -11,6 +11,11 @@
   export let data: PageData;
 
   $: listItemsArray = $listItems;
+  $: userData = $user;
+  $: {
+    console.log(userData);
+    console.log(listItemsArray);
+  }
 
   const trendingClasses =
     "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
@@ -26,7 +31,7 @@
 </svelte:head>
 
 <div class="grid grid-cols-12 pr-8 bg-slate-400">
-  {#if !$user && !listItemsArray}
+  {#if !userData && !listItemsArray}
     <Auth />
   {:else}
     <UserList listItems={listItemsArray} />
