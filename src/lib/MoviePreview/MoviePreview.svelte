@@ -4,27 +4,52 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import type { apiMovieResult } from "$lib/types";
+  import { user } from "$lib/stores/userStore";
+  import type { apiMovieResult, listItemPlusMedia } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
-  import type { PageData } from "../../routes/$types";
 
   export let movie: apiMovieResult;
-  export let data: PageData;
+  let listItemsArray: listItemPlusMedia[];
+  let onList: boolean;
+  let loggedIn: boolean;
+  let userID: string;
+  let loading: boolean;
 
-  const userID = data.session.user.id;
-  let listItemIdArray: number[];
+  $: loggedIn = $user ? true : false;
+  $: listItemsArray = $listItems;
+  $: onList = listItemsArray.map((item) => item.media_id).includes(movie.id);
+  $: userID = $user.id;
 
-  if ($listItems) {
-    listItemIdArray = $listItems.map((item) => item.media_id);
+  async function handleDelete() {
+    loading = true;
+    await deleteListItem(movie.id);
+    loading = false;
+  }
+  async function handleAdd() {
+    loading = true;
+    await addListItem(
+      {
+        id: movie.id,
+        title: movie.title,
+        description: movie.overview,
+        type: "movie",
+        backdrop_path: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
+      },
+      userID
+    );
+    loading = false;
   }
 </script>
 
-<div class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52">
+<div
+  class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52 flex flex-col justify-center items-center"
+>
   <img
     src={`https://image.tmdb.org/t/p/w342${movie.backdrop_path}`}
     alt={`${movie.title} backdrop`}
   />
-  <div>
+  <div class="self-start">
     <a class="p-4" href={`/movies/${movie.id}`}>
       <h2
         class="no-underline text-white m-0 text-lg font-bold"
@@ -40,30 +65,25 @@
       </p>
     </a>
   </div>
-  {#if data.listItems.data.find((item) => item.media_id === movie.id)}
+  {#if loading}
+    <div>loading...</div>
+  {:else if loggedIn && onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-md flex gap-2 hover:bg-red-600 hover:scale-110"
-      on:click={() => deleteListItem(movie.id)}
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-red-600 hover:scale-110 self-start"
+      on:click={handleDelete}
     >
       <MinusCircle />
     </button>
-  {:else}
+  {:else if loggedIn && !onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110"
-      on:click={() =>
-        addListItem(
-          {
-            id: movie.id,
-            title: movie.title,
-            description: movie.overview,
-            type: "movie",
-            backdrop_path: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
-            poster_path: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
-          },
-          userID
-        )}
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110 self-start"
+      on:click={handleAdd}
     >
       <PlusCircle />
     </button>
+  {:else}
+    <a href="/login">
+      <p>Please log in.</p>
+    </a>
   {/if}
 </div>

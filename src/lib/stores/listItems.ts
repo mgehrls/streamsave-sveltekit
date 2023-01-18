@@ -3,14 +3,15 @@ import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 import { invalidateAll } from "$app/navigation";
-import type { fullListItem, sbMedia } from "$lib/types";
+import type { listItemPlusMedia, listItem, sbMedia } from "$lib/types";
 
-export const listItems: Writable<fullListItem[]> = writable([]);
+
+export const listItems: Writable<listItemPlusMedia[]> = writable([]);
 
 export const loadListItems = async () => {
-    const {data, error} = await supabaseClient.from('listItem').select("*, media(*)")
+	const {data, error} = await supabaseClient.from('listItem').select("*, media(*)")
     if(error){
-        return console.error(error)
+		return console.error(error)
     }
     listItems.set(data)
 }
@@ -20,8 +21,20 @@ export const deleteListItem = async (id: number) => {
 	if(error){
 		return console.error(error)
 	}else{
-		invalidateAll()
 		loadListItems()
+		invalidateAll()
+	}
+}
+
+export const updateListItemDate = async (item: listItem) => {
+	const {error} = await supabaseClient.from('listItem').update({
+		lastSeen: item.lastSeen
+	}).eq('id', item.id)
+	if(error){
+		console.log(error)
+	}else{
+		loadListItems()
+		invalidateAll()
 	}
 }
 
@@ -59,6 +72,6 @@ export const addListItem = async (media: sbMedia, userID:string) =>{
 				error: listItemErr
 			})
 		}
-		invalidateAll()
 		loadListItems()
+		invalidateAll()
 }

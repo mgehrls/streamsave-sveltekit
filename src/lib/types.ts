@@ -8,6 +8,7 @@ export type apiShowResult = {
     id:number,
     media_type: string,
     name:string,
+    onList?:boolean,
     origin_country: string[],
     original_language: string,
     original_name:string,
@@ -22,6 +23,7 @@ export type apiMovieResult = {
     backdrop_path: string,
     genre_ids: number[],
     id: number,
+    onList?:boolean,
     original_language: string,
     original_title:string,
     overview:string,
@@ -44,17 +46,26 @@ export type sbMedia ={
     type: "show" | "movie"
 }
 
-export type fullListItem={
-    created_at:string,
+export type listItemPlusMedia={
+    id:string,
+    created_at?:string,
     lastSeen: Date | null,
     media: sbMedia,
     media_id:number,
     user_id:string,
 }
 
+export type listItem = {
+    id:string,
+    created_at?:string,
+    lastSeen: Date | null,
+    media_id:number,
+    user_id:string,
+}
+
 export type userListItems = {
     count:number,
-    data: fullListItem[],
+    data: listItemPlusMedia[],
     error: null | any,
     status:number,
     statusText:string,

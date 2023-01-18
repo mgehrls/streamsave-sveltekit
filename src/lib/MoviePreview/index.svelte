@@ -3,13 +3,11 @@
   import { browser } from "$app/environment";
   import { onMount, SvelteComponentTyped, type ComponentType } from "svelte";
   import type { apiMovieResult } from "$lib/types";
-  import type { PageData } from "../../routes/$types";
 
   let Carousel: ComponentType<SvelteComponentTyped>;
 
   export let movies: apiMovieResult[];
   export let title: string;
-  export let data: PageData;
 
   onMount(async () => {
     const module = await import("svelte-carousel");
@@ -30,7 +28,7 @@
       arrows={true}
     >
       {#each movies as movie}
-        <MoviePreview {movie} {data} />
+        <MoviePreview {movie} />
       {/each}
     </svelte:component>
   {/if}

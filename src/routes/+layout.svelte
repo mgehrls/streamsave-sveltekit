@@ -6,14 +6,19 @@
   import "./styles.css";
   import "../app.css";
   import { invalidateAll } from "$app/navigation";
-  import { page } from "$app/stores";
-  import { loadListItems } from "$lib/stores/listItems";
+  import { listItems, loadListItems } from "$lib/stores/listItems";
   import { onMount } from "svelte";
+  import type { PageData } from "./$types";
+
+  export let data: PageData;
 
   onMount(async () => {
-    if ($page.data.session?.user) {
-      user.set($page.data.session.user);
+    if (data.session?.user) {
+      user.set(data.session.user);
       loadListItems();
+    }
+    if (data.listItems.data.length) {
+      listItems.set(data.listItems.data);
     }
 
     supabaseClient.auth.onAuthStateChange((_, session) => {
@@ -27,11 +32,11 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  {#if !$page.data.session}
+  {#if !data.session}
     <Header data={null} />
     <Auth />
   {:else}
-    <Header data={$page.data.session} />
+    <Header data={data.session} />
   {/if}
 
   <slot />

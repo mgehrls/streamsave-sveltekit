@@ -1,8 +1,10 @@
 <script lang="ts">
-  export let listItem;
+  export let listItem: listItemPlusMedia;
   import { fade } from "svelte/transition";
-  import { deleteListItem } from "$lib/stores/listItems";
+  import { deleteListItem, updateListItemDate } from "$lib/stores/listItems";
   import { Trash2, Tv, Film } from "lucide-svelte";
+  import type { listItemPlusMedia } from "$lib/types";
+  import { list } from "postcss";
   let mediaType;
 
   if (listItem.media.type === "show") {
@@ -13,6 +15,15 @@
 
   function handleDelete() {
     deleteListItem(listItem.media.id);
+  }
+  function handleDateUpdate() {
+    const updatedListItem = {
+      id: listItem.id,
+      user_id: listItem.user_id,
+      media_id: listItem.media_id,
+      lastSeen: listItem.lastSeen,
+    };
+    updateListItemDate(updatedListItem);
   }
 </script>
 
@@ -36,6 +47,11 @@
         {listItem.media.title}
       </h2>
     </a>
+    <input
+      type="date"
+      on:change={handleDateUpdate}
+      bind:value={listItem.lastSeen}
+    />
     <button class="self-end" on:click={handleDelete}>
       <Trash2
         size={35}

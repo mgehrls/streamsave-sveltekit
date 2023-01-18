@@ -2,19 +2,20 @@
   import type { PageData } from "./$types";
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
-  import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
+  import { listItems, loadListItems } from "$lib/stores/listItems";
   import { onMount } from "svelte";
-
-  const trendingClasses =
-    "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
 
   export let data: PageData;
 
+  $: listItemsArray = $listItems;
+  $: console.log(listItemsArray);
+
+  const trendingClasses =
+    "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
+  const { popularMovieData, popularShowData, trendingShowData } = data;
   onMount(() => {
-    if (data.listItems.data) {
-      listItems.set(data.listItems.data);
-    }
+    loadListItems();
   });
 </script>
 
@@ -24,30 +25,30 @@
 </svelte:head>
 
 <div class="grid grid-cols-12 pr-8 bg-slate-400">
-  {#if $listItems}
-    <UserList listItems={$listItems} />
+  {#if listItemsArray.length}
+    <UserList listItems={listItemsArray} />
+    <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
+      <div class={trendingClasses}>
+        <ShowPreview title={"Trending Shows"} shows={trendingShowData} />
+      </div>
+      <div class={trendingClasses}>
+        <ShowPreview title={"Popular Shows"} shows={popularShowData} />
+      </div>
+      <div class={trendingClasses}>
+        <MoviePreview title={"Popular Movies"} movies={popularMovieData} />
+      </div>
+    </section>
+  {:else}
+    <section class="flex flex-col justify-center col-span-12 mr-10 mt-4">
+      <div class={trendingClasses}>
+        <ShowPreview title={"Trending Shows"} shows={trendingShowData} />
+      </div>
+      <div class={trendingClasses}>
+        <ShowPreview title={"Popular Shows"} shows={popularShowData} />
+      </div>
+      <div class={trendingClasses}>
+        <MoviePreview title={"Popular Movies"} movies={popularMovieData} />
+      </div>
+    </section>
   {/if}
-  <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
-    <div class={trendingClasses}>
-      <ShowPreview
-        title={"Trending Shows"}
-        shows={data.trendingShowData}
-        {data}
-      />
-    </div>
-    <div class={trendingClasses}>
-      <ShowPreview
-        title={"Popular Shows"}
-        shows={data.popularShowData}
-        {data}
-      />
-    </div>
-    <div class={trendingClasses}>
-      <MoviePreview
-        title={"Popular Movies"}
-        movies={data.popularMovieData}
-        {data}
-      />
-    </div>
-  </section>
 </div>

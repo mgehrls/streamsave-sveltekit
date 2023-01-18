@@ -2,14 +2,12 @@
   import ShowPreview from "./ShowPreview.svelte";
   import { browser } from "$app/environment";
   import { onMount, SvelteComponentTyped, type ComponentType } from "svelte";
-  import type { PageData } from "../../routes/$types";
   import type { apiShowResult } from "$lib/types";
 
   let Carousel: ComponentType<SvelteComponentTyped>;
 
   export let shows: apiShowResult[];
   export let title: string;
-  export let data: PageData;
 
   onMount(async () => {
     const module = await import("svelte-carousel");
@@ -30,7 +28,7 @@
       arrows={true}
     >
       {#each shows as show}
-        <ShowPreview {show} {data} />
+        <ShowPreview {show} />
       {/each}
     </svelte:component>
   {/if}

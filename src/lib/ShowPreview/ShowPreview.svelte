@@ -4,27 +4,52 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import type { apiShowResult } from "$lib/types";
+  import { user } from "$lib/stores/userStore";
+  import type { apiShowResult, listItemPlusMedia } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
-  import type { PageData } from "../../routes/$types";
 
   export let show: apiShowResult;
-  export let data: PageData;
+  let listItemsArray: listItemPlusMedia[];
+  let onList: boolean;
+  let loggedIn: boolean;
+  let userID: string;
+  let loading: boolean;
 
-  const userID = data.session.user.id;
-  let listItemIdArray: number[];
+  $: loggedIn = $user ? true : false;
+  $: listItemsArray = $listItems;
+  $: onList = listItemsArray.map((item) => item.media_id).includes(show.id);
+  $: userID = $user.id;
 
-  if ($listItems) {
-    listItemIdArray = $listItems.map((item) => item.media_id);
+  async function handleDelete() {
+    loading = true;
+    await deleteListItem(show.id);
+    loading = false;
+  }
+  async function handleAdd() {
+    loading = true;
+    await addListItem(
+      {
+        id: show.id,
+        title: show.name,
+        description: show.overview,
+        type: "show",
+        backdrop_path: `https://image.tmdb.org/t/p/w342${show.backdrop_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w342${show.poster_path}`,
+      },
+      userID
+    );
+    loading = false;
   }
 </script>
 
-<div class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52">
+<div
+  class="bg-gradient-to-t from-sky-400 to-sky-700 shadow mb-2 p-4 w-52 flex flex-col justify-center items-center"
+>
   <img
     src={`https://image.tmdb.org/t/p/w342${show.backdrop_path}`}
     alt={`${show.name} backdrop`}
   />
-  <div>
+  <div class="self-start">
     <a class="p-4" href={`/shows/${show.id}`}>
       <h2
         class="no-underline text-white text-lg font-bold"
@@ -40,30 +65,25 @@
       </p>
     </a>
   </div>
-  {#if data.listItems.data.find((item) => item.media_id === show.id)}
+  {#if loading}
+    <div>loading...</div>
+  {:else if loggedIn && onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-md flex gap-2 hover:bg-red-600 hover:scale-110"
-      on:click={() => deleteListItem(show.id)}
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-red-600 hover:scale-110 self-start"
+      on:click={handleDelete}
     >
       <MinusCircle />
     </button>
-  {:else}
+  {:else if loggedIn && !onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110"
-      on:click={() =>
-        addListItem(
-          {
-            id: show.id,
-            title: show.name,
-            description: show.overview,
-            type: "show",
-            backdrop_path: `https://image.tmdb.org/t/p/w342${show.backdrop_path}`,
-            poster_path: `https://image.tmdb.org/t/p/w342${show.poster_path}`,
-          },
-          userID
-        )}
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110 self-start"
+      on:click={handleAdd}
     >
       <PlusCircle />
     </button>
+  {:else}
+    <a href="/login">
+      <p>Please log in.</p>
+    </a>
   {/if}
 </div>
