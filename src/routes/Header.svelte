@@ -15,8 +15,10 @@
   </div>
   {#if !userData}
     <div class="flex justify-center items-center gap-8">
-      <a class="m-0 p-0" href="/login">Login</a>
-      <a class="m-0 p-0" href="/register">Register</a>
+      <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/login"
+        >Login</a
+      >
+      <a data-sveltekit-reload class="m-0 p-0" href="/register">Register</a>
     </div>
   {:else}
     <div class="flex justify-center items-center gap-2">

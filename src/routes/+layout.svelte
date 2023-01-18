@@ -33,10 +33,10 @@
 
 <div class="flex flex-col min-h-screen">
   {#if !data.session}
-    <Header data={null} />
+    <Header />
     <Auth />
   {:else}
-    <Header data={data.session} />
+    <Header />
   {/if}
 
   <slot />

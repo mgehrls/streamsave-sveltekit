@@ -1,6 +1,2 @@
-<a href="/login">
-  <button>Sign In</button>
-</a>
-<a href="/register">
-  <button>Register</button>
-</a>
+<a data-sveltekit-reload href="/login"> Sign In </a>
+<a data-sveltekit-reload href="/register"> Register </a>
