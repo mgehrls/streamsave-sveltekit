@@ -1,7 +1,7 @@
 <script lang="ts">
   import { user } from "$lib/stores/userStore";
   import { getSearchResults, searchResults } from "$lib/stores/searchResults";
-  import { goto, invalidateAll } from "$app/navigation";
+  import { goto, invalidate, invalidateAll } from "$app/navigation";
 
   let userData;
   let searchQuery: string = "";
@@ -28,13 +28,15 @@
     </a>
   </div>
   <input
-    class="text-black"
+    class="text-black w-1/2"
     type="text"
     bind:value={searchQuery}
     on:input={debounce}
     on:keydown={(e) => {
       if (e.key === "Enter") {
-        goto(`/search?query=${searchQuery}`);
+        window.location.replace(
+          `http://localhost:5173/search?query=${searchQuery}`
+        );
       } else if (e.key === "Escape") {
         searchQuery = "";
       }

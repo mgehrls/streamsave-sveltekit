@@ -3,7 +3,7 @@
   import ShowPreview from "$lib/ShowPreview/index.svelte";
   import MoviePreview from "$lib/MoviePreview/index.svelte";
   import UserList from "$lib/UserList/UserList.svelte";
-  import { listItems, loadListItems } from "$lib/stores/listItems";
+  import { listItems } from "$lib/stores/listItems";
   import Welcome from "./Welcome.svelte";
   import { user } from "$lib/stores/userStore";
 
@@ -15,8 +15,6 @@
   const trendingClasses =
     "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
   const { popularMovieData, popularShowData, trendingShowData } = data;
-
-  loadListItems();
 </script>
 
 <svelte:head>

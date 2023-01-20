@@ -1,4 +1,4 @@
-export type apiResultArray = apiShowResult[] | apiMovieResult[]
+export type apiResult = apiShowResult | apiMovieResult
 
 export type apiShowResult = {
     adult: boolean,
@@ -23,6 +23,7 @@ export type apiMovieResult = {
     backdrop_path: string,
     genre_ids: number[],
     id: number,
+    media_type: string,
     onList?:boolean,
     original_language: string,
     original_title:string,
@@ -43,7 +44,7 @@ export type sbMedia ={
     id:number,
     poster_path:string,
     title:string,
-    type: "show" | "movie"
+    type: string
 }
 
 export type listItemPlusMedia={

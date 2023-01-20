@@ -9,7 +9,6 @@
   import type { PageData } from "./$types";
 
   export let data: PageData;
-
   onMount(async () => {
     if (data.session?.user) {
       user.set(data.session.user);
@@ -29,9 +28,7 @@
   });
 </script>
 
-<div
-  class="flex flex-col min-h-screen bg-gradient-to-b from-gray-400 via-gray-600 to-blue-800"
->
+<div class="flex flex-col min-h-screen bg-slate-400">
   <Header />
   <div style="min-height: calc(100vh - 112px);">
     <slot />
