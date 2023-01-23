@@ -1,43 +1,32 @@
-export type apiResult = apiShowResult | apiMovieResult
-
-export type apiShowResult = {
+export type ApiResult = {
     adult: boolean,
     backdrop_path: string,
-    first_air_date: string,
+    first_air_date?: string,
     genre_ids: number[],
     id:number,
     media_type: string,
-    name:string,
-    onList?:boolean,
-    origin_country: string[],
+    name?:string,
+    origin_country?: string[],
     original_language: string,
-    original_name:string,
+    original_name?:string,
+    original_title?:string,
     overview:string,
     popularity: number,
     poster_path:string,
+    title?:string,
+    release_date?:string,
+    video: boolean,
     vote_average:number,
     vote_count:number,
 }
-export type apiMovieResult = {
-    adult: boolean,
-    backdrop_path: string,
-    genre_ids: number[],
-    id: number,
-    media_type: string,
-    onList?:boolean,
-    original_language: string,
-    original_title:string,
-    overview:string,
-    popularity: number,
-    poster_path:string,
-    release_date:string,
-    title:string,
-    video: boolean,
-    vote_average: number,
-    vote_count: number
+
+export type SearchStoreResults = {
+    status: "loading" | "OK" | "error",
+    results: ApiResult[],
+    query:string
 }
 
-export type sbMedia ={
+export type SbMedia ={
     backdrop_path:string,
     created_at?:string,
     description:string,
@@ -47,16 +36,16 @@ export type sbMedia ={
     type: string
 }
 
-export type listItemPlusMedia={
+export type ListItemPlusMedia={
     id:string,
     created_at?:string,
     lastSeen: Date | null,
-    media: sbMedia,
+    media: SbMedia,
     media_id:number,
     user_id:string,
 }
 
-export type listItem = {
+export type ListItem = {
     id:string,
     created_at?:string,
     lastSeen: Date | null,
@@ -64,9 +53,9 @@ export type listItem = {
     user_id:string,
 }
 
-export type userListItems = {
+export type UserListItems = {
     count:number,
-    data: listItemPlusMedia[],
+    data: ListItemPlusMedia[],
     error: null | any,
     status:number,
     statusText:string,

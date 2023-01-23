@@ -8,6 +8,7 @@
 
   export let movies: apiMovieResult[];
   export let title: string;
+  export let userID: string;
 
   onMount(async () => {
     const module = await import("svelte-carousel");
@@ -28,7 +29,7 @@
       arrows={true}
     >
       {#each movies as movie}
-        <MoviePreview {movie} />
+        <MoviePreview {userID} {movie} />
       {/each}
     </svelte:component>
   {/if}

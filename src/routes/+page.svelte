@@ -29,13 +29,25 @@
     <UserList listItems={listItemsArray} />
     <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
       <div class={trendingClasses}>
-        <ShowPreview title={"Trending Shows"} shows={trendingShowData} />
+        <ShowPreview
+          userID={data.session.user.id}
+          title={"Trending Shows"}
+          shows={trendingShowData}
+        />
       </div>
       <div class={trendingClasses}>
-        <ShowPreview title={"Popular Shows"} shows={popularShowData} />
+        <ShowPreview
+          userID={data.session.user.id}
+          title={"Popular Shows"}
+          shows={popularShowData}
+        />
       </div>
       <div class={trendingClasses}>
-        <MoviePreview title={"Popular Movies"} movies={popularMovieData} />
+        <MoviePreview
+          userID={data.session.user.id}
+          title={"Popular Movies"}
+          movies={popularMovieData}
+        />
       </div>
     </section>
   {/if}

@@ -4,21 +4,17 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import { user } from "$lib/stores/userStore";
   import type { apiMovieResult, listItemPlusMedia } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
 
   export let movie: apiMovieResult;
+  export let userID: string;
   let listItemsArray: listItemPlusMedia[];
   let onList: boolean;
-  let loggedIn: boolean;
-  let userID: string;
   let loading: boolean;
 
-  $: loggedIn = $user ? true : false;
   $: listItemsArray = $listItems;
   $: onList = listItemsArray.map((item) => item.media_id).includes(movie.id);
-  $: userID = $user.id;
 
   async function handleDelete() {
     loading = true;
@@ -85,14 +81,14 @@
       </svg>
       <span class="sr-only">Loading...</span>
     </div>
-  {:else if loggedIn && onList}
+  {:else if onList}
     <button
       class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-red-600 hover:scale-110 self-start"
       on:click={handleDelete}
     >
       <MinusCircle />
     </button>
-  {:else if loggedIn && !onList}
+  {:else if !onList}
     <button
       class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110 self-start"
       on:click={handleAdd}

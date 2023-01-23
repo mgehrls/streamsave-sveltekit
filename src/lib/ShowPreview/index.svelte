@@ -8,6 +8,7 @@
 
   export let shows: apiShowResult[];
   export let title: string;
+  export let userID: string;
 
   onMount(async () => {
     const module = await import("svelte-carousel");
@@ -28,7 +29,7 @@
       arrows={true}
     >
       {#each shows as show}
-        <ShowPreview {show} />
+        <ShowPreview {userID} {show} />
       {/each}
     </svelte:component>
   {/if}

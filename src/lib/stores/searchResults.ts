@@ -1,6 +1,9 @@
-import { writable, type Writable } from "svelte/store";
+import type { SearchStoreResults } from "$lib/types";
+import { writable } from "svelte/store";
 
-const initialState = {
+
+
+const initialState: SearchStoreResults = {
     status:"loading",
     results:[],
     query:""

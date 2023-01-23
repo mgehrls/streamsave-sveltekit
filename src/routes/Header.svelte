@@ -3,11 +3,12 @@
   import HeaderResult from "$lib/searchresults/HeaderResult.svelte";
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
+  import type { SearchStoreResults } from "$lib/types";
   export let data: PageData;
 
   let searchQuery: string = "";
   let timer;
-  let results;
+  let results: SearchStoreResults;
   let userID: string = "";
   let gotUser: boolean = false;
 
@@ -26,11 +27,6 @@
     if (data.session !== null) {
       gotUser = true;
       userID = data.session.user.id;
-      console.log("results = " + results);
-      console.log("gotUser = " + gotUser);
-      console.log("data.session.user = " + data.session);
-    } else {
-      console.log("session was null");
     }
   });
 </script>
@@ -50,18 +46,8 @@
         type="text"
         bind:value={searchQuery}
         on:input={debounce}
-        on:keydown={(e) => {
-          if (e.key === "Enter") {
-            //window.location.replace(
-            //  `http://localhost:5173/search?query=${searchQuery}`
-            //);
-          } else if (e.key === "Escape") {
-            searchQuery = "";
-            searchResults.set({ status: "loading", results: [], query: "" });
-          }
-        }}
       />
-      {#if results.results.length > 0}
+      {#if results.query !== ""}
         <div class="absolute flex flex-col top-6.5 z-50">
           {#each results.results as item}
             <HeaderResult {userID} {item} />
