@@ -9,7 +9,8 @@
   import type { PageData } from "./$types";
 
   export let data: PageData;
-  onMount(async () => {
+  onMount(() => {
+    invalidateAll();
     if (data.session?.user) {
       user.set(data.session.user);
       loadListItems();
@@ -21,6 +22,7 @@
     supabaseClient.auth.onAuthStateChange((_, session) => {
       user.set(session?.user);
       if (session?.user) {
+        user.set(session.user);
         loadListItems();
       }
       invalidateAll();
@@ -29,7 +31,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen bg-slate-400">
-  <Header />
+  <Header {data} />
   <div style="min-height: calc(100vh - 112px);">
     <slot />
   </div>

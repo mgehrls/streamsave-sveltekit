@@ -17,7 +17,6 @@ export const actions: Actions = {
 					message:"Something went wrong"
 				})
 			}
-			
 			throw redirect(303, data.url)
 		}
 

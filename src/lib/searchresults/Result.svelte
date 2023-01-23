@@ -27,7 +27,7 @@
     <img
       class="max-h-80"
       src={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
-      alt={type === "movie" ? `${item.title} poster` : `${item.name} poster`}
+      alt={item.title ? `${item.title} poster` : `${item.name} poster`}
     />
   {:else}
     <img

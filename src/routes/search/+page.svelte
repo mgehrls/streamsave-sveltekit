@@ -4,14 +4,15 @@
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
   import Result from "$lib/searchresults/Result.svelte";
+  import { searchResults } from "$lib/stores/searchResults";
 
   export let data: PageData;
-  const results = data.results;
+  let results = data.results;
+  searchResults.set({ results: data.results, status: "OK", query: data.query });
 
   let listItemsArray: listItemPlusMedia[];
-  $: {
-    listItemsArray = $listItems;
-  }
+  $: listItemsArray = $listItems;
+  $: results = $searchResults.results;
 </script>
 
 <div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">

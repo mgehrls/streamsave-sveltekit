@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { user } from "$lib/stores/userStore";
   import { getSearchResults, searchResults } from "$lib/stores/searchResults";
-  import { goto, invalidate, invalidateAll } from "$app/navigation";
+  import HeaderResult from "$lib/searchresults/HeaderResult.svelte";
+  import type { PageData } from "./$types";
+  import { onMount } from "svelte";
+  export let data: PageData;
 
-  let userData;
   let searchQuery: string = "";
   let timer;
   let results;
+  let userID: string = "";
+  let gotUser: boolean = false;
 
   const debounce = () => {
     clearTimeout(timer);
@@ -15,34 +18,59 @@
     }, 1000);
   };
 
-  $: userData = $user;
   $: results = $searchResults;
+  $: if (data.session) {
+    gotUser = true;
+  }
+  onMount(() => {
+    if (data.session !== null) {
+      gotUser = true;
+      userID = data.session.user.id;
+      console.log("results = " + results);
+      console.log("gotUser = " + gotUser);
+      console.log("data.session.user = " + data.session);
+    } else {
+      console.log("session was null");
+    }
+  });
 </script>
 
 <header
-  class="w-full flex justify-around items-center gap-4 sticky text-white p-4 z-100 h-100 bg-slate-700"
+  class="w-full flex justify-between items-center gap-4 sticky text-white p-4 z-30 h-100 bg-slate-700"
 >
   <div class="logo">
     <a class="m-0 p-0" href="/">
       <h2>StreamSave</h2>
     </a>
   </div>
-  <input
-    class="text-black w-1/2"
-    type="text"
-    bind:value={searchQuery}
-    on:input={debounce}
-    on:keydown={(e) => {
-      if (e.key === "Enter") {
-        window.location.replace(
-          `http://localhost:5173/search?query=${searchQuery}`
-        );
-      } else if (e.key === "Escape") {
-        searchQuery = "";
-      }
-    }}
-  />
-  {#if !userData}
+  {#if gotUser}
+    <div class="relative w-1/2">
+      <input
+        class="text-black w-full"
+        type="text"
+        bind:value={searchQuery}
+        on:input={debounce}
+        on:keydown={(e) => {
+          if (e.key === "Enter") {
+            //window.location.replace(
+            //  `http://localhost:5173/search?query=${searchQuery}`
+            //);
+          } else if (e.key === "Escape") {
+            searchQuery = "";
+            searchResults.set({ status: "loading", results: [], query: "" });
+          }
+        }}
+      />
+      {#if results.results.length > 0}
+        <div class="absolute flex flex-col top-6.5 z-50">
+          {#each results.results as item}
+            <HeaderResult {userID} {item} />
+          {/each}
+        </div>
+      {/if}
+    </div>
+  {/if}
+  {#if !gotUser}
     <div class="flex justify-center items-center gap-8">
       <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/login"
         >Login</a
@@ -52,29 +80,19 @@
   {:else}
     <div class="flex justify-center items-center gap-2">
       <p>Welcome!</p>
-      {#if userData.user_metadata.picture}
+      {#if data.session.user}
         <img
           class="rounded-full h-12"
-          src={userData.user_metadata.picture}
-          alt={userData.user_metadata.name
+          src={data.session.user.user_metadata.avatar_url}
+          alt={data.session.user.user_metadata.name
             .split(" ")[0]
             .slice(0, 1)
             .toUpperCase() +
-            userData.user_metadata.name.split(" ")[1].slice(0, 1).toUpperCase()}
-        />
-      {:else}
-        <div>
-          <h3>
-            {userData.user_metadata.name
-              .split(" ")[0]
+            data.session.user.user_metadata.name
+              .split(" ")[1]
               .slice(0, 1)
-              .toUpperCase() +
-              userData.user_metadata.name
-                .split(" ")[1]
-                .slice(0, 1)
-                .toUpperCase()}
-          </h3>
-        </div>
+              .toUpperCase()}
+        />
       {/if}
       <form method="post" action="/logout">
         <button type="submit">Sign Out</button>

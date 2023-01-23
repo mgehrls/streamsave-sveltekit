@@ -5,12 +5,12 @@
   import UserList from "$lib/UserList/UserList.svelte";
   import { listItems } from "$lib/stores/listItems";
   import Welcome from "./Welcome.svelte";
-  import { user } from "$lib/stores/userStore";
 
   export let data: PageData;
+  let isAThing: boolean = false;
 
   $: listItemsArray = $listItems;
-  $: userData = $user;
+  $: listItemsArray.length ? (isAThing = true) : (isAThing = false);
 
   const trendingClasses =
     "relative overflow-auto overflow-y-hidden w-full mx-8 p-4";
@@ -23,7 +23,7 @@
 </svelte:head>
 
 <div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">
-  {#if !userData && !listItemsArray.length}
+  {#if !data.session}
     <Welcome />
   {:else}
     <UserList listItems={listItemsArray} />
