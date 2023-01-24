@@ -1,10 +1,9 @@
 <script lang="ts">
-  export let listItem: listItemPlusMedia;
   import { fade } from "svelte/transition";
   import { deleteListItem, updateListItemDate } from "$lib/stores/listItems";
   import { Trash2, Tv, Film } from "lucide-svelte";
-  import type { listItemPlusMedia } from "$lib/types";
-  import { list } from "postcss";
+  import type { ListItemPlusMedia } from "$lib/types";
+  export let listItem: ListItemPlusMedia;
   let mediaType;
 
   if (listItem.media.type === "show") {
@@ -27,7 +26,7 @@
   }
 </script>
 
-<div transition:fade class="px-4 py-2 gap-4 flex border-black border-b-2">
+<div transition:fade class="px-4 py-4 gap-4 flex border-slate-100 border-b-2">
   <img
     class="w-1/2 shadow-md"
     src={listItem.media.poster_path}
@@ -43,12 +42,13 @@
       class="no-underline text-slate-800 block"
       href={`/${listItem.media.type}s/${listItem.media.id}`}
     >
-      <h2 class="no-underline font-bold text-black py-4">
+      <h2 class="no-underline font-bold text-slate-100 py-4">
         {listItem.media.title}
       </h2>
     </a>
     <input
       type="date"
+      class="bg-slate-600 text-slate-100 p-2"
       on:change={handleDateUpdate}
       bind:value={listItem.lastSeen}
     />

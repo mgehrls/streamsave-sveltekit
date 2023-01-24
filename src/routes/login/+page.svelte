@@ -1,5 +1,5 @@
 <div
-  style="min-height: calc(100vh - 112px);"
+  style="min-height: calc(100vh - 88px);"
   class="flex justify-center items-center h-full w-full gap-32"
 >
   <div class="flex flex-col">

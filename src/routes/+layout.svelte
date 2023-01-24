@@ -1,5 +1,6 @@
 <script lang="ts">
   import Header from "./Header.svelte";
+  import Header2 from "./Header2.svelte";
   import { supabaseClient } from "$lib/supabase";
   import { user } from "$lib/stores/userStore";
   import "../app.css";
@@ -31,13 +32,13 @@
 </script>
 
 <div class="flex flex-col min-h-screen bg-slate-400">
-  <Header {data} />
-  <div style="min-height: calc(100vh - 112px);">
+  <Header2 {data} />
+  <div style="min-height: calc(100vh - 88px);">
     <slot />
   </div>
 
   <footer
-    class="flex flex-col justify-center items-center p-4 bg-slate-800 text-white"
+    class="border-2 border-slate-800 border-solid fixed bottom-0 right-0 px-4 py-2 bg-slate-200 bg-opacity-80"
   >
     <p>
       data and images curtosy of <a

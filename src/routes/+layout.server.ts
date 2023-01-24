@@ -1,6 +1,6 @@
 import { getServerSession } from "@supabase/auth-helpers-sveltekit";
 import type { LayoutServerLoad } from "./$types";
-import type {  userListItems } from "$lib/types";
+import type {  UserListItems } from "$lib/types";
 
 export const load: LayoutServerLoad = async (event) =>{
   
@@ -14,7 +14,7 @@ export const load: LayoutServerLoad = async (event) =>{
         if(listItems.data.length){
             listItems.count = listItems.data.length
         }
-        return listItems as userListItems
+        return listItems as UserListItems
     }
 
     return{

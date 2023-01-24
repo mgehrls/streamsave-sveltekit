@@ -21,7 +21,7 @@
 </script>
 
 <div
-  class="flex justify-center items-center gap-8 bg-orange-600 p-2 border-b-2 border-black border-solid max-h-96 w-auto"
+  class="flex justify-center items-center gap-8 bg-slate-700 p-2 border-b-2 border-black border-solid max-h-96 w-auto"
 >
   {#if item.poster_path}
     <img

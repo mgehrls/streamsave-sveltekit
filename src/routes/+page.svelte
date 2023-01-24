@@ -22,7 +22,7 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">
+<div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 88px);">
   {#if !data.session}
     <Welcome />
   {:else}

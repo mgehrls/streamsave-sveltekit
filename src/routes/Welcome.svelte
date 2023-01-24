@@ -5,7 +5,7 @@
 
 <div
   class="h-full w-screen flex flex-col justify-center items-center"
-  style="min-height: calc(100vh - 112px);"
+  style="min-height: calc(100vh - 88px);"
 >
   <div>
     <h1
@@ -18,7 +18,9 @@
       class="text-slate-100 text-left mb-16 border-l-8 border-solid border-orange-500 pl-2 tracking-wide leading-relaxed"
       style="text-shadow: 2px 2px 2px rgba(0,0,0,.8)"
     >
-      A TV & Movie Watchlist Site for Matt Gehrls <br /> to learn Fullstack Web Development!
+      Create a personalized list of your favorite shows and movies and easily
+      keep track <br /> of what you want to watch next. Start building your list
+      now and never forget a <br /> favorite show or movie again.
     </p>
   </div>
   <div class="flex gap-8">

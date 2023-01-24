@@ -17,7 +17,7 @@
   });
 </script>
 
-<div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">
+<div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 88px);">
   <UserList listItems={listItemsArray} />
   <section class="flex flex-col justify-center col-span-10 mr-10 mt-4">
     <p class="tracking-wide text-center my-4">
