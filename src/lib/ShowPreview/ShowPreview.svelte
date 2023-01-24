@@ -4,22 +4,25 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import type { apiShowResult, listItemPlusMedia } from "$lib/types";
+  import type { ApiResult, ListItemPlusMedia } from "$lib/types";
   import { PlusCircle, MinusCircle } from "lucide-svelte";
 
-  export let show: apiShowResult;
+  export let show: ApiResult;
   export let userID: string;
-  let listItemsArray: listItemPlusMedia[];
+
+  let listItemsArray: ListItemPlusMedia[];
   let onList: boolean;
   let loading: boolean;
 
   $: listItemsArray = $listItems;
   $: onList = listItemsArray.map((item) => item.media_id).includes(show.id);
+  $: if ($listItems) {
+    loading = false;
+  }
 
   async function handleDelete() {
     loading = true;
     await deleteListItem(show.id);
-    loading = false;
   }
   async function handleAdd() {
     loading = true;
@@ -34,7 +37,6 @@
       },
       userID
     );
-    loading = false;
   }
 </script>
 
@@ -87,6 +89,7 @@
       on:click={handleDelete}
     >
       <MinusCircle />
+      Remove
     </button>
   {:else if !onList}
     <button
@@ -94,6 +97,7 @@
       on:click={handleAdd}
     >
       <PlusCircle />
+      Add
     </button>
   {:else}
     <a href="/login">

@@ -32,57 +32,64 @@
 </script>
 
 <header
-  class="w-full flex justify-between items-center gap-4 sticky text-white p-4 z-30 h-100 bg-slate-700"
+  class="w-full flex items-center justify-center sticky text-white p-4 z-30 h-100 bg-slate-700"
 >
-  <div class="logo">
-    <a class="m-0 p-0" href="/">
-      <h2>StreamSave</h2>
-    </a>
-  </div>
-  {#if gotUser}
-    <div class="relative w-1/2">
-      <input
-        class="text-black w-full"
-        type="text"
-        bind:value={searchQuery}
-        on:input={debounce}
-      />
-      {#if results.query !== ""}
-        <div class="absolute flex flex-col top-6.5 z-50">
-          {#each results.results as item}
-            <HeaderResult {userID} {item} />
-          {/each}
-        </div>
-      {/if}
+  <div class="flex justify-between items-center gap-4 w-8/12">
+    <div class="logo">
+      <a class="m-0 p-0" href="/">
+        <h2>StreamSave</h2>
+      </a>
     </div>
-  {/if}
-  {#if !gotUser}
-    <div class="flex justify-center items-center gap-8">
-      <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/login"
-        >Login</a
-      >
-      <a data-sveltekit-reload class="m-0 p-0" href="/register">Register</a>
-    </div>
-  {:else}
-    <div class="flex justify-center items-center gap-2">
-      <p>Welcome!</p>
-      {#if data.session.user}
-        <img
-          class="rounded-full h-12"
-          src={data.session.user.user_metadata.avatar_url}
-          alt={data.session.user.user_metadata.name
-            .split(" ")[0]
-            .slice(0, 1)
-            .toUpperCase() +
-            data.session.user.user_metadata.name
-              .split(" ")[1]
-              .slice(0, 1)
-              .toUpperCase()}
+    {#if gotUser}
+      <div class="relative w-1/2">
+        <input
+          class="text-black w-full"
+          type="text"
+          bind:value={searchQuery}
+          on:input={debounce}
+          on:keydown={(e) => {
+            if (e.key === "Enter") {
+              window.location.assign(`/search?query=${searchQuery}`);
+            }
+          }}
         />
-      {/if}
-      <form method="post" action="/logout">
-        <button type="submit">Sign Out</button>
-      </form>
-    </div>
-  {/if}
+        {#if results.query !== ""}
+          <div class="absolute flex flex-col top-6.5 z-50">
+            {#each results.results as item}
+              <HeaderResult {userID} {item} />
+            {/each}
+          </div>
+        {/if}
+      </div>
+    {/if}
+    {#if !gotUser}
+      <div class="flex justify-center items-center gap-8">
+        <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/login"
+          >Login</a
+        >
+        <a data-sveltekit-reload class="m-0 p-0" href="/register">Register</a>
+      </div>
+    {:else}
+      <div class="flex justify-center items-center gap-2">
+        <p>Welcome!</p>
+        {#if data.session.user}
+          <img
+            class="rounded-full h-12"
+            src={data.session.user.user_metadata.avatar_url}
+            alt={data.session.user.user_metadata.name
+              .split(" ")[0]
+              .slice(0, 1)
+              .toUpperCase() +
+              data.session.user.user_metadata.name
+                .split(" ")[1]
+                .slice(0, 1)
+                .toUpperCase()}
+          />
+        {/if}
+        <form method="post" action="/logout">
+          <button type="submit">Sign Out</button>
+        </form>
+      </div>
+    {/if}
+  </div>
 </header>

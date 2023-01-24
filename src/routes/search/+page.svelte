@@ -1,18 +1,20 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import type { listItemPlusMedia } from "$lib/types";
+  import type { ListItemPlusMedia } from "$lib/types";
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
   import Result from "$lib/searchresults/Result.svelte";
   import { searchResults } from "$lib/stores/searchResults";
+  import { onMount } from "svelte";
 
   export let data: PageData;
   let results = data.results;
-  searchResults.set({ results: data.results, status: "OK", query: data.query });
 
-  let listItemsArray: listItemPlusMedia[];
+  let listItemsArray: ListItemPlusMedia[];
   $: listItemsArray = $listItems;
-  $: results = $searchResults.results;
+  onMount(() => {
+    searchResults.set({ results: [], status: "loading", query: "" });
+  });
 </script>
 
 <div class="grid grid-cols-12 pr-8" style="min-height: calc(100vh - 112px);">

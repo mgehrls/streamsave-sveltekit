@@ -10,11 +10,13 @@
   let loading: boolean = false;
 
   $: listItemsArray = $listItems;
+  $: if ($listItems) {
+    loading = false;
+  }
 
   async function handleDelete() {
     loading = true;
     await deleteListItem(item.id);
-    loading = false;
   }
   async function handleAdd() {
     loading = true;
@@ -29,7 +31,6 @@
       },
       userID
     );
-    loading = false;
   }
 </script>
 
@@ -92,6 +93,7 @@
       on:click={handleDelete}
     >
       <MinusCircle />
+      Remove
     </button>
   {:else}
     <button
@@ -99,6 +101,7 @@
       on:click={handleAdd}
     >
       <PlusCircle />
+      Add
     </button>
   {/if}
 </div>

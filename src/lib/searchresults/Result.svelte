@@ -6,14 +6,14 @@
   } from "$lib/stores/listItems";
   import { Tv, Film, PlusCircle, MinusCircle } from "lucide-svelte";
   import missingPoster from "$lib/images/posterunavailable.jpg";
-  import type { apiResult, listItemPlusMedia } from "$lib/types";
+  import type { ApiResult, ListItemPlusMedia } from "$lib/types";
 
-  export let item: apiResult;
+  export let item: ApiResult;
   export let userID: string;
   export let type: "movie" | "tv";
 
   let loading: boolean = false;
-  let listItemsArray: listItemPlusMedia[];
+  let listItemsArray: ListItemPlusMedia[];
   $: {
     listItemsArray = $listItems;
     loading = false;
@@ -87,6 +87,7 @@
           }}
         >
           <MinusCircle />
+          Remove
         </button>
       {:else}
         <button
@@ -105,6 +106,7 @@
           }}
         >
           <PlusCircle />
+          Add
         </button>
       {/if}
     </div>
