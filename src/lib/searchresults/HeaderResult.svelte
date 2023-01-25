@@ -42,12 +42,12 @@
   >
     <div class="flex items-center h-28 gap-4 relative">
       {#if item.media_type === "movie"}
-        <div class="absolute top-4 left-2 bg-black bg-opacity-50">
-          <Film />
+        <div class="absolute top-2 bg-black bg-opacity-50 rounded-lg">
+          <Film class="m-1" />
         </div>
       {:else}
-        <div class="absolute top-4 left-2 bg-black bg-opacity-50">
-          <Tv />
+        <div class="absolute top-2 bg-black bg-opacity-50 rounded-lg">
+          <Tv class="m-1" />
         </div>
       {/if}
       {#if item.backdrop_path}

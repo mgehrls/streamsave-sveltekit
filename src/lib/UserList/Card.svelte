@@ -26,12 +26,14 @@
   }
 </script>
 
-<div transition:fade class="px-4 py-4 gap-4 flex border-slate-100 border-b-2">
-  <img
-    class="w-1/2 shadow-md"
-    src={listItem.media.poster_path}
-    alt={listItem.media.title + " poster"}
-  />
+<div transition:fade class="px-2 py-4 gap-4 flex border-slate-100 border-b-2">
+  <div>
+    <img
+      class="bg-cover h-44 max-w-none"
+      src={listItem.media.poster_path}
+      alt={listItem.media.title + " poster"}
+    />
+  </div>
   <div class="w-full flex flex-col justify-center items-start h-full">
     {#if listItem.media.type === "show"}
       <Tv size={20} />
