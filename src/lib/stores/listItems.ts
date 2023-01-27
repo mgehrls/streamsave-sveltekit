@@ -3,10 +3,10 @@ import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 import { invalidateAll } from "$app/navigation";
-import type { listItemPlusMedia, listItem, sbMedia } from "$lib/types";
+import type { ListItemPlusMedia, ListItem, SbMedia } from "$lib/types";
 
 
-export const listItems: Writable<listItemPlusMedia[]> = writable([]);
+export const listItems: Writable<ListItemPlusMedia[]> = writable([]);
 
 export const loadListItems = async () => {
 	const {data, error} = await supabaseClient.from('listItem').select("*, media(*)")
@@ -26,7 +26,7 @@ export const deleteListItem = async (id: number) => {
 	}
 }
 
-export const updateListItemDate = async (item: listItem) => {
+export const updateListItemDate = async (item: ListItem) => {
 	const {error} = await supabaseClient.from('listItem').update({
 		lastSeen: item.lastSeen
 	}).eq('id', item.id)
@@ -38,7 +38,7 @@ export const updateListItemDate = async (item: listItem) => {
 	}
 }
 
-export const addListItem = async (media: sbMedia, userID:string) =>{
+export const addListItem = async (media: SbMedia, userID:string) =>{
 
     const {error: mediaErr} = await supabaseClient.from('media').upsert({
         title:media.title as string,

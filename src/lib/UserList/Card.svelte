@@ -4,13 +4,15 @@
   import { Trash2, Tv, Film } from "lucide-svelte";
   import type { ListItemPlusMedia } from "$lib/types";
   export let listItem: ListItemPlusMedia;
-  let mediaType;
+  let mediaType: "Tv" | "Film";
+  let showDateInput: boolean = false;
 
   if (listItem.media.type === "show") {
     mediaType = "Tv";
   } else {
     mediaType = "Film";
   }
+  const lastSeen = new Date(listItem.lastSeen);
 
   function handleDelete() {
     deleteListItem(listItem.media.id);
@@ -26,7 +28,7 @@
   }
 </script>
 
-<div transition:fade class="px-2 py-4 gap-4 flex border-slate-100 border-b-2">
+<div transition:fade class="px-2 py-4 gap-4 flex rounded-md bg-slate-700">
   <div>
     <img
       class="bg-cover h-44 max-w-none"
@@ -34,7 +36,7 @@
       alt={listItem.media.title + " poster"}
     />
   </div>
-  <div class="w-full flex flex-col justify-center items-start h-full">
+  <div class="w-full flex flex-col justify-around items-start h-44">
     {#if listItem.media.type === "show"}
       <Tv size={20} />
     {:else}
@@ -48,17 +50,45 @@
         {listItem.media.title}
       </h2>
     </a>
-    <input
-      type="date"
-      class="bg-slate-600 text-slate-100 p-2"
-      on:change={handleDateUpdate}
-      bind:value={listItem.lastSeen}
-    />
-    <button class="self-end" on:click={handleDelete}>
-      <Trash2
-        size={35}
-        class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:bg-red-600 rounded-full hover:scale-110"
-      />
-    </button>
+    <div class="flex justify-between items-center w-full">
+      {#if showDateInput}
+        <input
+          type="date"
+          class="bg-slate-600 text-slate-100 w-24 text-xs"
+          on:change={handleDateUpdate}
+          bind:value={listItem.lastSeen}
+        />
+      {:else if listItem.lastSeen}
+        <p
+          class="text-xs text-slate-100 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
+          on:keypress={(e) => {
+            if (e.key === "Enter") {
+              showDateInput = true;
+            }
+          }}
+          on:click={() => (showDateInput = true)}
+        >
+          {lastSeen.toLocaleDateString("en-US")}
+        </p>
+      {:else}
+        <p
+          on:keypress={(e) => {
+            if (e.key === "Enter") {
+              showDateInput = true;
+            }
+          }}
+          on:click={() => (showDateInput = true)}
+          class="text-xs text-slate-100 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
+        >
+          last seen?
+        </p>
+      {/if}
+      <button class="self-end" on:click={handleDelete}>
+        <Trash2
+          size={35}
+          class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:bg-red-600 rounded-full hover:scale-110"
+        />
+      </button>
+    </div>
   </div>
 </div>

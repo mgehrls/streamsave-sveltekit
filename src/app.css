@@ -1,7 +1,8 @@
-@import '@fontsource/fira-mono';
+@import '@fontsource/inter';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 *{
 	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
 }
