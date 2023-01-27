@@ -44,7 +44,9 @@
   }
 </script>
 
-<div class="max-w-xs flex flex-col justify-start items-center bg-slate-800 p-1">
+<div
+  class="max-w-xs flex flex-col justify-start items-center bg-gradient-to-tr from-slate-800 to-slate-900 p-1"
+>
   <img
     class="max-w-xs max-h-60"
     src={`https://image.tmdb.org/t/p/w342${show.poster_path}`}
@@ -70,7 +72,7 @@
     <Loading />
   {:else if onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
+      class="p-2 text-white flex gap-2 hover:scale-120 self-start"
       on:click={handleDelete}
       on:mouseenter={() => (hovered = true)}
       on:mouseleave={() => (hovered = false)}
@@ -83,7 +85,7 @@
     </button>
   {:else if !onList}
     <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
+      class="p-2 text-white flex gap-2 hover:scale-120 self-start"
       on:click={handleAdd}
       on:mouseenter={() => (hovered = true)}
       on:mouseleave={() => (hovered = false)}

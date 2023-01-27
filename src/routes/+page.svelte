@@ -29,21 +29,21 @@
     {#if display === "list"}
       <button
         disabled
-        class="bg-slate-700 text-slate-300 py-2 px-8 font-bold rounded-l-full"
-        on:click={toggleView}>Your List</button
+        class="bg-slate-700 text-slate-300 text-sm py-2 px-8 underline rounded-l-full"
+        on:click={toggleView}>Your List({listItemsArray.length})</button
       >
       <button
-        class="bg-slate-100 text-slate-700 py-2 px-8 font-bold hover:bg-slate-600 hover:text-slate-100 rounded-r-full"
+        class="bg-slate-100 text-slate-700 text-sm py-2 px-8 hover:bg-slate-600 hover:text-slate-100 rounded-r-full"
         on:click={toggleView}>Trending</button
       >
     {:else}
       <button
-        class="bg-slate-100 text-slate-700 py-2 px-8 font-bold hover:bg-slate-600 hover:text-slate-100 rounded-l-full"
-        on:click={toggleView}>Your List</button
+        class="bg-slate-100 text-slate-700 text-sm py-2 px-8 hover:bg-slate-600 hover:text-slate-100 rounded-l-full"
+        on:click={toggleView}>Your List({listItemsArray.length})</button
       >
       <button
         disabled
-        class="bg-slate-700 text-slate-300 py-2 px-8 font-bold rounded-r-full"
+        class="bg-slate-700 text-slate-300 underline text-sm py-2 px-8  rounded-r-full"
         on:click={toggleView}>Trending</button
       >
     {/if}

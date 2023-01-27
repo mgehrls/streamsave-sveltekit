@@ -5,10 +5,11 @@
     addListItem,
     deleteListItem,
   } from "$lib/stores/listItems";
-  import { Tv, Film, PlusCircle, MinusCircle } from "lucide-svelte";
+  import { Tv, Film, Heart, HeartCrack } from "lucide-svelte";
   export let item;
   export let userID: string;
   let loading: boolean = false;
+  let hovered: boolean = false;
 
   $: listItemsArray = $listItems;
   $: if ($listItems) {
@@ -72,19 +73,29 @@
     <Loading />
   {:else if listItemsArray.map((item) => item.media_id).includes(item.id)}
     <button
-      class="p-2 text-white bg-slate-600 rounded-xl flex gap-2 hover:bg-red-600 hover:scale-110 self-center"
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
       on:click={handleDelete}
+      on:mouseenter={() => (hovered = true)}
+      on:mouseleave={() => (hovered = false)}
     >
-      <MinusCircle />
-      Remove
+      {#if !hovered}
+        <Heart color={"red"} fill={"red"} />
+      {:else}
+        <HeartCrack color={"red"} />
+      {/if}
     </button>
   {:else}
     <button
-      class="p-2 text-white bg-slate-600 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110 self-center"
+      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
       on:click={handleAdd}
+      on:mouseenter={() => (hovered = true)}
+      on:mouseleave={() => (hovered = false)}
     >
-      <PlusCircle />
-      Add
+      {#if hovered}
+        <Heart fill={"red"} />
+      {:else}
+        <Heart />
+      {/if}
     </button>
   {/if}
 </div>
