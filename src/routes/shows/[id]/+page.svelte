@@ -19,7 +19,7 @@
       alt={`${media.title} poster`}
     />
     <div class="flex flex-col justify-start items-start gap-4 w-1/2">
-      <h1 class="m-0 p-0 text-black self-start">{media.name}</h1>
+      <h1 class="m-0 p-0 text-slate-100 self-start">{media.name}</h1>
       <p class="m-0 p-0 italic opacity-90">"{media.tagline}"</p>
       <div class="flex gap-4 justify-center items-center">
         <a
@@ -35,7 +35,7 @@
           href={`${media.homepage}`}>Website</a
         >
       </div>
-      <p>{data.item.overview}</p>
+      <p class="text-slate-100">{data.item.overview}</p>
       <div class="flex gap-4">
         <button>Does Nothing</button>
         <button>Placeholder</button>

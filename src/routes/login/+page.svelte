@@ -1,8 +1,8 @@
 <div
   style="min-height: calc(100vh - 88px);"
-  class="flex justify-center items-center h-full w-full gap-32"
+  class="justify-center items-center h-full w-full gap-32"
 >
-  <div class="flex flex-col">
+  <div class="flex flex-col p-4">
     <h1
       style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
       class="text-3xl text-slate-100 font-bold"
@@ -16,8 +16,11 @@
       Login w/ your email or Google!
     </p>
   </div>
-  <div style="height: calc(50vh);" class="w-2 rounded-md bg-white h-" />
-  <div>
+  <div
+    style="sm:hidden height: calc(50vh);"
+    class="w-2 rounded-md bg-white h-"
+  />
+  <div class="p-4">
     <form action="?/login" method="POST" class="flex flex-col gap-4">
       <label
         style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
@@ -47,6 +50,7 @@
             class="w-12"
             src="https://www.transparentpng.com/thumb/google-logo/colorful-google-logo-transparent-clipart-download-u3DWLj.png"
             alt="Colorful Google Logo transparent clipart download @transparentpng.com"
+            style={"box-shadow:none;"}
           />
           <p class="text-xl text-slate-800 font-semibold">Login w/ Google</p>
         </div>

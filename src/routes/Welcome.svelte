@@ -7,9 +7,9 @@
   class="h-full w-screen flex flex-col justify-center items-center"
   style="min-height: calc(100vh - 88px);"
 >
-  <div>
+  <div class="px-4">
     <h1
-      class="text-slate-100 text-5xl text-left font-bold my-8 tracking-wide"
+      class="text-slate-100 text-4xl font-bold my-8 tracking-wide text-center"
       style="text-shadow: 2px 2px 2px rgba(0,0,0,.8)"
     >
       Welcome to StreamSave!
@@ -18,9 +18,8 @@
       class="text-slate-100 text-left mb-16 border-l-8 border-solid border-orange-500 pl-2 tracking-wide leading-relaxed"
       style="text-shadow: 2px 2px 2px rgba(0,0,0,.8)"
     >
-      Create a personalized list of your favorite shows and movies and easily
-      keep track <br /> of what you want to watch next. Start building your list
-      now and never forget a <br /> favorite show or movie again.
+      Create a personalized list<br />of your favorite shows and movies<br />and
+      easily keep track of what you<br /> want to watch next.
     </p>
   </div>
   <div class="flex gap-8">
