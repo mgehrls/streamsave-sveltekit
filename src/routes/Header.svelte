@@ -15,6 +15,7 @@
   let gotUser: boolean = false;
   let innerWidth: number;
   let loading: boolean = false;
+  let gridColumns: number = 1;
 
   const debounce = () => {
     clearTimeout(timer);
@@ -23,7 +24,10 @@
       getSearchResults(searchQuery);
     }, 500);
   };
-
+  $: if (innerWidth) {
+    gridColumns =
+      innerWidth < 900 ? 1 : innerWidth < 1200 ? 2 : innerWidth < 1500 ? 3 : 4;
+  }
   $: results = $searchResults;
   $: if ($searchResults.status === "OK") {
     loading = false;
@@ -53,7 +57,7 @@
       <input
         type="text"
         placeholder="Search for shows or movies..."
-        class="bg-gray-900 text-white p-2 w-full rounded-md text-sm"
+        class="bg-gray-900 text-white p-2 w-full rounded-md text-sm z-50"
         bind:value={searchQuery}
         on:input={debounce}
         on:keydown={(e) => {
@@ -63,10 +67,31 @@
         }}
       />
       {#if results.query !== ""}
-        <div class="absolute flex flex-col top-6.5 z-50">
-          {#each results.results as item}
-            <HeaderResult {userID} {item} />
-          {/each}
+        <div
+          on:keydown={(e) => {
+            if (e.key === "Escape") {
+              searchQuery = "";
+              getSearchResults(searchQuery);
+            }
+          }}
+          on:click={() => {
+            searchQuery = "";
+            getSearchResults(searchQuery);
+          }}
+          class="fixed top-0 left-0 w-screen h-screen flex justify-center items-start pt-16 p-8 bg-black bg-opacity-75 z-40 overflow-y-scroll"
+        >
+          <button
+            on:click={() => {
+              searchQuery = "";
+              getSearchResults(searchQuery);
+            }}
+            class="fixed top-10 right-10 text-xl">X</button
+          >
+          <div class={`absolute grid grid-cols-${gridColumns} top-6.5`}>
+            {#each results.results as item}
+              <HeaderResult {userID} {item} />
+            {/each}
+          </div>
         </div>
       {/if}
       {#if loading}

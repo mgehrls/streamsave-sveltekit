@@ -35,12 +35,20 @@
   }
 </script>
 
-<div class="relative">
-  <img
-    alt={item.title ? item.title + " backdrop" : item.name + " backdrop"}
-    src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`}
-    class="bg-slate-800 px-4 py-2 flex flex-col justify-between items-center border-b border-solid border-slate-200"
-  />
+<div class="relative max-w-xs">
+  {#if item.backdrop_path}
+    <img
+      alt={item.title ? item.title + " backdrop" : item.name + " backdrop"}
+      src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`}
+      class="bg-slate-800 px-4 py-2 flex flex-col justify-between items-center border-b border-solid border-slate-200"
+    />
+  {:else}
+    <div class="h-48 w-full bg-black grid place-content-center">
+      <p class="text-slate-100 opacity-50 max-w-xs">
+        {item.overview ? item.overview.slice(0, 100) + "..." : "Image Missing"}
+      </p>
+    </div>
+  {/if}
   <div class="flex items-center gap-4 absolute top-3 left-5">
     {#if item.media_type === "movie"}
       <div class="bg-black bg-opacity-50 rounded-lg">
