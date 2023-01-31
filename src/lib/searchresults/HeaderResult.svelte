@@ -35,16 +35,19 @@
   }
 </script>
 
-<div
-  class="bg-slate-800 px-4 py-2 flex flex-col justify-between items-center border-b border-solid border-slate-200"
->
-  <div class="flex items-center gap-4 relative bg-purple-400">
+<div class="relative">
+  <img
+    alt={item.title ? item.title + " backdrop" : item.name + " backdrop"}
+    src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`}
+    class="bg-slate-800 px-4 py-2 flex flex-col justify-between items-center border-b border-solid border-slate-200"
+  />
+  <div class="flex items-center gap-4 absolute top-3 left-5">
     {#if item.media_type === "movie"}
-      <div class="absolute top-2 bg-black bg-opacity-50 rounded-lg">
+      <div class="bg-black bg-opacity-50 rounded-lg">
         <Film class="m-1" />
       </div>
     {:else}
-      <div class="absolute top-2 bg-black bg-opacity-50 rounded-lg">
+      <div class="bg-black bg-opacity-50 rounded-lg">
         <Tv class="m-1" />
       </div>
     {/if}
@@ -56,28 +59,18 @@
       {handleDelete}
       {handleAdd}
     />
-    {#if item.backdrop_path}
-      <img
-        class="h-24"
-        alt={item.title ? item.title + " backdrop" : item.name + " backdrop"}
-        src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`}
-      />
-    {:else}
-      <div
-        class="flex justify-center items-center"
-        style="height: 96px; width:171px;"
-      >
-        Image Missing...
-      </div>
-    {/if}
   </div>
-  <div class="w-full flex h-12 justify-between items-center">
+  <div
+    class="absolute -bottom-2 bg-black bg-opacity-60 w-full flex justify-between items-center z-50"
+  >
     <a
       href={item.media_type === "movie"
         ? `/movies/${item.id}`
         : `/shows/${item.id}`}
     >
-      <h2 class="font-bold h-12 overflow-clip text-sm p-1 w-full text-ellipsis">
+      <h2
+        class="font-bold pl-5 h-12 overflow-clip text-sm p-1 w-full text-ellipsis"
+      >
         {item.title ? item.title : item.name}
       </h2>
     </a>
