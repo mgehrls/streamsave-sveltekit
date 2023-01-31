@@ -4,20 +4,38 @@
     addListItem,
     deleteListItem,
   } from "$lib/stores/listItems";
-  import { Tv, Film, PlusCircle, MinusCircle } from "lucide-svelte";
+  import { Tv, Film } from "lucide-svelte";
   import missingPoster from "$lib/images/posterunavailable.jpg";
   import type { ApiResult, ListItemPlusMedia } from "$lib/types";
-  import Loading from "$lib/Loading.svelte";
+  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
 
   export let item: ApiResult;
   export let userID: string;
-  export let type: "movie" | "tv";
 
   let loading: boolean = false;
   let listItemsArray: ListItemPlusMedia[];
   $: {
     listItemsArray = $listItems;
     loading = false;
+  }
+
+  async function handleDelete() {
+    loading = true;
+    await deleteListItem(item.id);
+  }
+  async function handleAdd() {
+    loading = true;
+    await addListItem(
+      {
+        id: item.id,
+        title: item.title ? item.title : item.name,
+        description: item.overview,
+        type: item.title ? "movie" : "show",
+        backdrop_path: `https://image.tmdb.org/t/p/w342${item.backdrop_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w342${item.poster_path}`,
+      },
+      userID
+    );
   }
 </script>
 
@@ -59,39 +77,14 @@
       {item.overview ? item.overview.slice(0, 150) + "..." : ""}
     </p>
     <div class="my-4">
-      {#if loading}
-        <Loading />
-      {:else if listItemsArray.map((item) => item.media_id).includes(item.id)}
-        <button
-          class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-red-600 hover:scale-110 self-start"
-          on:click={() => {
-            loading = true;
-            deleteListItem(item.id);
-          }}
-        >
-          <MinusCircle />
-          Remove
-        </button>
-      {:else}
-        <button
-          class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:bg-green-600 hover:scale-110 self-start"
-          on:click={() => {
-            loading = true;
-            const mediaToSend = {
-              backdrop_path: `https://image.tmdb.org/t/p/w342${item.poster_path}`,
-              poster_path: `https://image.tmdb.org/t/p/w342${item.poster_path}`,
-              description: item.overview,
-              id: item.id,
-              title: type === "movie" ? item.title : item.name,
-              type: type === "movie" ? "movie" : "show",
-            };
-            addListItem(mediaToSend, userID);
-          }}
-        >
-          <PlusCircle />
-          Add
-        </button>
-      {/if}
+      <AddRemoveBtn
+        {loading}
+        onList={listItemsArray.map((item) => item.media_id).includes(item.id)
+          ? true
+          : false}
+        {handleAdd}
+        {handleDelete}
+      />
     </div>
   </div>
 </div>

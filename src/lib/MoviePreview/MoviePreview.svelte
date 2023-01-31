@@ -1,12 +1,11 @@
 <script lang="ts">
-  import Loading from "$lib/Loading.svelte";
+  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
   import {
     addListItem,
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
   import type { ApiResult, ListItemPlusMedia } from "$lib/types";
-  import { Heart, HeartCrack } from "lucide-svelte";
 
   export let movie: ApiResult;
   export let userID: string;
@@ -14,7 +13,6 @@
   let listItemsArray: ListItemPlusMedia[];
   let onList: boolean;
   let loading: boolean = false;
-  let hovered: boolean = false;
 
   $: listItemsArray = $listItems;
   $: onList = listItemsArray.map((item) => item.media_id).includes(movie.id);
@@ -66,37 +64,13 @@
       </p>
     </a>
   </div>
-  {#if loading}
-    <Loading />
-  {:else if onList}
-    <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
-      on:click={handleDelete}
-      on:mouseenter={() => (hovered = true)}
-      on:mouseleave={() => (hovered = false)}
-    >
-      {#if !hovered}
-        <Heart color={"red"} fill={"red"} />
-      {:else}
-        <HeartCrack color={"red"} />
-      {/if}
-    </button>
-  {:else if !onList}
-    <button
-      class="p-2 text-white bg-slate-800 rounded-xl flex gap-2 hover:scale-110 self-start"
-      on:click={handleAdd}
-      on:mouseenter={() => (hovered = true)}
-      on:mouseleave={() => (hovered = false)}
-    >
-      {#if hovered}
-        <Heart fill={"red"} />
-      {:else}
-        <Heart />
-      {/if}
-    </button>
-  {:else}
-    <a href="/login">
-      <p>Please log in.</p>
-    </a>
-  {/if}
+  <div class="my-1 mr-2 self-end">
+    {#if userID}
+      <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
+    {:else}
+      <a href="/login">
+        <p class="text-slate-100">Login.</p>
+      </a>
+    {/if}
+  </div>
 </div>

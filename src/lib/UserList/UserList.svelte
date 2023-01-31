@@ -190,8 +190,8 @@
     </div>
   </div>
   {#if listItems.length}
-    <FilteredList {listItems} {filter} {sort} />
+    <FilteredList {filter} {sort} />
   {:else}
-    <div />
+    <div class="w-sm" />
   {/if}
 </div>
