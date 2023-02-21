@@ -40,7 +40,7 @@
     class="text-center border-2 border-slate-800 border-solid fixed bottom-0 right-0 px-4 py-2 bg-slate-200 bg-opacity-80"
   >
     <p class="text-sm">
-      data and images curtosy of <a
+      data and images courtesy of <a
         class="font-bold"
         href="https://www.themoviedb.org/">themoviedb.org</a
       >

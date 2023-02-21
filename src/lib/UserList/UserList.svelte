@@ -8,11 +8,17 @@
   let filter: "All" | "Shows" | "Movies" = "All";
   let sort: "AZ" | "ZA" | "most recent" | "oldest" = "AZ";
 
-  function toggleHiddenFilter() {
-    document.getElementById("filterDiv").classList.toggle("hidden");
+  function addHiddenFilter() {
+    document.getElementById("filterDiv").classList.add("hidden");
   }
-  function toggleHiddenSort() {
-    document.getElementById("sortDiv").classList.toggle("hidden");
+  function removeHiddenFilter() {
+    document.getElementById("filterDiv").classList.remove("hidden");
+  }
+  function addHiddenSort() {
+    document.getElementById("sortDiv").classList.add("hidden");
+  }
+  function removeHiddenSort() {
+    document.getElementById("sortDiv").classList.remove("hidden");
   }
 </script>
 
@@ -22,22 +28,24 @@
     <!-- Filter -->
     <div class="text-sm flex justify-around items-center">
       <div
+        on:mouseenter={removeHiddenFilter}
+        on:mouseleave={addHiddenFilter}
         class="flex gap-2 justify-center items-center text-slate-100 relative"
       >
         {#if filter === "All"}
           <button
             class="bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenFilter}>All</button
+            on:click={addHiddenFilter}>All</button
           >
         {:else if filter === "Movies"}
           <button
             class="bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenFilter}><Film size={15} /></button
+            on:click={addHiddenFilter}><Film size={15} /></button
           >
         {:else}
           <button
             class="bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenFilter}><Tv size={15} /></button
+            on:click={addHiddenFilter}><Tv size={15} /></button
           >
         {/if}
         <div
@@ -97,27 +105,31 @@
           >
         </div>
       </div>
-      <div class="flex justify-center items-center text-slate-100 relative">
+      <div
+        on:mouseenter={removeHiddenSort}
+        on:mouseleave={addHiddenSort}
+        class="flex justify-center items-center text-slate-100 relative"
+      >
         {#if sort === "AZ"}
           <button
             class="flex justify-center items-center gap-1 text-white bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenSort}>AZ <SortDesc size={15} /></button
+            on:click={addHiddenSort}>AZ <SortDesc size={15} /></button
           >
         {:else if sort === "ZA"}
           <button
             class="flex justify-center items-center gap-1 text-white bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenSort}>AZ <SortAsc size={15} /></button
+            on:click={addHiddenSort}>AZ <SortAsc size={15} /></button
           >
         {:else if sort === "most recent"}
           <button
             class="flex justify-center items-center gap-1 text-white bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenSort}
+            on:click={addHiddenSort}
             ><History size={15} /> <SortAsc size={15} /></button
           >
         {:else}
           <button
             class="flex justify-center items-center gap-1 text-white bg-slate-600 px-4 py-1 rounded-md"
-            on:click={toggleHiddenSort}
+            on:click={addHiddenSort}
             ><History size={15} /> <SortDesc size={15} /></button
           >
         {/if}

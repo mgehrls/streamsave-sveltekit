@@ -101,8 +101,8 @@
   {/if}
   {#if !gotUser}
     <div class="flex justify-center items-center gap-8">
-      <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/login"
-        >Login</a
+      <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/signin"
+        >Sign in</a
       >
       <a data-sveltekit-reload class="m-0 p-0" href="/register">Register</a>
     </div>

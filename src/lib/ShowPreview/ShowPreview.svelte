@@ -68,8 +68,8 @@
     {#if userID}
       <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
     {:else}
-      <a href="/login">
-        <p class="text-slate-100">Login.</p>
+      <a href="/signin">
+        <p class="text-slate-100">Sign in</p>
       </a>
     {/if}
   </div>

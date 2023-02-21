@@ -1,6 +1,6 @@
 <script lang="ts">
   const linkClasses =
-    "text-slate-100 border-slate-200 border-solid border py-2 px-4 rounded-xl font-bold hover:text-slate-800 hover:bg-slate-100 shadow-lg";
+    "text-slate-100 border-slate-200 border-solid border py-2 px-4 rounded font-bold hover:text-slate-800 hover:bg-slate-100 shadow-lg";
 </script>
 
 <div
@@ -23,7 +23,7 @@
     </p>
   </div>
   <div class="flex gap-8">
-    <a class={linkClasses} data-sveltekit-reload href="/login">Login</a>
+    <a class={linkClasses} data-sveltekit-reload href="/signin">Sign in</a>
     <a class={linkClasses} data-sveltekit-reload href="/register"> Register </a>
   </div>
 </div>

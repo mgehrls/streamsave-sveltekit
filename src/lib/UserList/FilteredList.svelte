@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { ListItemPlusMedia } from "$lib/types";
   import Card from "./Card.svelte";
   import { listItems } from "$lib/stores/listItems";
 

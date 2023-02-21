@@ -17,8 +17,11 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>StreamSave</title>
+  <meta
+    name="description"
+    content="Watchlist and favorite tv/movie application"
+  />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"

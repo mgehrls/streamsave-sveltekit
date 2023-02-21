@@ -29,23 +29,28 @@
 </script>
 
 <div transition:fade class="px-2 py-4 gap-4 flex rounded-md bg-slate-700">
-  <div>
-    <img
-      class="bg-cover h-44 max-w-none"
-      src={listItem.media.poster_path}
-      alt={listItem.media.title + " poster"}
-    />
-  </div>
+  <a
+    class="no-underline text-slate-800 block"
+    href={`/${listItem.media.type}s/${listItem.media.id}`}
+  >
+    <div>
+      <img
+        class="bg-cover h-44 max-w-none"
+        src={listItem.media.poster_path}
+        alt={listItem.media.title + " poster"}
+      />
+    </div>
+  </a>
   <div class="w-full flex flex-col justify-around items-start h-44">
-    {#if listItem.media.type === "show"}
-      <Tv size={20} />
-    {:else}
-      <Film size={20} />
-    {/if}
     <a
       class="no-underline text-slate-800 block"
       href={`/${listItem.media.type}s/${listItem.media.id}`}
     >
+      {#if listItem.media.type === "show"}
+        <Tv size={20} />
+      {:else}
+        <Film size={20} />
+      {/if}
       <h2 class="no-underline font-bold text-slate-100 py-4">
         {listItem.media.title}
       </h2>

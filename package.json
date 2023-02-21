@@ -37,6 +37,7 @@
 	"dependencies": {
 		"@fontsource/inter": "^4.5.15",
 		"@fontsource/montserrat": "^4.5.14",
-		"@fontsource/raleway": "^4.5.12"
+		"@fontsource/raleway": "^4.5.12",
+		"undici": "^5.20.0"
 	}
 }
