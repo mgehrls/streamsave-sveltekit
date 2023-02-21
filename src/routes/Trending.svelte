@@ -1,6 +1,5 @@
 <script lang="ts">
-  import MoviePreview from "$lib/MoviePreview/index.svelte";
-  import ShowPreview from "$lib/ShowPreview/index.svelte";
+  import MediaPreview from "$lib/MediaPreview/index.svelte";
   import type { PageData } from "./$types";
 
   export let data: PageData;
@@ -9,24 +8,30 @@
 
 <section class="flex flex-col justify-center w-full">
   <div class="relative overflow-auto overflow-y-hidden p-4">
-    <ShowPreview
+    <MediaPreview
       userID={data.session.user.id}
       title="Trending Shows"
-      shows={trendingShowData}
+      media={trendingShowData}
+      indexID="trendingShows"
+      type="show"
     />
   </div>
   <div class="relative overflow-auto overflow-y-hidden p-4 overflow-x-hidden">
-    <ShowPreview
+    <MediaPreview
       userID={data.session.user.id}
       title="Popular Shows"
-      shows={popularShowData}
+      media={popularShowData}
+      indexID="popularShows"
+      type="show"
     />
   </div>
   <div class="relative overflow-auto overflow-y-hidden p-4 overflow-x-hidden">
-    <MoviePreview
+    <MediaPreview
       userID={data.session.user.id}
       title="Popular Movies"
-      movies={popularMovieData}
+      media={popularMovieData}
+      indexID="popularMovies"
+      type="movie"
     />
   </div>
 </section>

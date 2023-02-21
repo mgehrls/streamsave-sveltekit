@@ -7,33 +7,37 @@
   } from "$lib/stores/listItems";
   import type { ApiResult, ListItemPlusMedia } from "$lib/types";
 
-  export let movie: ApiResult;
+  export let mediaItem: ApiResult;
   export let userID: string;
+  export let type: "movie" | "show";
 
   let listItemsArray: ListItemPlusMedia[];
   let onList: boolean;
   let loading: boolean = false;
+  let mediaTitle = type === "show" ? mediaItem.name : mediaItem.title;
 
   $: listItemsArray = $listItems;
-  $: onList = listItemsArray.map((item) => item.media_id).includes(movie.id);
+  $: onList = listItemsArray
+    .map((item) => item.media_id)
+    .includes(mediaItem.id);
   $: if ($listItems) {
     loading = false;
   }
 
   async function handleDelete() {
     loading = true;
-    await deleteListItem(movie.id);
+    await deleteListItem(mediaItem.id);
   }
   async function handleAdd() {
     loading = true;
     await addListItem(
       {
-        id: movie.id,
-        title: movie.title,
-        description: movie.overview,
-        type: "movie",
-        backdrop_path: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
-        poster_path: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
+        id: mediaItem.id,
+        title: type === "show" ? mediaItem.name : mediaItem.title,
+        description: mediaItem.overview,
+        type: type,
+        backdrop_path: `https://image.tmdb.org/t/p/w342${mediaItem.backdrop_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w342${mediaItem.poster_path}`,
       },
       userID
     );
@@ -41,26 +45,26 @@
 </script>
 
 <div
-  class="max-w-xs flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-1"
+  class="flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56"
 >
   <img
     class="max-w-xs max-h-60"
-    src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-    alt={`${movie.title} backdrop`}
+    src={`https://image.tmdb.org/t/p/w342${mediaItem.poster_path}`}
+    alt={`${mediaTitle} backdrop`}
   />
   <div class="self-start w-full max-w-xs p-2">
-    <a class="" href={`/movies/${movie.id}`}>
+    <a class="" href={`/${type}s/${mediaItem.id}`}>
       <h2
         class="no-underline text-white max-w-xs font-semibold truncate"
         style="text-shadow: 0 2px 4px black;"
       >
-        {movie.title}
+        {mediaTitle}
       </h2>
       <p
         class="no-underline text-white m-0 text-sm overflow-hidden text-ellipsis whitespace-normal h-16"
         style="text-shadow: 0 2px 4px black;"
       >
-        {movie.overview.slice(0, 40)}...
+        {mediaItem.overview.slice(0, 40)}...
       </p>
     </a>
   </div>
