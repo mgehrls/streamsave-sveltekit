@@ -6,6 +6,7 @@
   export let listItem: ListItemPlusMedia;
   let mediaType: "Tv" | "Film";
   let showDateInput: boolean = false;
+  let showConfirm: boolean = false;
 
   if (listItem.media.type === "show") {
     mediaType = "Tv";
@@ -18,6 +19,7 @@
     deleteListItem(listItem.media.id);
   }
   function handleDateUpdate() {
+    showDateInput = false;
     const updatedListItem = {
       id: listItem.id,
       user_id: listItem.user_id,
@@ -43,7 +45,7 @@
   </a>
   <div class="w-full flex flex-col justify-around items-start h-44">
     <a
-      class="no-underline text-slate-800 block"
+      class="no-underline text-slate-400 block"
       href={`/${listItem.media.type}s/${listItem.media.id}`}
     >
       {#if listItem.media.type === "show"}
@@ -56,16 +58,40 @@
       </h2>
     </a>
     <div class="flex justify-between items-center w-full">
-      {#if showDateInput}
+      {#if showConfirm}
+        <div class="flex justify-between gap-7">
+          <button
+            class="text-xs cursor-pointer bg-green-600 text-white text-semibold px-2 py-1"
+            on:click={() => {
+              showConfirm = false;
+            }}>{`Keep`}</button
+          >
+          <button
+            class="text-xs cursor-pointer bg-red-700 text-white text-semibold px-2 py-1"
+            on:keypress={(e) => {
+              if (e.key === "Enter") {
+                showConfirm = false;
+                handleDelete();
+              }
+            }}
+            on:click={() => {
+              showConfirm = false;
+              handleDelete();
+            }}
+          >
+            {`Delete`}
+          </button>
+        </div>
+      {:else if showDateInput}
         <input
           type="date"
-          class="bg-slate-600 text-slate-100 w-24 text-xs"
+          class="bg-slate-600 text-slate-100 w-32 text-xs"
           on:change={handleDateUpdate}
           bind:value={listItem.lastSeen}
         />
       {:else if listItem.lastSeen}
         <p
-          class="text-xs text-slate-100 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
+          class="text-xs text-slate-400 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
           on:keypress={(e) => {
             if (e.key === "Enter") {
               showDateInput = true;
@@ -75,6 +101,20 @@
         >
           {lastSeen.toLocaleDateString("en-US")}
         </p>
+        <button
+          class="text-slate-400 cursor-pointer"
+          on:keypress={(e) => {
+            if (e.key === "Enter") {
+              showConfirm = true;
+            }
+          }}
+          on:click={() => (showConfirm = true)}
+        >
+          <Trash2
+            size={35}
+            class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:text-black hover:bg-red-600 rounded-full hover:scale-110"
+          />
+        </button>
       {:else}
         <p
           on:keypress={(e) => {
@@ -83,17 +123,25 @@
             }
           }}
           on:click={() => (showDateInput = true)}
-          class="text-xs text-slate-100 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
+          class="text-xs text-slate-400 w-24 cursor-pointer hover:text-slate-900 hover:bg-slate-300"
         >
           last seen?
         </p>
+        <button
+          class="text-slate-400 cursor-pointer"
+          on:keypress={(e) => {
+            if (e.key === "Enter") {
+              showConfirm = true;
+            }
+          }}
+          on:click={() => (showConfirm = true)}
+        >
+          <Trash2
+            size={35}
+            class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:text-black hover:bg-red-600 rounded-full hover:scale-110"
+          />
+        </button>
       {/if}
-      <button class="self-end" on:click={handleDelete}>
-        <Trash2
-          size={35}
-          class="border-none p-2 text-base inline-block relative self-end justify-self-end hover:cursor-pointer hover:bg-red-600 rounded-full hover:scale-110"
-        />
-      </button>
     </div>
   </div>
 </div>
