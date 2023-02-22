@@ -46,27 +46,31 @@
 
 <div
   class="flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56"
+  style="max-width: 14rem; min-width: 14rem;"
 >
-  <img
-    class="max-w-xs max-h-60"
-    src={`https://image.tmdb.org/t/p/w342${mediaItem.poster_path}`}
-    alt={`${mediaTitle} backdrop`}
-  />
-  <div class="self-start w-full max-w-xs p-2">
+  <a class="" href={`/${type}s/${mediaItem.id}`}>
+    <img
+      draggable="false"
+      style="min-width: 13rem; pointer-events: none;"
+      src={`https://image.tmdb.org/t/p/w342${mediaItem.poster_path}`}
+      alt={`${mediaTitle} backdrop`}
+    />
+  </a>
+  <div class="self-start w-full p-2">
     <a class="" href={`/${type}s/${mediaItem.id}`}>
       <h2
-        class="no-underline text-white max-w-xs font-semibold truncate"
+        class="no-underline text-white font-semibold truncate"
         style="text-shadow: 0 2px 4px black;"
       >
         {mediaTitle}
       </h2>
-      <p
-        class="no-underline text-white m-0 text-sm overflow-hidden text-ellipsis whitespace-normal h-16"
-        style="text-shadow: 0 2px 4px black;"
-      >
-        {mediaItem.overview.slice(0, 40)}...
-      </p>
     </a>
+    <p
+      class="no-underline text-white m-0 text-sm overflow-hidden text-ellipsis whitespace-normal h-16 cursor-default"
+      style="text-shadow: 0 2px 4px black;"
+    >
+      {mediaItem.overview.slice(0, 40)}...
+    </p>
   </div>
   <div class="my-1 mr-2 self-end">
     {#if userID}

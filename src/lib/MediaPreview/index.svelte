@@ -15,9 +15,6 @@
   export let type: "movie" | "show";
 
   $: {
-    // innerWidth > 1040 ? particles
-  }
-  $: {
     particles = Math.round((innerWidth - 840) / 200) + 2;
   }
 
@@ -45,7 +42,7 @@
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 3; //scroll-fast
+      const walk = (x - startX) * 1; //scroll-speed
       slider.scrollLeft = scrollLeft - walk;
     });
   });
@@ -71,7 +68,11 @@
       <h2 class="text-slate-100 font-bold text-xl mb-4">{title}</h2>
     </div>
     {#if browser}
-      <div id={indexID} class="flex overflow-x-auto">
+      <div
+        id={indexID}
+        class="flex overflow-x-auto"
+        style="::-webkit-scrollbar: none;"
+      >
         {#each media as mediaItem}
           <MediaPreview {type} {userID} {mediaItem} />
         {/each}
