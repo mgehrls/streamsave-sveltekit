@@ -3,47 +3,58 @@
 </script>
 
 <div
-  style="min-height: calc(100vh - 88px);"
-  class="flex justify-center items-center h-full w-full gap-32"
+  class="flex md:max-w-screen-2xl gap-8 flex-col md:flex-row justify-center items-center mt-8 md:mt-0"
 >
-  <div class="flex flex-col">
+  <div class="md:flex flex-col p-4">
     <h1
       style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
       class="text-3xl text-slate-100 font-bold"
     >
       Register
     </h1>
-    <p
-      style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
-      class="text-slate-100 my-8"
-    >
+    <p style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);" class="text-slate-100">
       Register w/ your email or Google!
     </p>
   </div>
-  <div style="height: calc(50vh);" class="w-2 rounded-md bg-white h-" />
+
+  <div
+    style="height: calc(50vh);"
+    class="hidden md:block w-2 rounded-md bg-white"
+  />
+
   <div>
     <form action="?/register" method="POST" class="flex flex-col gap-4">
       <label
         style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
-        class="text-slate-100"
+        class="text-slate-100 hidden"
         for="email"
       >
         Email
       </label>
-      <input type="text" name="email" />
+      <input
+        class="h-8 rounded pl-1"
+        type="text"
+        placeholder="Email"
+        name="email"
+      />
       <label
         style="text-shadow: 2px 2px 2px rgba(0,0,0,.8);"
-        class="text-slate-100"
+        class="text-slate-100 hidden"
         for="password"
       >
         Password
       </label>
-      <input class="mb-4" type="password" name="password" />
+      <input
+        class="h-8 rounded pl-1"
+        placeholder="Password"
+        type="password"
+        name="password"
+      />
       <button
-        class="bg-slate-100 text-slate-800 p-2 rounded-md font-semibold hover:text-white hover:bg-orange-500"
-        >Sign in</button
+        class="h-8 bg-slate-100 text-slate-800 rounded-md font-semibold hover:text-white hover:bg-orange-500"
+        >Register</button
       >
+      <GoogleBtn type={"Register"} />
     </form>
-    <GoogleBtn />
   </div>
 </div>

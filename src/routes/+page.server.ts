@@ -50,7 +50,7 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
-	signIn: async ({ request, locals, url }) => {
+	signin: async ({ request, locals, url }) => {
 
 		const provider = url.searchParams.get("provider") as Provider
 		if(provider){
@@ -87,8 +87,8 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
-	signOut: async ({locals}) =>{
-		const { error:err} = await locals.sb.auth.signOut()
+	signout: async ({locals}) =>{
+		const { error:err} = await locals.sb.auth.signout()
 
 		if(err){
 			console.log(err)

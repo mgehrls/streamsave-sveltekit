@@ -142,7 +142,7 @@
     <div
       class="flex justify-center items-center border-t border-slate-100 border-solid py-2"
     >
-      <form method="post" action="/logout">
+      <form method="post" action="/signout">
         <button type="submit">Sign Out</button>
       </form>
     </div>

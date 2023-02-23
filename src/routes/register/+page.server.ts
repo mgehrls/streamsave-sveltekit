@@ -24,7 +24,7 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
-	login: async ({ request, locals, url }) => {
+	signin: async ({ request, locals, url }) => {
 
 		const provider = url.searchParams.get("provider") as Provider
 

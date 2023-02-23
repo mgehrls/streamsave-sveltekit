@@ -32,7 +32,10 @@
 
 <div class="flex flex-col min-h-screen bg-slate-900">
   <Header {data} />
-  <div style="min-height: calc(100vh - 88px);">
+  <div
+    class="flex justify-center items-start"
+    style="min-height: calc(100vh - 88px);"
+  >
     <slot />
   </div>
 
