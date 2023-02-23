@@ -47,17 +47,17 @@
 
 <header
   style="background: linear-gradient(180deg, rgb(100 116 139) 0%, rgba(160, 174, 192, 0) 100%);"
-  class="bg-slate-500 text-white p-6 flex justify-between items-center"
+  class="bg-slate-500 text-white p-6 flex justify-between items-center sticky top-0 z-50"
 >
   <div class={innerWidth > 600 ? "flex items-center" : "hidden"}>
-    <a href="/" class="text-lg font-medium">StreamSave</a>
+    <a href="/" class="text-xl font-bold tracking-wide">StreamSave</a>
   </div>
   {#if gotUser}
     <div class={innerWidth > 600 ? "relative w-1/2" : "relative w-full mr-4"}>
       <input
         type="text"
         placeholder="Search for shows or movies..."
-        class="bg-gray-900 text-white p-2 w-full rounded-md text-sm z-50"
+        class="bg-gray-900 text-white p-2 w-full rounded-md text-md z-50"
         bind:value={searchQuery}
         on:input={debounce}
         on:keydown={(e) => {
