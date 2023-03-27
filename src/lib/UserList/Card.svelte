@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
   import { deleteListItem, updateListItemDate } from "$lib/stores/listItems";
   import { Trash2, Tv, Film } from "lucide-svelte";
-  import type { ListItemPlusMedia } from "$lib/types";
+  import type { ListItemPlusMedia } from "$lib/utils/types";
   export let listItem: ListItemPlusMedia | undefined;
   export let type: "show" | "movie" | undefined;
   import missingPoster from "$lib/images/posterunavailable.jpg";

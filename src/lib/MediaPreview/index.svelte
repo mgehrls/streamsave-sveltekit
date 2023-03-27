@@ -1,7 +1,7 @@
 <script lang="ts">
   import MediaPreview from "./MediaPreview.svelte";
   import { browser } from "$app/environment";
-  import type { ApiResult } from "$lib/types";
+  import type { ApiResult } from "$lib/utils/types";
   import { Film, Tv } from "lucide-svelte";
   import { onMount } from "svelte";
 

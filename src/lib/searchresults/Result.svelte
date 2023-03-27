@@ -6,8 +6,8 @@
   } from "$lib/stores/listItems";
   import { Tv, Film } from "lucide-svelte";
   import missingPoster from "$lib/images/posterunavailable.jpg";
-  import type { ApiResult, ListItemPlusMedia } from "$lib/types";
-  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
+  import type { ApiResult, ListItemPlusMedia } from "$lib/utils/types";
+  import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
 
   export let item: ApiResult;
   export let userID: string;

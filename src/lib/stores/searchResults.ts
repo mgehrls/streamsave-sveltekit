@@ -1,4 +1,4 @@
-import type { SearchStoreResults } from "$lib/types";
+import type { SearchStoreResults } from "$lib/utils/types";
 import { writable } from "svelte/store";
 
 

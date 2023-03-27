@@ -1,5 +1,5 @@
 import { API_KEY_SECRET } from "$env/static/private"
-import type { ApiResult } from "$lib/types"
+import type { ApiResult } from "$lib/utils/types"
 import { AuthApiError, type Provider } from "@supabase/supabase-js"
 import { fail, redirect } from "@sveltejs/kit"
 import type { Actions, PageServerLoad } from "./$types"
@@ -20,6 +20,7 @@ export const load = (async (event) => {
         const popularShowsData = await res.json()
         return popularShowsData.results as ApiResult[]
     }
+
 	return {
 		trendingShowData: fetchTrendingShows(),
         popularShowData: fetchPopularShows(),
@@ -88,7 +89,7 @@ export const actions: Actions = {
 		throw redirect(303, "/")
 	},
 	signout: async ({locals}) =>{
-		const { error:err} = await locals.sb.auth.signout()
+		const { error:err} = await locals.sb.auth.signOut()
 
 		if(err){
 			console.log(err)

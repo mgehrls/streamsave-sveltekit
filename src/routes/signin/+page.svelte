@@ -1,5 +1,5 @@
 <script>
-  import GoogleBtn from "$lib/GoogleBtn.svelte";
+  import GoogleBtn from "$lib/utils/GoogleBtn.svelte";
 </script>
 
 <div

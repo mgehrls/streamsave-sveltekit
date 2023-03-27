@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ListItemPlusMedia } from "$lib/types";
+  import type { ListItemPlusMedia } from "$lib/utils/types";
   import { Film, Tv, History, SortAsc, SortDesc } from "lucide-svelte";
   import FilteredList from "./FilteredList.svelte";
 

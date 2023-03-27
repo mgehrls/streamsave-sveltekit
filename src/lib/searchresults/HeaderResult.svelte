@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
+  import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
   import {
     listItems,
     addListItem,

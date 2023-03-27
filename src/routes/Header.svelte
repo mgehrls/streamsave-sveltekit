@@ -3,9 +3,9 @@
   import HeaderResult from "$lib/searchresults/HeaderResult.svelte";
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
-  import type { SearchStoreResults } from "$lib/types";
+  import type { SearchStoreResults } from "$lib/utils/types";
   import { fade } from "svelte/transition";
-  import Loading from "$lib/Loading.svelte";
+  import Loading from "$lib/utils/Loading.svelte";
   export let data: PageData;
 
   let searchQuery: string = "";

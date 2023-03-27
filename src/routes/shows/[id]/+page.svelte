@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
+  import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
   import type { PageData } from "./$types";
   import {
     addListItem,

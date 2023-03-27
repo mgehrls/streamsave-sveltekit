@@ -3,7 +3,7 @@ import { supabaseClient } from "$lib/supabase";
 import { fail } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 import { invalidateAll } from "$app/navigation";
-import type { ListItemPlusMedia, ListItem, SbMedia } from "$lib/types";
+import type { ListItemPlusMedia, ListItem, SbMedia } from "$lib/utils/types";
 
 
 export const listItems: Writable<ListItemPlusMedia[]> = writable([]);

@@ -1,6 +1,6 @@
 import { getServerSession } from "@supabase/auth-helpers-sveltekit";
 import type { LayoutServerLoad } from "./$types";
-import type {  UserListItems } from "$lib/types";
+import type {  UserListItems } from "$lib/utils/types";
 
 export const load: LayoutServerLoad = async (event) =>{
   

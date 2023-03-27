@@ -1,11 +1,13 @@
 <script lang="ts">
-  import AddRemoveBtn from "$lib/AddRemoveBtn.svelte";
+  import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
   import {
     addListItem,
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import type { ApiResult, ListItemPlusMedia } from "$lib/types";
+  import type { ApiResult, ListItemPlusMedia } from "$lib/utils/types";
+  import { genreList, getGenresByIds } from "$lib/utils/genres";
+  import GenrePill from "$lib/utils/GenrePill.svelte";
 
   export let mediaItem: ApiResult;
   export let userID: string;
@@ -15,6 +17,8 @@
   let onList: boolean;
   let loading: boolean = false;
   let mediaTitle = type === "show" ? mediaItem.name : mediaItem.title;
+  let genresIDs = mediaItem.genre_ids;
+  let genres = getGenresByIds(genresIDs, genreList);
 
   $: listItemsArray = $listItems;
   $: onList = listItemsArray
@@ -45,13 +49,22 @@
 </script>
 
 <div
-  class="flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56"
+  class="relative flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56"
   style="max-width: 14rem; min-width: 14rem;"
 >
+  <div class="absolute top-4 right-4">
+    {#if userID}
+      <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
+    {:else}
+      <a href="/signin">
+        <p class="text-slate-100">Sign in</p>
+      </a>
+    {/if}
+  </div>
   <a class="" href={`/${type}s/${mediaItem.id}`}>
     <img
       draggable="false"
-      style="min-width: 13rem; pointer-events: none;"
+      style="width:208px; pointer-events: none; height:312px;"
       src={`https://image.tmdb.org/t/p/w342${mediaItem.poster_path}`}
       alt={`${mediaTitle} backdrop`}
     />
@@ -65,20 +78,10 @@
         {mediaTitle}
       </h2>
     </a>
-    <p
-      class="no-underline text-white m-0 text-sm overflow-hidden text-ellipsis whitespace-normal h-16 cursor-default"
-      style="text-shadow: 0 2px 4px black;"
-    >
-      {mediaItem.overview.slice(0, 40)}...
-    </p>
-  </div>
-  <div class="my-1 mr-2 self-end">
-    {#if userID}
-      <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
-    {:else}
-      <a href="/signin">
-        <p class="text-slate-100">Sign in</p>
-      </a>
-    {/if}
+    <div class="flex flex-wrap gap-1">
+      {#each genres as genre}
+        <GenrePill {genre} />
+      {/each}
+    </div>
   </div>
 </div>
