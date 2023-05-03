@@ -1,5 +1,5 @@
 <script lang="ts">
-  import MediaPreview from "$lib/MediaPreview/index.svelte";
+  import MediaPreview from "$lib/components/MediaPreview/index.svelte";
   import type { PageData } from "./$types";
 
   export let data: PageData;

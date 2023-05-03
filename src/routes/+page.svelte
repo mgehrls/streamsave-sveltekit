@@ -26,6 +26,9 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
   />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap");
+  </style>
 </svelte:head>
 <svelte:window bind:innerWidth />
 
@@ -50,7 +53,7 @@
       >
       <button
         disabled
-        class="bg-slate-100 text-slate-700 underline text-sm py-2 px-8  rounded-r-full"
+        class="bg-slate-100 text-slate-700 underline text-sm py-2 px-8 rounded-r-full"
         on:click={toggleView}>Trending</button
       >
     {/if}

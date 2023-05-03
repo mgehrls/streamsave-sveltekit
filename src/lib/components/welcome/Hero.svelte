@@ -1,0 +1,37 @@
+<div
+  class="flex flex-col lg:flex-row justify-center w-screen text-white h-full"
+>
+  <div
+    class="flex justify-center lg:justify-end items-end w-full lg:w-1/2 px-4 py-20 lg:py-40 gap-4 lg:pr-12"
+  >
+    <img
+      src="/images/streamsave_logo.png"
+      alt="StreamSave Logo"
+      class="w-32 lg:w-48"
+    />
+    <div class="flex flex-col gap-4">
+      <h1 class="text-3xl lg:text-5xl font-bold text-left">
+        Fill Your <br />Show Hole<br />
+      </h1>
+      <a
+        data-sveltekit-reload
+        class="flex justify-center items-center px-6 py-2 bg-pink-600"
+        target="_self"
+        href="/signin">Sign in</a
+      >
+      <a
+        data-sveltekit-reload
+        class="flex justify-center items-center px-6 py-2 bg-sky-600"
+        href="/register">Register</a
+      >
+    </div>
+  </div>
+  <div
+    style=" background: rgb(24, 24, 27); background: linear-gradient(90deg, rgba(219, 39, 119,0.50) 0%, rgba(2, 132, 199, .7) 100%); "
+    class="w-full lg:w-1/2 flex justify-center lg:justify-start items-center lg:pl-12 py-20 lg:py-40"
+  >
+    <p class="w-48 font-bold text-center">
+      Organize your favorite shows and movies on StreamSave
+    </p>
+  </div>
+</div>

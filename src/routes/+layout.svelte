@@ -30,7 +30,7 @@
   });
 </script>
 
-<div class="flex flex-col min-h-screen bg-slate-900">
+<div class="flex flex-col min-h-screen bg-zinc-900">
   <Header {data} />
   <div
     class="flex justify-center items-start"

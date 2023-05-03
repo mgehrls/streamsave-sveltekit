@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getSearchResults, searchResults } from "$lib/stores/searchResults";
-  import HeaderResult from "$lib/searchresults/HeaderResult.svelte";
+  import HeaderResult from "$lib/components/searchresults/HeaderResult.svelte";
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
   import type { SearchStoreResults } from "$lib/utils/types";
@@ -46,11 +46,19 @@
 <svelte:window bind:innerWidth />
 
 <header
-  style="background: linear-gradient(180deg, rgb(100 116 139) 0%, rgba(160, 174, 192, 0) 100%);"
-  class="bg-slate-500 text-white p-6 flex justify-between items-center sticky top-0 z-50"
+  class="bg-slate-800 text-white py-4 px-8 flex justify-between items-center sticky top-0 z-50"
 >
-  <div class={innerWidth > 600 ? "flex items-center" : "hidden"}>
-    <a href="/" class="text-xl font-bold tracking-wide">StreamSave</a>
+  <div class={"flex items-center"}>
+    <a href="/" class="text-xl flex gap-1 items-end font-bold tracking-wide">
+      <img
+        src="/images/streamsave_logo.png"
+        alt="StreamSave Logo"
+        class="w-6"
+      />
+      <div class={innerWidth > 600 ? "" : "hidden"}>
+        <h1>treamSave</h1>
+      </div>
+    </a>
   </div>
   {#if gotUser}
     <div class={innerWidth > 600 ? "relative w-1/2" : "relative w-full mr-4"}>
@@ -101,10 +109,15 @@
   {/if}
   {#if !gotUser}
     <div class="flex justify-center items-center gap-8">
-      <a data-sveltekit-reload class="m-0 p-0" target="_self" href="/signin"
-        >Sign in</a
+      <a
+        data-sveltekit-reload
+        class="px-6 py-2 bg-pink-600"
+        target="_self"
+        href="/signin">Sign in</a
       >
-      <a data-sveltekit-reload class="m-0 p-0" href="/register">Register</a>
+      <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/register"
+        >Register</a
+      >
     </div>
   {:else}
     <div class="flex justify-center items-center gap-2 relative">

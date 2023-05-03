@@ -3,7 +3,7 @@
   import type { ListItemPlusMedia } from "$lib/utils/types";
   import { listItems } from "$lib/stores/listItems";
   import UserList from "$lib/UserList/UserList.svelte";
-  import Result from "$lib/searchresults/Result.svelte";
+  import Result from "$lib/components/searchresults/Result.svelte";
   import { searchResults } from "$lib/stores/searchResults";
   import { onMount } from "svelte";
 
