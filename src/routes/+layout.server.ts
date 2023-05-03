@@ -11,7 +11,7 @@ export const load: LayoutServerLoad = async (event) =>{
         if(listItems.error){
             console.log(listItems.error)
         }
-        if(listItems.data.length){
+        if(listItems.data?.length){
             listItems.count = listItems.data.length
         }
         return listItems as UserListItems

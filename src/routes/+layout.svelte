@@ -15,7 +15,7 @@
       user.set(data.session.user);
       loadListItems();
     }
-    if (data.listItems.data.length) {
+    if (data.listItems.data && data.listItems.data.length) {
       listItems.set(data.listItems.data);
     }
 

@@ -7,23 +7,6 @@
   class="relative h-full w-screen flex flex-col justify-center items-center"
   style="min-height: calc(100vh - 88px);"
 >
-  <div
-    style="border-radius: 10rem 12rem 15rem 8rem / 18rem 10rem 8rem 7rem; "
-    class="absolute -left-20 top-10 h-64 w-64 bg-orange-500 opacity-75"
-  />
-  <div
-    style="border-radius: 10rem 12rem 15rem 8rem / 18rem 10rem 8rem 7rem; "
-    class="absolute right-20 bottom-10 h-64 w-64 bg-orange-500 opacity-75"
-  />
-  <div
-    style="border-radius: 10rem 12rem 14rem 16rem / 20rem 18rem 16rem 13rem; "
-    class="absolute bottom-36 h-64 w-64 bg-orange-500 opacity-75"
-  />
-  <div
-    style="border-radius: 10rem 12rem 15rem 8rem / 18rem 10rem 8rem 7rem; "
-    class="absolute -left-20 top-10 h-64 w-64 bg-orange-500 opacity-75"
-  />
-
   <div class="px-4">
     <h1
       class="text-slate-100 text-4xl font-bold my-8 tracking-wide text-center"
