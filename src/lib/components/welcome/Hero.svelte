@@ -10,9 +10,12 @@
       class="w-32 lg:w-48"
     />
     <div class="flex flex-col gap-4">
-      <h1 class="text-3xl lg:text-5xl font-bold text-left">
-        Fill Your <br />Show Hole<br />
-      </h1>
+      <div>
+        <h1 class="text-3xl lg:text-5xl font-bold text-left">
+          Fill Your <br />Show Hole<br />
+        </h1>
+        <h3 class="text-xl">w/ StreamSave!</h3>
+      </div>
       <a
         data-sveltekit-reload
         class="flex justify-center items-center px-6 py-2 bg-pink-600"
@@ -31,7 +34,7 @@
     class="w-full lg:w-1/2 flex justify-center lg:justify-start items-center lg:pl-12 py-20 lg:py-40"
   >
     <p class="w-48 font-bold text-center">
-      Organize your favorite shows and movies on StreamSave
+      Organize your favorite shows and movies, or discover new ones!
     </p>
   </div>
 </div>
