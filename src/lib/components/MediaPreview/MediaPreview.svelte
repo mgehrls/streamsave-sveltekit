@@ -49,17 +49,11 @@
 </script>
 
 <div
-  class="relative flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56"
+  class="relative flex flex-col justify-start items-center bg-gradient-to-tr from-slate-700 via-slate-800 to-slate-900 p-4 w-56 rounded-md"
   style="max-width: 14rem; min-width: 14rem;"
 >
   <div class="absolute top-4 right-4">
-    {#if userID}
-      <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
-    {:else}
-      <a href="/signin">
-        <p class="text-slate-100">Sign in</p>
-      </a>
-    {/if}
+    <AddRemoveBtn {loading} {onList} {handleDelete} {handleAdd} />
   </div>
   <a class="" href={`/${type}s/${mediaItem.id}`}>
     <img

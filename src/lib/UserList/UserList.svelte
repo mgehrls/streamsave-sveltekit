@@ -23,10 +23,10 @@
 </script>
 
 <div class="flex flex-col">
-  <div>
-    <h2 class="pt-4 text-center font-bold text-xl text-slate-100">Your List</h2>
+  <div class="flex justify-between items-center pt-4 px-4">
+    <h2 class="text-center font-bold text-xl text-slate-100">Your List</h2>
     <!-- Filter -->
-    <div class="text-sm flex justify-around items-center">
+    <div class="text-sm flex justify-around items-center gap-2">
       <div
         on:mouseenter={removeHiddenFilter}
         on:mouseleave={addHiddenFilter}
@@ -48,6 +48,7 @@
             on:click={addHiddenFilter}><Tv size={15} /></button
           >
         {/if}
+        <!-- IGNORE ERROR ABOUT HIDDEN AND FLEX APPLYING THE SAME PROPERTY-->
         <div
           class="hidden absolute flex flex-col justify-center items-center -top-1 bg-slate-300 text-slate-800 rounded-md"
           id="filterDiv"
@@ -133,6 +134,7 @@
             ><History size={15} /> <SortDesc size={15} /></button
           >
         {/if}
+        <!-- IGNORE ERROR ABOUT HIDDEN AND FLEX APPLYING THE SAME PROPERTY-->
         <div
           class="hidden absolute flex flex-col justify-center items-center -top-1 bg-slate-300 text-slate-800 rounded-md"
           id="sortDiv"

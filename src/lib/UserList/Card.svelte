@@ -5,7 +5,7 @@
   import type { ListItemPlusMedia } from "$lib/utils/types";
   export let listItem: ListItemPlusMedia | undefined;
   export let type: "show" | "movie" | undefined;
-  import missingPoster from "/images/posterunavailable.jpg";
+  import missingPoster from "/images/posterunavailable.png";
   let mediaType: "Tv" | "Film";
   let showDateInput: boolean = false;
   let showConfirm: boolean = false;

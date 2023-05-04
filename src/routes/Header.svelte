@@ -46,7 +46,7 @@
 <svelte:window bind:innerWidth />
 
 <header
-  class="bg-slate-800 text-white py-4 px-8 flex justify-between items-center sticky top-0 z-50"
+  class="bg-slate-800 text-white py-4 md:px-8 flex gap-2 px-2 justify-between items-center sticky top-0 z-50"
 >
   <div class={"flex items-center"}>
     <a href="/" class="text-xl flex gap-1 items-end font-bold tracking-wide">
@@ -55,13 +55,13 @@
         alt="StreamSave Logo"
         class="w-6"
       />
-      <div class={innerWidth > 600 ? "" : "hidden"}>
+      <div class="hidden sm:block">
         <h1>treamSave</h1>
       </div>
     </a>
   </div>
   {#if gotUser}
-    <div class={innerWidth > 600 ? "relative w-1/2" : "relative w-full mr-4"}>
+    <div class="relative sm:ml-8 w-full lg:w-1/2">
       <input
         type="text"
         placeholder="Search for shows or movies..."

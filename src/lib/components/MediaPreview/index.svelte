@@ -53,26 +53,17 @@
 {#if !media}
   <div>No media here...</div>
 {:else}
-  <div
-    class="mr-4"
-    style={innerWidth > 700
-      ? "max-width: calc(100vw - 380px)"
-      : "max-width: 100%"}
-  >
+  <div class="flex flex-col pt-4 px-4 gap-2 max-w-full">
     <div class="flex gap-2 text-slate-100">
       {#if type === "show"}
         <Tv />
       {:else}
         <Film />
       {/if}
-      <h2 class="text-slate-100 font-bold text-xl mb-4">{title}</h2>
+      <h2 class="text-slate-100 font-bold text-xl">{title}</h2>
     </div>
     {#if browser}
-      <div
-        id={indexID}
-        class="flex overflow-x-auto"
-        style="::-webkit-scrollbar: none;"
-      >
+      <div id={indexID} class="flex flex-1 w-full max-w-6xl overflow-auto">
         {#each media as mediaItem}
           <MediaPreview {type} {userID} {mediaItem} />
         {/each}

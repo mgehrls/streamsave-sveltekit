@@ -20,11 +20,11 @@
 </script>
 
 {#if loading}
-  <div class="bg-black bg-opacity-50 rounded-lg">
+  <div class="bg-black bg-opacity-50 rounded-full">
     <Loading />
   </div>
 {:else if onList}
-  <div class="bg-black bg-opacity-50 rounded-lg">
+  <div class="bg-black bg-opacity-50 rounded-full">
     <button
       class="p-1 text-white flex gap-2 hover:scale-110 self-start"
       on:click={unHoverDelete}
@@ -39,7 +39,7 @@
     </button>
   </div>
 {:else}
-  <div class="bg-black bg-opacity-50 rounded-lg">
+  <div class="bg-black bg-opacity-50 rounded-full">
     <button
       class="p-1 text-white flex gap-2 hover:scale-110 self-start"
       on:click={unHoverAdd}

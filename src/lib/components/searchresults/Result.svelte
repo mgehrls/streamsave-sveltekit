@@ -5,7 +5,7 @@
     deleteListItem,
   } from "$lib/stores/listItems";
   import { Tv, Film } from "lucide-svelte";
-  import missingPoster from "/images/posterunavailable.jpg";
+  import missingPoster from "/images/posterunavailable.png";
   import type { ApiResult, ListItemPlusMedia } from "$lib/utils/types";
   import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
 
