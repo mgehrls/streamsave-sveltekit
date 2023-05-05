@@ -115,7 +115,7 @@
         target="_self"
         href="/signin">Sign in</a
       >
-      <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/register"
+      <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/signin"
         >Register</a
       >
     </div>

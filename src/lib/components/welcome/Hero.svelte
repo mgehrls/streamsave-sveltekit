@@ -25,7 +25,7 @@
       <a
         data-sveltekit-reload
         class="flex justify-center items-center px-6 py-2 bg-sky-600"
-        href="/register">Register</a
+        href="/signin">Register</a
       >
     </div>
   </div>
