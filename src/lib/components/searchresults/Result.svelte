@@ -5,12 +5,11 @@
     deleteListItem,
   } from "$lib/stores/listItems";
   import { Tv, Film } from "lucide-svelte";
-  import missingPoster from "/images/posterunavailable.png";
   import type { ApiResult, ListItemPlusMedia } from "$lib/utils/types";
   import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
-
   export let item: ApiResult;
   export let userID: string;
+  const missingPoster = "/images/posterunavailable.png";
 
   let loading: boolean = false;
   let listItemsArray: ListItemPlusMedia[];
