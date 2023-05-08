@@ -6,11 +6,11 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
-  import { goto, afterNavigate } from "$app/navigation";
-  import { ArrowLeft } from "lucide-svelte";
   import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
   import GenrePill from "$lib/utils/GenrePill.svelte";
   import FavoriteButton from "$lib/utils/FavoriteButton.svelte";
+  import { goto, afterNavigate } from "$app/navigation";
+  import { ArrowLeft } from "lucide-svelte";
 
   let previousPage: string = "/";
 
@@ -57,17 +57,17 @@
 
 <LayoutWrapper>
   <section
-    class="relative min-w-full min-h-full flex flex-col justify-center gap-4 p-4 md:flex-row flex-1"
+    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1"
   >
-    <div class="md:w-1/2 md:py-20 grid place-content-center relative">
-      <button
-        on:click={() => goto(previousPage)}
-        class="absolute top-4 text-2xl text-slate-50 z-50"
-      >
-        <ArrowLeft size={45} />
-      </button>
+    <button
+      on:click={() => goto(previousPage)}
+      class="absolute top-4 left-0 text-2xl text-slate-50 z-50"
+    >
+      <ArrowLeft size={45} />
+    </button>
+    <div class="w-1/2 md:py-20 grid place-content-center relative">
       <img
-        class="shadow-md"
+        class="max-w-1/2 shadow-md"
         src={`https://image.tmdb.org/t/p/w342${media.poster_path}`}
         alt={`${media.title} poster`}
       />
@@ -88,6 +88,11 @@
           <h1 class="text-4xl text-slate-50">
             {media.title}
           </h1>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {#each media.genres as genre}
+            <GenrePill genre={genre.name} />
+          {/each}
           {#if media.imdb_id}
             <a
               rel="noreferrer"
@@ -97,11 +102,6 @@
               <img src="/images/imdb link.png" alt="IMDB link" />
             </a>
           {/if}
-        </div>
-        <div class="flex gap-2">
-          {#each media.genres as genre}
-            <GenrePill genre={genre.name} />
-          {/each}
         </div>
         <div>
           <p class="text-slate-100">{media.overview}</p>
