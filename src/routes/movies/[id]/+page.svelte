@@ -27,7 +27,6 @@
   $: if ($listItems) {
     loading = false;
   }
-  console.log(media);
 
   async function handleDelete() {
     loading = true;

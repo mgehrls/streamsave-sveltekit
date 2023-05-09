@@ -7,6 +7,8 @@
   import { listItems, loadListItems } from "$lib/stores/listItems";
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
+  import { navigating } from "$app/stores";
+  import Loading from "$lib/utils/Loading.svelte";
 
   export let data: PageData;
   onMount(() => {
@@ -32,10 +34,7 @@
 
 <div class="flex flex-col min-h-screen bg-zinc-900">
   <Header {data} />
-  <div
-    class="flex justify-center items-start"
-    style="min-height: calc(100vh - 88px);"
-  >
+  <div class="flex justify-center items-start min-h-full">
     <slot />
   </div>
 
