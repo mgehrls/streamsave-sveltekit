@@ -30,10 +30,10 @@
     {#if browser}
       <div
         id={indexID}
-        class="flex flex-1 w-full max-w-6xl overflow-auto scrollbar-thin scrollbar-track-sky-100 scrollbar-thumb-sky-300 scrollbar-corner-transparent"
+        class="flex flex-1 w-full max-w-7xl overflow-auto scrollbar-thin scrollbar-track-sky-100 scrollbar-thumb-sky-300 scrollbar-corner-transparent"
       >
         {#each media as mediaItem}
-          <MediaPreview {userID} {mediaItem} />
+          <MediaPreview {mediaItem} />
         {/each}
       </div>
     {/if}

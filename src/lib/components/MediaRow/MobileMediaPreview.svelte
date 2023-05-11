@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {
-    addListItem,
-    deleteListItem,
-    listItems,
-  } from "$lib/stores/listItems";
+  import { listItems } from "$lib/stores/listItems";
   import type { ApiResult, ListItemPlusMedia, SbMedia } from "$lib/utils/types";
 
   export let mediaItem: ApiResult = undefined;
@@ -17,13 +13,21 @@
         : mediaItem.name
       : undefined;
 
+  console.log(mediaItem);
+
+  let mediaType =
+    mediaItem !== undefined
+      ? mediaItem.media_type === "tv"
+        ? "show"
+        : "movie"
+      : undefined;
+
   $: listItemsArray = $listItems;
 </script>
 
 {#if listItem}
   <a
-    class="relative flex flex-col justify-start items-center m-2 w-56 rounded-lg"
-    style="max-width: 14rem; min-width: 14rem;"
+    class="my-2 mr-2 w-56 rounded-lg"
     href={`/${listItem.type}s/${listItem.id}`}
   >
     <img
@@ -34,11 +38,7 @@
     />
   </a>
 {:else}
-  <a
-    class="relative flex flex-col justify-start items-center m-2 w-56 rounded-lg"
-    style="max-width: 14rem; min-width: 14rem;"
-    href={`/${mediaItem.media_type}s/${mediaItem.id}`}
-  >
+  <a class="my-2 mr-2 w-56 rounded-lg" href={`/${mediaType}s/${mediaItem.id}`}>
     <img
       draggable="false"
       class="rounded-md"
