@@ -27,7 +27,9 @@ export const genreList = [
 { id: 10766, name: 'Soap' },
 { id: 10767, name: 'Talk' },
 ];
-export function getGenresByIds(idArray, objects) {
+export function getGenresByIds(idArray: number[], objects) {
+    if(idArray === undefined || idArray.length === 0) return [];
+
     const nameArray = [];
     for (let i = 0; i < idArray.length; i++) {
       for (let j = 0; j < objects.length; j++) {

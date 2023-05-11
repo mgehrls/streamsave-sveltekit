@@ -6,6 +6,18 @@
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
+  import { goto, afterNavigate } from "$app/navigation";
+  import { ArrowLeft } from "lucide-svelte";
+  import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import GenrePill from "$lib/utils/GenrePill.svelte";
+  import FavoriteButton from "$lib/utils/FavoriteButton.svelte";
+
+  let previousPage: string = "/";
+
+  afterNavigate(({ from }) => {
+    previousPage = from?.url.pathname || previousPage;
+  });
+
   export let data: PageData;
   const { item: media } = data;
 
@@ -38,23 +50,28 @@
 
 <svelte:head>
   <title>{"StreamSave: " + media.name}</title>
-  <meta name="description" content={`Details about ${media.name}`} />
+  <meta name="description" content={`Details about ${media.title}`} />
 </svelte:head>
 <svelte:window bind:innerWidth />
 
-<section class="mt-8 w-screen flex justify-center items-center">
-  <div
-    class={innerWidth < 490
-      ? "max-w-5xl flex flex-col justify-center items-center gap-8 px-4"
-      : "max-w-5xl flex justify-center items-center gap-8 px-4"}
+<LayoutWrapper>
+  <section
+    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1"
   >
-    <div class="relative">
+    <button
+      on:click={() => goto(previousPage)}
+      class="absolute top-4 left-0 text-2xl text-slate-50 z-50"
+    >
+      <ArrowLeft size={45} />
+    </button>
+    <div class="w-1/2 md:py-20 grid place-content-center relative">
       <img
+        class="shadow-md"
         src={`https://image.tmdb.org/t/p/w342${media.poster_path}`}
         alt={`${media.title} poster`}
       />
-      <div class="absolute top-4 right-4">
-        <AddRemoveBtn
+      <div>
+        <FavoriteButton
           {loading}
           onList={listItemsArray.map((item) => item.media_id).includes(media.id)
             ? true
@@ -63,32 +80,32 @@
           {handleDelete}
         />
       </div>
-      <div class="flex mt-4 gap-4 justify-center items-center">
-        <a
-          class="border border-slate-300 border-solid px-4 py-1 text-slate-100"
-          rel="noreferrer"
-          target="_blank"
-          href={`https://www.imdb.com/title/${media.imdb_id}/`}>IMDB</a
-        >
-        <a
-          class="border border-slate-300 border-solid px-4 py-1 text-slate-100"
-          rel="noreferrer"
-          target="_blank"
-          href={`${media.homepage}`}>Website</a
-        >
+    </div>
+    <div class="md:w-1/2 md:py-20 grid place-content-center">
+      <div class="flex flex-col px-4 md:px-16 gap-4">
+        <div class="flex justify-between items-center">
+          <h1 class="text-4xl text-slate-50">
+            {media.name}
+          </h1>
+        </div>
+        <div class="flex gap-2">
+          {#each media.genres as genre}
+            <GenrePill genre={genre.name} />
+          {/each}
+          {#if media.imdb_id}
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href={`https://www.imdb.com/title/${media.imdb_id}/`}
+            >
+              <img src="/images/imdb link.png" alt="IMDB link" />
+            </a>
+          {/if}
+        </div>
+        <div>
+          <p class="text-slate-100">{media.overview}</p>
+        </div>
       </div>
     </div>
-    <div
-      class={innerWidth < 490
-        ? "flex flex-col justify-start items-start gap-4 bg-slate-500 p-4"
-        : "flex flex-col justify-start items-start gap-4 bg-slate-500 p-4 w-1/2 max-h-full"}
-    >
-      <h1 class="m-0 p-0 text-lg font-semibold text-slate-100 self-start">
-        {media.name}
-      </h1>
-      <p class="m-0 p-0 text-slate-100 italic opacity-90">"{media.tagline}"</p>
-
-      <p class="text-slate-100">{data.item.overview}</p>
-    </div>
-  </div>
-</section>
+  </section>
+</LayoutWrapper>

@@ -1,20 +1,9 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import UserList from "$lib/UserList/UserList.svelte";
   import { listItems } from "$lib/stores/listItems";
-  import Welcome from "./Welcome.svelte";
-  import Trending from "./Trending.svelte";
-  import MobileView from "./MobileView.svelte";
-
+  import UnAuthedHome from "$lib/components/UnAuthed/UnAuthedHome.svelte";
+  import MediaRow from "$lib/components/MediaRow/MediaRow.svelte";
   export let data: PageData;
-  let innerWidth: number;
-  let display: "list" | "trending" = "list";
-
-  function toggleView() {
-    display === "list" ? (display = "trending") : (display = "list");
-  }
-
-  $: listItemsArray = $listItems;
 </script>
 
 <svelte:head>
@@ -29,19 +18,43 @@
   />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap");
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Outfit", sans-serif;
+    }
+    p {
+      font-family: "Roboto", sans-serif;
+    }
   </style>
 </svelte:head>
-<svelte:window bind:innerWidth />
 
 {#if !data.session}
-  <Welcome />
-{:else if innerWidth < 700}
-  <MobileView {display} {toggleView} {listItemsArray} {data} />
+  <div class="relative h-full w-screen flex flex-col justify-start items-start">
+    <UnAuthedHome />
+  </div>
 {:else}
   <div class="flex w-screen overflow-hidden 2xl:justify-center">
-    {#if listItemsArray.length > 0}
-      <UserList listItems={listItemsArray} />
-    {/if}
-    <Trending {data} />
+    <div class="overflow-hidden">
+      <MediaRow page={data} title={"Your List"} />
+      <MediaRow
+        page={data}
+        title={"Trending Shows"}
+        media={data.trendingShowData}
+      />
+      <MediaRow
+        page={data}
+        title={"Popular Movies"}
+        media={data.popularMovieData}
+      />
+      <MediaRow
+        page={data}
+        title={"Popular Shows"}
+        media={data.popularShowData}
+      />
+    </div>
   </div>
 {/if}
