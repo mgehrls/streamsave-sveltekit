@@ -39,6 +39,7 @@
 		"@fontsource/inter": "^4.5.15",
 		"@fontsource/montserrat": "^4.5.14",
 		"@fontsource/raleway": "^4.5.12",
+		"pnpm": "^8.5.0",
 		"undici": "^5.20.0"
 	}
 }
