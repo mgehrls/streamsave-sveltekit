@@ -1,16 +1,13 @@
 <script lang="ts">
-  import MediaPreview from "./MediaPreview.svelte";
+  import MediaPreviewMobile from "./MediaPreviewMobile.svelte";
+  import MediaPreviewDesktop from "./MediaPreviewDesktop.svelte";
   import type { ApiResult } from "$lib/utils/types";
-  import type { PageData } from "../../../routes/$types";
   import { listItems } from "$lib/stores/listItems";
 
-  let innerWidth: number;
-  export let page: PageData;
   export let media: ApiResult[] = undefined;
   export let title: string;
-
   $: listItemsArray = $listItems.map((listItem) => listItem.media);
-  $: page;
+  $: innerWidth = innerWidth;
 </script>
 
 <svelte:window bind:innerWidth />
@@ -22,18 +19,43 @@
     <div class="flex gap-2 text-slate-100">
       <h2 class="text-slate-100 font-bold text-xl">{title}</h2>
     </div>
-    <div
-      class="flex flex-1 w-full max-w-7xl gap-2 overflow-auto scrollbar-track-transparent scrollbar-thumb-sky-300 scrollbar-corner-transparent"
-    >
+    <div id="mediaRow" class="flex flex-1 w-full max-w-7xl gap-2 overflow-auto">
       {#if !media && listItemsArray.length}
         {#each listItemsArray as listItem}
-          <MediaPreview {listItem} />
+          {#if innerWidth < 1536}
+            <MediaPreviewMobile {listItem} />
+          {:else}
+            <MediaPreviewMobile {listItem} />
+          {/if}
         {/each}
       {:else}
         {#each media as mediaItem}
-          <MediaPreview {mediaItem} />
+          {#if innerWidth < 1536}
+            <MediaPreviewMobile {mediaItem} />
+          {:else}
+            <MediaPreviewMobile {mediaItem} />
+          {/if}
         {/each}
       {/if}
     </div>
   </div>
 {/if}
+
+<style>
+  #mediaRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  #mediaRow {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  #mediaRow::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+
+  #mediaRow::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+</style>
