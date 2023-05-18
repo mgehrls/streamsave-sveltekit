@@ -4,8 +4,8 @@
   export let data: PageData;
 </script>
 
-<div class="w-full max-w-7xl mt-16">
-  <div class="p-4 bg-pink-600">
+<div class="w-full max-w-7xl">
+  <div class="p-4">
     <UserList listItems={data.listItems.data} />
   </div>
 </div>
