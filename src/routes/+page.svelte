@@ -39,22 +39,10 @@
 {:else}
   <div class="flex w-screen overflow-hidden 2xl:justify-center">
     <div class="overflow-hidden">
-      <MediaRow page={data} title={"Your List"} />
-      <MediaRow
-        page={data}
-        title={"Trending Shows"}
-        media={data.trendingShowData}
-      />
-      <MediaRow
-        page={data}
-        title={"Popular Movies"}
-        media={data.popularMovieData}
-      />
-      <MediaRow
-        page={data}
-        title={"Popular Shows"}
-        media={data.popularShowData}
-      />
+      <MediaRow title={"Your List"} />
+      <MediaRow title={"Trending Shows"} media={data.trendingShowData} />
+      <MediaRow title={"Popular Movies"} media={data.popularMovieData} />
+      <MediaRow title={"Popular Shows"} media={data.popularShowData} />
     </div>
   </div>
 {/if}
