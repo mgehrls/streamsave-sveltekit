@@ -35,7 +35,9 @@
     <p>No media here</p>
   {:else if displayType === "grid"}
     <!--Grid view Start-->
-    <div class="flex flex-wrap">
+    <div
+      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 justify-center justify-items-center items-center gap-2 rounded-lg bg-slate-800 p-4"
+    >
       {#if filter === "All"}
         {#if sort === "AZ"}
           {#each $listItems.sort(sortAlphaUp) as listItem}
@@ -104,7 +106,9 @@
     </div>
   {:else}
     <!--List view Start-->
-    <div>
+    <div
+      class="[&>*:nth-child(first)]:rounded-t-lg [&>*:nth-child(last)]:rounded-b-lg [&>*:nth-child(odd)]:bg-slate-800 [&>*:nth-child(even)]:bg-sky-600"
+    >
       {#if filter === "All"}
         {#if sort === "AZ"}
           {#each $listItems.sort(sortAlphaUp) as listItem}

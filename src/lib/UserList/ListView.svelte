@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Settings from "$lib/components/Icons/Settings.svelte";
   import { deleteListItem, updateListItemDate } from "$lib/stores/listItems";
   import type { ListItemPlusMedia } from "$lib/utils/types";
   export let listItem: ListItemPlusMedia | undefined;
@@ -23,6 +24,9 @@
   }
 </script>
 
-<div class="flex w-full">
-  <h1>{listItem.media.title}</h1>
+<div
+  class="flex justify-between items-center w-full bg-slate-800 text-slate-100 p-4 text-xs sm:text-sm tracking-wide font-semibold"
+>
+  <p>{listItem.media.title}</p>
+  <!--add <Settings /> once it does something-->
 </div>

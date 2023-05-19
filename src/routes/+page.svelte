@@ -39,7 +39,7 @@
 {:else}
   <div class="flex w-screen overflow-hidden 2xl:justify-center">
     <div class="overflow-hidden">
-      <MediaRow title={"Your List"} />
+      <MediaRow title={"Your List"} link="/list" linkTitle="See more..." />
       <MediaRow title={"Trending Shows"} media={data.trendingShowData} />
       <MediaRow title={"Popular Movies"} media={data.popularMovieData} />
       <MediaRow title={"Popular Shows"} media={data.popularShowData} />

@@ -6,9 +6,9 @@
   export let listItem: ListItemPlusMedia = undefined;
 
   const anchorClasses =
-    "relative flex flex-col justify-start mb-2 items-center w-56 rounded-lg";
+    "relative flex flex-col justify-start items-center rounded-lg";
   const basePath = "https://image.tmdb.org/t/p/w342";
-  const anchorStyles = `max-width: 8rem; min-width: 8rem; background-image: url(${
+  const anchorStyles = `max-width: 9rem; min-width: 3rem; background-image: url(${
     listItem
       ? basePath + listItem.media.poster_path
       : basePath + mediaItem.poster_path

@@ -20,7 +20,7 @@
 
   <div
     style="height: calc(50vh);"
-    class="hidden md:block w-2 rounded-md bg-white"
+    class="hidden md:block w-2 rounded-lg bg-white"
   />
 
   <div class="p-4">
