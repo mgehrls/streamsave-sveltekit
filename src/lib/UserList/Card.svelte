@@ -34,7 +34,7 @@
     class={anchorClasses}
     style={anchorStyles}
     draggable="false"
-    href={`/${listItem.media.type}s/${listItem.id}`}
+    href={`/${listItem.media.type}s/${listItem.media_id}`}
     aria-label={`Go to ${listItem.media.title} page`}
   >
     <img
