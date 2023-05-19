@@ -1,16 +1,15 @@
 <script lang="ts">
-  import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
   import type { PageData } from "./$types";
   import {
     addListItem,
     deleteListItem,
     listItems,
   } from "$lib/stores/listItems";
+  import { goto, afterNavigate } from "$app/navigation";
+  import { ArrowLeft } from "lucide-svelte";
   import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
   import GenrePill from "$lib/utils/GenrePill.svelte";
   import FavoriteButton from "$lib/utils/FavoriteButton.svelte";
-  import { goto, afterNavigate } from "$app/navigation";
-  import { ArrowLeft } from "lucide-svelte";
 
   let previousPage: string = "/";
 
@@ -56,17 +55,17 @@
 
 <LayoutWrapper>
   <section
-    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1"
+    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1 my-8"
   >
     <button
       on:click={() => goto(previousPage)}
-      class="absolute top-4 left-0 text-2xl text-slate-50 z-50"
+      class="absolute top-0 left-4 text-2xl text-slate-50 z-50"
     >
       <ArrowLeft size={45} />
     </button>
-    <div class="w-1/2 md:py-20 grid place-content-center relative">
+    <div class="w-3/4 grid place-content-center relative">
       <img
-        class="max-w-1/2 shadow-md"
+        class="shadow-md"
         src={`https://image.tmdb.org/t/p/w342${media.poster_path}`}
         alt={`${media.title} poster`}
       />
@@ -81,14 +80,15 @@
         />
       </div>
     </div>
-    <div class="md:w-1/2 md:py-20 grid place-content-center">
-      <div class="flex flex-col px-4 md:px-16 gap-4">
+    <div class="w-3/4 md:w-3/4 md:py-20 grid place-content-center md:px-16">
+      <div class="flex flex-col gap-4">
         <div class="flex justify-between items-center">
-          <h1 class="text-4xl text-slate-50">
+          <h1 class="text-4xl font-bold text-slate-50">
             {media.title}
           </h1>
+          <hr class="text-slate-100" />
         </div>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex gap-2 flex-wrap">
           {#each media.genres as genre}
             <GenrePill genre={genre.name} />
           {/each}
@@ -103,7 +103,7 @@
           {/if}
         </div>
         <div>
-          <p class="text-slate-100">{media.overview}</p>
+          <p class="text-slate-400 tracking-wide">{media.overview}</p>
         </div>
       </div>
     </div>

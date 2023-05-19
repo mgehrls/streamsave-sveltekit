@@ -69,7 +69,7 @@
           <input
             type="text"
             placeholder="Search for shows or movies..."
-            class="bg-gray-900 text-white p-2 w-full rounded-md text-md z-50"
+            class="bg-gray-900 text-white p-2 w-full rounded-lg text-md z-50"
             bind:value={searchQuery}
             on:input={debounce}
             on:keydown={(e) => {
