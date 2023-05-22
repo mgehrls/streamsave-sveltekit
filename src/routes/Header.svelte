@@ -48,7 +48,7 @@
 
 <header class="bg-slate-800 text-white sticky top-0 z-50">
   <LayoutWrapper>
-    <div class="py-4 flex gap-2 px-2 justify-between items-center">
+    <div class="py-4 flex gap-2 px-2 justify-between items-center relative">
       <div class={"flex items-center"}>
         <a
           href="/"
@@ -124,7 +124,7 @@
           >
         </div>
       {:else}
-        <div class="flex justify-center items-center gap-2 relative">
+        <div class="flex justify-center items-center gap-2">
           {#if data.session.user}
             <img
               class="rounded-full w-12"
@@ -151,11 +151,12 @@
       <nav
         transition:fade
         id="menu"
-        class="absolute top-16 z-50 right-4 mt-2 py-2 bg-gray-800 text-white rounded-lg hidden"
+        class="absolute z-50 mt-2 top-8 right-4 py-2 bg-gray-800 text-white rounded-lg hidden"
       >
-        <a href="/" class="block px-4 py-2 text-white">Home</a>
-        <a href="/" class="block px-4 py-2 text-white">About</a>
-        <a href="/" class="block px-4 py-2 text-white">Contact</a>
+        <div class="[&>*:last-child]:mb-3">
+          <a href="/" class="block px-4 py-2 text-white">Home</a>
+          <a href="/list" class="block px-4 text-white">List</a>
+        </div>
         <div
           class="flex justify-center items-center border-t border-slate-100 border-solid py-2"
         >
