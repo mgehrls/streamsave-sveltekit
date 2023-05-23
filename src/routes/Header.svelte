@@ -1,41 +1,16 @@
 <script lang="ts">
-  import { getSearchResults, searchResults } from "$lib/stores/searchResults";
-  import HeaderResult from "$lib/components/searchresults/HeaderResult.svelte";
   import type { PageData } from "./$types";
-  import { onMount } from "svelte";
-  import type { SearchStoreResults } from "$lib/utils/types";
   import { fade } from "svelte/transition";
-  import Loading from "$lib/utils/Loading.svelte";
+
   import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import { onMount } from "svelte";
+  import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
   export let data: PageData;
 
-  let searchQuery: string = "";
-  let timer;
-  let results: SearchStoreResults;
-  let userID: string = "";
   let gotUser: boolean = false;
   let innerWidth: number;
-  let loading: boolean = false;
-  let gridColumns: number = 1;
+  let userID: string = "";
 
-  const debounce = () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      loading = true;
-      getSearchResults(searchQuery);
-    }, 500);
-  };
-  $: if (innerWidth) {
-    gridColumns =
-      innerWidth < 900 ? 1 : innerWidth < 1200 ? 2 : innerWidth < 1500 ? 3 : 4;
-  }
-  $: results = $searchResults;
-  $: if ($searchResults.status === "OK") {
-    loading = false;
-  }
-  $: if (data.session) {
-    gotUser = true;
-  }
   onMount(() => {
     if (data.session !== null) {
       gotUser = true;
@@ -46,9 +21,11 @@
 
 <svelte:window bind:innerWidth />
 
-<header class="bg-slate-800 text-white sticky top-0 z-50">
+<header class="bg-slate-800 text-white sticky top-0 z-30">
   <LayoutWrapper>
-    <div class="py-4 flex gap-2 px-2 justify-between items-center relative">
+    <div
+      class="py-4 flex gap-2 px-2 lg:px-0 justify-between items-center relative"
+    >
       <div class={"flex items-center"}>
         <a
           href="/"
@@ -59,71 +36,12 @@
             alt="StreamSave Logo"
             class="w-6"
           />
-          <div class="hidden sm:block">
+          <div class="block">
             <h1>treamSave</h1>
           </div>
         </a>
       </div>
       {#if gotUser}
-        <div class="relative sm:ml-8 w-full lg:w-1/2">
-          <input
-            type="text"
-            placeholder="Search for shows or movies..."
-            class="bg-gray-900 text-white p-2 w-full rounded-lg text-md z-50"
-            bind:value={searchQuery}
-            on:input={debounce}
-            on:keydown={(e) => {
-              if (e.key === "Enter") {
-                window.location.assign(`/search?query=${searchQuery}`);
-              }
-            }}
-          />
-          {#if results.query !== ""}
-            <div
-              on:keydown={(e) => {
-                if (e.key === "Escape") {
-                  searchQuery = "";
-                  getSearchResults(searchQuery);
-                }
-              }}
-              on:click={() => {
-                searchQuery = "";
-                getSearchResults(searchQuery);
-              }}
-              class="fixed top-0 left-0 w-screen h-screen flex justify-center items-start pt-16 p-8 bg-black bg-opacity-75 z-40 overflow-y-scroll"
-            >
-              <button
-                on:click={() => {
-                  searchQuery = "";
-                  getSearchResults(searchQuery);
-                }}
-                class="fixed top-10 right-10 text-xl">X</button
-              >
-              <div class={`absolute grid grid-cols-${gridColumns} top-6.5`}>
-                {#each results.results as item}
-                  <HeaderResult {userID} {item} />
-                {/each}
-              </div>
-            </div>
-          {/if}
-          {#if loading}
-            <Loading />
-          {/if}
-        </div>
-      {/if}
-      {#if !gotUser}
-        <div class="flex justify-center items-center gap-8">
-          <a
-            data-sveltekit-reload
-            class="px-6 py-2 bg-pink-600"
-            target="_self"
-            href="/signin">Sign in</a
-          >
-          <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/signin"
-            >Register</a
-          >
-        </div>
-      {:else}
         <div class="flex justify-center items-center gap-2">
           {#if data.session.user}
             <img
@@ -147,11 +65,23 @@
             />
           {/if}
         </div>
+      {:else}
+        <div class="flex justify-center items-center gap-8">
+          <a
+            data-sveltekit-reload
+            class="px-6 py-2 bg-pink-600"
+            target="_self"
+            href="/signin">Sign in</a
+          >
+          <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/signin"
+            >Register</a
+          >
+        </div>
       {/if}
       <nav
         transition:fade
         id="menu"
-        class="absolute z-50 mt-2 top-8 right-4 py-2 bg-gray-800 text-white rounded-lg hidden"
+        class="absolute z mt-2 top-8 right-4 py-2 bg-gray-800 text-white rounded-lg hidden"
       >
         <div class="[&>*:last-child]:mb-3">
           <a href="/" class="block px-4 py-2 text-white">Home</a>
@@ -166,5 +96,6 @@
         </div>
       </nav>
     </div>
+    <SearchBar {data} />
   </LayoutWrapper>
 </header>

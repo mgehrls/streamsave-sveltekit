@@ -9,6 +9,8 @@
   import type { PageData } from "./$types";
   import { navigating } from "$app/stores";
   import Loading from "$lib/utils/Loading.svelte";
+  import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
 
   export let data: PageData;
   onMount(() => {
@@ -34,10 +36,9 @@
 
 <div class="flex flex-col min-h-screen bg-zinc-900">
   <Header {data} />
-  <div class="flex justify-center items-start min-h-full">
+  <LayoutWrapper>
     <slot />
-  </div>
-
+  </LayoutWrapper>
   <footer
     class="text-center border-2 border-slate-800 border-solid fixed bottom-0 right-0 px-4 py-2 bg-slate-200 bg-opacity-80"
   >
@@ -49,3 +50,18 @@
     </p>
   </footer>
 </div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap");
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", sans-serif;
+  }
+  p {
+    font-family: "Roboto", sans-serif;
+  }
+</style>

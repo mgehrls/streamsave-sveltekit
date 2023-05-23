@@ -1,5 +1,5 @@
-<div class="flex justify-center w-full">
-  <div class="w-full max-w-7xl">
+<div class="flex justify-center items-start w-full">
+  <div class="w-full max-w-7xl relative">
     <slot />
   </div>
 </div>

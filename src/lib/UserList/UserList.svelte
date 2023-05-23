@@ -31,7 +31,9 @@
 
 <div class="flex flex-col">
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-center font-bold text-2xl text-slate-100">Favorites</h2>
+    <h2 class="text-center font-bold text-2xl lg:text-5xl text-slate-100">
+      Favorites
+    </h2>
     <div class="text-sm flex items-center gap-2">
       <!-- Filter Button -->
 
