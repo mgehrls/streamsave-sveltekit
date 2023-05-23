@@ -11,12 +11,10 @@
   let innerWidth: number;
   let userID: string = "";
 
-  onMount(() => {
-    if (data.session !== null) {
-      gotUser = true;
-      userID = data.session.user.id;
-    }
-  });
+  $: if (data.session !== null) {
+    gotUser = true;
+    userID = data.session.user.id;
+  }
 </script>
 
 <svelte:window bind:innerWidth />
@@ -81,21 +79,15 @@
       <nav
         transition:fade
         id="menu"
-        class="absolute z mt-2 top-8 right-4 py-2 bg-gray-800 text-white rounded-lg hidden"
+        class="absolute z-50 mt-2 top-8 right-4 py-2 bg-gray-800 text-white rounded-lg hidden"
       >
-        <div class="[&>*:last-child]:mb-3">
-          <a href="/" class="block px-4 py-2 text-white">Home</a>
-          <a href="/list" class="block px-4 text-white">List</a>
-        </div>
-        <div
-          class="flex justify-center items-center border-t border-slate-100 border-solid py-2"
-        >
-          <form method="post" action="/signout">
-            <button type="submit">Sign Out</button>
-          </form>
-        </div>
+        <form method="post" action="/signout">
+          <button type="submit">Sign Out</button>
+        </form>
       </nav>
     </div>
-    <SearchBar {data} />
+    {#if gotUser}
+      <SearchBar {data} />
+    {/if}
   </LayoutWrapper>
 </header>

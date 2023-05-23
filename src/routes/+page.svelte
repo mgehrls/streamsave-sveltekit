@@ -33,9 +33,7 @@
 </svelte:head>
 
 {#if !data.session}
-  <div class="relative h-full w-screen flex flex-col justify-start items-start">
-    <UnAuthedHome />
-  </div>
+  <UnAuthedHome />
 {:else}
   <div class="flex w-full mt-16 lg:mt-8 overflow-hidden 2xl:justify-center">
     <div class="overflow-hidden">
