@@ -9,6 +9,7 @@
 
   $: movieItems = $listItems.filter((item) => item.media.type === "movie");
   $: showItems = $listItems.filter((item) => item.media.type === "show");
+  $: $listItems = $listItems;
 
   function sortAlphaUp(a, b) {
     if (a.media.title < b.media.title) {

@@ -55,7 +55,7 @@
 
 <LayoutWrapper>
   <section
-    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1 my-8"
+    class="relative min-w-full min-h-full flex flex-col justify-center items-center gap-4 p-4 md:flex-row flex-1 my-8 mt-16"
   >
     <button
       on:click={() => goto(previousPage)}

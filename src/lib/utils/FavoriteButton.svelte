@@ -6,6 +6,10 @@
   export let onList: boolean;
   export let handleDelete: () => void;
   export let handleAdd: () => void;
+  export let size: "sm" | "md" | "lg" = "md";
+
+  const smallButtonClasses =
+    "w-1/2 text-white bg-sky-600 flex gap-2 text-sm px-6 py-3 justify-center items-center";
 
   let hovered: boolean = false;
 
@@ -17,45 +21,8 @@
     hovered = false;
     handleAdd();
   }
+  $: console.log(size);
 </script>
-
-<!--
-      {#if loading}
-        <div class="bg-black bg-opacity-50 rounded-full">
-          <Loading />
-        </div>
-      {:else if onList}
-        <div class="bg-black bg-opacity-50 rounded-full">
-          <button
-            class="p-1 text-white flex gap-2 hover:scale-110 self-start"
-            on:click={unHoverDelete}
-            on:mouseenter={() => (hovered = true)}
-            on:mouseleave={() => (hovered = false)}
-          >
-            {#if !hovered}
-              <Heart color={"red"} fill={"red"} />
-            {:else}
-              <HeartCrack color={"red"} />
-            {/if}
-          </button>
-        </div>
-      {:else}
-        <div class="bg-black bg-opacity-50 rounded-full">
-          <button
-            class="p-1 text-white flex gap-2 hover:scale-110 self-start"
-            on:click={unHoverAdd}
-            on:mouseenter={() => (hovered = true)}
-            on:mouseleave={() => (hovered = false)}
-          >
-            {#if hovered}
-              <Heart fill={"red"} />
-            {:else}
-              <Heart />
-            {/if}
-          </button>
-        </div>
-      {/if}
-  -->
 
 {#if loading}
   <button
@@ -65,14 +32,16 @@
   </button>
 {:else if onList}
   <button
-    class="w-full text-white bg-sky-600 flex gap-2 px-8 py-4 justify-center items-center"
+    class={size === "sm"
+      ? "w-full text-white bg-sky-600 flex gap-2 px-8 py-4 justify-center items-center"
+      : "w-full text-white bg-sky-600 flex gap-2 px-8 py-4 justify-center items-center"}
     on:click={unHoverDelete}
     on:mouseenter={() => (hovered = true)}
     on:mouseleave={() => (hovered = false)}
   >
     {#if !hovered}
       <Heart color={"red"} fill={"red"} />
-      <h3>Favorited</h3>
+      <h3 class="text-sm">Favorited</h3>
     {:else}
       <HeartCrack color={"red"} />
       <h3>Unfavorite</h3>
@@ -90,6 +59,6 @@
     {:else}
       <Heart />
     {/if}
-    <h3>Favorite!</h3>
+    <h3 class="text-sm">Favorite!</h3>
   </button>
 {/if}
