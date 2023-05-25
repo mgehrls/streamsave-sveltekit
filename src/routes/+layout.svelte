@@ -55,14 +55,6 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap");
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Outfit", sans-serif;
-  }
   p {
     font-family: "Roboto", sans-serif;
   }
