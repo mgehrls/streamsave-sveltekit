@@ -92,7 +92,9 @@ export const actions: Actions = {
 		const { error:err} = await locals.sb.auth.signOut()
 
 		if(err){
-			console.log(err)
+			return fail(500, {
+				error: "Server error. Please try again later.",
+			})
 		}
 
 		throw redirect(300, "/")

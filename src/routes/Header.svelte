@@ -3,21 +3,15 @@
   import { fade } from "svelte/transition";
 
   import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
-  import { onMount } from "svelte";
   import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
   export let data: PageData;
 
   let gotUser: boolean = false;
-  let innerWidth: number;
-  let userID: string = "";
 
   $: if (data.session !== null) {
     gotUser = true;
-    userID = data.session.user.id;
   }
 </script>
-
-<svelte:window bind:innerWidth />
 
 <header class="bg-slate-800 text-white sticky top-0 z-30">
   <LayoutWrapper>
@@ -41,7 +35,7 @@
       </div>
       {#if gotUser}
         <div class="flex justify-center items-center gap-2">
-          {#if data.session.user}
+          {#if data.session.user.user_metadata.name}
             <img
               class="rounded-full w-12"
               on:keydown={(e) => {
@@ -51,7 +45,9 @@
               on:click={() => {
                 document.getElementById("menu").classList.toggle("hidden");
               }}
-              src={data.session.user.user_metadata.avatar_url}
+              src={data.session.user.user_metadata.avatar_url
+                ? data.session.user.user_metadata.avatar_url
+                : "/images/missingprofilepic.png"}
               alt={data.session.user.user_metadata.name
                 .split(" ")[0]
                 .slice(0, 1)
@@ -60,6 +56,19 @@
                   .split(" ")[1]
                   .slice(0, 1)
                   .toUpperCase()}
+            />
+          {:else}
+            <img
+              class="rounded-full w-12"
+              src="/images/missingprofilepic.png"
+              alt="missing profile"
+              on:keydown={(e) => {
+                if (e.key === "Enter")
+                  document.getElementById("menu").classList.toggle("hidden");
+              }}
+              on:click={() => {
+                document.getElementById("menu").classList.toggle("hidden");
+              }}
             />
           {/if}
         </div>
@@ -71,7 +80,7 @@
             target="_self"
             href="/signin">Sign in</a
           >
-          <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/signin"
+          <a data-sveltekit-reload class="px-6 py-2 bg-sky-600" href="/register"
             >Register</a
           >
         </div>
