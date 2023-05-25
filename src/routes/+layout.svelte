@@ -9,8 +9,9 @@
   import type { PageData } from "./$types";
   import { navigating } from "$app/stores";
   import Loading from "$lib/utils/Loading.svelte";
-  import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
   import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
+  import Analytics from "$lib/utils/analytics.svelte";
 
   export let data: PageData;
   onMount(() => {
@@ -34,6 +35,7 @@
   });
 </script>
 
+<Analytics />
 <div class="flex flex-col min-h-screen bg-zinc-900">
   <Header {data} />
   <LayoutWrapper>

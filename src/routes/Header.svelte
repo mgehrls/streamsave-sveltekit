@@ -2,7 +2,7 @@
   import type { PageData } from "./$types";
   import { fade } from "svelte/transition";
 
-  import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
   import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
   export let data: PageData;
 

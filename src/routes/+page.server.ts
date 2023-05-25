@@ -33,7 +33,7 @@ export const actions: Actions = {
 	register: async ({ request, locals }) => {
 		const body = Object.fromEntries(await request.formData())
 
-		const { data, error: err } = await locals.sb.auth.signUp({
+		const { error: err } = await locals.sb.auth.signUp({
 			email: body.email as string,
 			password: body.password as string,
 		})
@@ -70,7 +70,7 @@ export const actions: Actions = {
 
 		const body = Object.fromEntries(await request.formData())
 
-		const { data, error: err } = await locals.sb.auth.signInWithPassword({
+		const { error: err } = await locals.sb.auth.signInWithPassword({
 			email: body.email as string,
 			password: body.password as string,
 		})
