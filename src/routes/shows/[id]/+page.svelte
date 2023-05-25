@@ -7,7 +7,7 @@
   } from "$lib/stores/listItems";
   import { goto, afterNavigate } from "$app/navigation";
   import { ArrowLeft } from "lucide-svelte";
-  import LayoutWrapper from "$lib/components/LayoutWrapper.svelte";
+  import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
   import GenrePill from "$lib/utils/GenrePill.svelte";
   import FavoriteButton from "$lib/utils/FavoriteButton.svelte";
 

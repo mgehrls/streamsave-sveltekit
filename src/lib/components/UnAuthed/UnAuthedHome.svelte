@@ -1,5 +1,5 @@
 <script>
-  import LayoutWrapper from "../LayoutWrapper.svelte";
+  import LayoutWrapper from "../../utils/LayoutWrapper.svelte";
 </script>
 
 <div
