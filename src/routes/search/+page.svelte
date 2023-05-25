@@ -11,6 +11,7 @@
   let results = data.results;
 
   let listItemsArray: ListItemPlusMedia[];
+
   $: listItemsArray = $listItems;
   onMount(() => {
     searchResults.set({ results: [], status: "loading", query: "" });

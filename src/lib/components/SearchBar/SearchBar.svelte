@@ -22,6 +22,11 @@
     }, 500);
   };
 
+  const clearSearch = () => {
+    searchQuery = "";
+    getSearchResults(searchQuery);
+  };
+
   $: results = $searchResults;
   $: if ($searchResults.status === "OK") {
     loading = false;
@@ -54,20 +59,15 @@
       }
     }}
   />
-  <button
-    on:click={() => {
-      searchQuery = "";
-      getSearchResults(searchQuery);
-    }}
-    class="text-slate-300 pr-6 lg:p-4 lg:pr-6">X</button
+  <button on:click={clearSearch} class="text-slate-300 pr-6 lg:p-4 lg:pr-6"
+    >X</button
   >
 </div>
 {#if results.query !== ""}
   <div
     on:keydown={(e) => {
       if (e.key === "Escape") {
-        searchQuery = "";
-        getSearchResults(searchQuery);
+        clearSearch();
       }
     }}
     class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-75 z-40 overflow-y-auto flex justify-center px-2 sm:px-0 pt-20"
@@ -79,17 +79,13 @@
             <h3 class="text-white text-2xl overflow-y-auto">
               Your search results for "{searchQuery}..."
             </h3>
-            <button
-              on:click={() => {
-                searchQuery = "";
-                getSearchResults(searchQuery);
-              }}
-              class="text-slate-300">Clear Search X</button
+            <button on:click={clearSearch} class="text-slate-300"
+              >Clear Search X</button
             >
           </div>
           <div class="flex flex-col gap-4">
             {#each results.results as item}
-              <SearchResult {userID} {item} />
+              <SearchResult {clearSearch} {userID} {item} />
             {/each}
           </div>
         </div>

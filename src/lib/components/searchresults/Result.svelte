@@ -5,10 +5,12 @@
     deleteListItem,
   } from "$lib/stores/listItems";
   import { Tv, Film } from "lucide-svelte";
+  import { searchResults } from "$lib/stores/searchResults";
   import type { ApiResult, ListItemPlusMedia } from "$lib/utils/types";
   import AddRemoveBtn from "$lib/utils/AddRemoveBtn.svelte";
   export let item: ApiResult;
   export let userID: string;
+
   const missingPoster = "/images/posterunavailable.png";
 
   let loading: boolean = false;
@@ -63,6 +65,9 @@
       <Tv class="self-end mr-4" size={20} />
     {/if}
     <a
+      on:click={() => {
+        searchResults.set({ results: [], status: "loading", query: "" });
+      }}
       data-sveltekit-reload
       href={item.media_type === "movie"
         ? `/movies/${item.id}`

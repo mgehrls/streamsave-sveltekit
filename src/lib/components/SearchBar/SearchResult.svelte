@@ -9,6 +9,7 @@
   import { genreList } from "$lib/utils/genres";
   export let item;
   export let userID: string;
+  export let clearSearch: () => void;
   let loading: boolean = false;
   let onList: boolean;
 
@@ -50,6 +51,7 @@
     <a
       href={item.title ? `/movies/${item.id}` : `/shows/${item.id}`}
       class="w-1/2 flex justify-center items-center"
+      on:click={clearSearch}
     >
       <img
         alt={item.title ? item.title + " poster" : item.name + " poster"}
@@ -61,6 +63,7 @@
     <a
       href={item.title ? `/movies/${item.id}` : `/shows/${item.id}`}
       class="w-1/2 flex justify-center items-center"
+      on:click={clearSearch}
     >
       <img
         alt={item.title ? item.title + " poster" : item.name + " poster"}
@@ -70,7 +73,11 @@
     </a>
   {/if}
   <div class="w-1/2 h-full flex flex-col justify-start items-start p-4 gap-2">
-    <a href={item.title ? `/movies/${item.id}` : `/shows/${item.id}`} class="">
+    <a
+      on:click={clearSearch}
+      href={item.title ? `/movies/${item.id}` : `/shows/${item.id}`}
+      class=""
+    >
       <h2 class="text-white text-sm md:text-lg text-left">
         {item.title ? item.title : item.name}
       </h2>
