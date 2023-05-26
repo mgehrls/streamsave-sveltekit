@@ -44,7 +44,7 @@
 </script>
 
 <div
-  class="absolute z-50 flex w-screen max-w-7xl bg-gray-600 top-20 lg:top-24 lg:w-96 lg:right-0"
+  class="absolute z-50 flex w-full justify-start lg:max-w-7xl bg-gray-600 top-20 lg:top-24 lg:w-96 lg:right-0"
 >
   <Search />
   <input
@@ -59,7 +59,7 @@
       }
     }}
   />
-  <button on:click={clearSearch} class="text-slate-300 pr-6 lg:p-4 lg:pr-6"
+  <button on:click={clearSearch} class="text-slate-300 px-4 lg:p-4 lg:pr-6"
     >X</button
   >
 </div>

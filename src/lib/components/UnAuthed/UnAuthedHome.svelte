@@ -1,6 +1,10 @@
-<script>
-  import LayoutWrapper from "../../utils/LayoutWrapper.svelte";
+<script lang="ts">
+  let innerWidth: number = 0;
+  $: innerWidth = window.innerWidth;
+  $: console.log(innerWidth);
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div
   class="flex w-full flex-col lg:flex-row justify-start text-white h-full mb-2"
@@ -43,7 +47,24 @@
     </p>
   </div>
 </div>
-<div
-  style="background-image:linear-gradient(to top right, rgba(), rgba(0,0,0,0)), url(/static/images/wavypattern.png);"
-  class="h-60"
-/>
+{#if innerWidth > 1024}
+  <img
+    class="w-full mb-4 relative"
+    src="/images/desktopheroes.png"
+    alt="a display of popular movies and shows"
+  />
+{:else}
+  <img
+    class="w-full mb-4 relative"
+    src="/images/mobileheroes.png"
+    alt="a display of popular movies and shows on mobile"
+  />
+{/if}
+<div class="w-full flex justify-center mb-16 md:mb-0">
+  <a
+    data-sveltekit-reload
+    href="/register"
+    class="absolute bottom-28 md:bottom-12 md:right-32 transition-all hover:scale-125 px-6 py-2 bg-pink-600 text-slate-100"
+    style="font-family: Outfit, sans-serif;">Start Your List Today!</a
+  >
+</div>
