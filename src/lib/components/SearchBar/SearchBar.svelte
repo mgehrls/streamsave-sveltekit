@@ -22,6 +22,11 @@
     }, 500);
   };
 
+  const clearSearch = () => {
+    searchQuery = "";
+    getSearchResults(searchQuery);
+  };
+
   $: results = $searchResults;
   $: if ($searchResults.status === "OK") {
     loading = false;
@@ -39,13 +44,13 @@
 </script>
 
 <div
-  class="absolute z-50 flex w-screen max-w-7xl bg-gray-600 top-20 lg:top-24 lg:w-96 lg:right-0"
+  class="absolute z-50 flex w-full justify-start lg:max-w-7xl bg-gray-600 top-20 lg:top-24 lg:w-96 lg:right-0"
 >
   <Search />
   <input
     type="text"
     placeholder="Search for shows or movies..."
-    class="bg-gray-600 text-white w-full lg:pr-20"
+    class="bg-gray-600 text-white w-full lg:pr-20 focus:outline-none"
     bind:value={searchQuery}
     on:input={debounce}
     on:keydown={(e) => {
@@ -54,20 +59,15 @@
       }
     }}
   />
-  <button
-    on:click={() => {
-      searchQuery = "";
-      getSearchResults(searchQuery);
-    }}
-    class="text-slate-300 pr-6 lg:p-4 lg:pr-6">X</button
+  <button on:click={clearSearch} class="text-slate-300 px-4 lg:p-4 lg:pr-6"
+    >X</button
   >
 </div>
 {#if results.query !== ""}
   <div
     on:keydown={(e) => {
       if (e.key === "Escape") {
-        searchQuery = "";
-        getSearchResults(searchQuery);
+        clearSearch();
       }
     }}
     class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-75 z-40 overflow-y-auto flex justify-center px-2 sm:px-0 pt-20"
@@ -79,17 +79,13 @@
             <h3 class="text-white text-2xl overflow-y-auto">
               Your search results for "{searchQuery}..."
             </h3>
-            <button
-              on:click={() => {
-                searchQuery = "";
-                getSearchResults(searchQuery);
-              }}
-              class="text-slate-300">Clear Search X</button
+            <button on:click={clearSearch} class="text-slate-300"
+              >Clear Search X</button
             >
           </div>
           <div class="flex flex-col gap-4">
             {#each results.results as item}
-              <SearchResult {userID} {item} />
+              <SearchResult {clearSearch} {userID} {item} />
             {/each}
           </div>
         </div>

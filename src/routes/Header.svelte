@@ -28,7 +28,7 @@
             alt="StreamSave Logo"
             class="w-6"
           />
-          <div class="block">
+          <div class="hidden sm:block">
             <h1>treamSave</h1>
           </div>
         </a>
