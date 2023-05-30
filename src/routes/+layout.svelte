@@ -12,8 +12,10 @@
   import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
   import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";
   import Analytics from "$lib/utils/analytics.svelte";
+  import { register } from "swiper/element/bundle";
 
   export let data: PageData;
+  register();
   onMount(() => {
     invalidateAll();
     if (data.session?.user) {
