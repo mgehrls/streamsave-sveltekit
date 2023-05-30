@@ -41,6 +41,8 @@
 		"@fontsource/montserrat": "^4.5.14",
 		"@fontsource/raleway": "^4.5.12",
 		"pnpm": "^8.5.0",
-		"undici": "^5.20.0"
+		"swiper": "^9.3.2",
+		"undici": "^5.20.0",
+		"uuid": "^9.0.0"
 	}
 }

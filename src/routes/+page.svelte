@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { listItems } from "$lib/stores/listItems";
   import UnAuthedHome from "$lib/components/UnAuthed/UnAuthedHome.svelte";
   import MediaRow from "$lib/components/MediaRow/MediaRow.svelte";
   export let data: PageData;
