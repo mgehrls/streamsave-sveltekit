@@ -94,5 +94,14 @@
   </div>
 {/if}
 {#if loading}
-  <Loading />
+  <div
+    on:keydown={(e) => {
+      if (e.key === "Escape") {
+        clearSearch();
+      }
+    }}
+    class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-75 z-40 overflow-y-auto flex justify-center items-center px-2 sm:px-0 pt-20"
+  >
+    <Loading />
+  </div>
 {/if}

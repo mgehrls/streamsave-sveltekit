@@ -1,7 +1,6 @@
 <script lang="ts">
   let innerWidth: number = 0;
   $: innerWidth = window.innerWidth;
-  $: console.log(innerWidth);
 </script>
 
 <svelte:window bind:innerWidth />

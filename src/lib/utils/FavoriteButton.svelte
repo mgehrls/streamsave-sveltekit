@@ -21,7 +21,6 @@
     hovered = false;
     handleAdd();
   }
-  $: console.log(size);
 </script>
 
 {#if loading}
