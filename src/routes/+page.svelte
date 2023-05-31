@@ -35,7 +35,7 @@
   <UnAuthedHome />
 {:else}
   <div class="flex w-full mt-16 lg:mt-8 overflow-hidden 2xl:justify-center">
-    <div class="overflow-hidden">
+    <div class="overflow-hidden flex flex-col gap-6 mt-4">
       <MediaRow title={"Your List"} link="/list" linkTitle="See more..." />
       <MediaRow title={"Trending Shows"} media={data.trendingShowData} />
       <MediaRow title={"Popular Movies"} media={data.popularMovieData} />

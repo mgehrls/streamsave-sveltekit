@@ -2,7 +2,7 @@
   import MediaPreviewMobile from "./MediaPreviewMobile.svelte";
   import type { ApiResult } from "$lib/utils/types";
   import { listItems } from "$lib/stores/listItems";
-  import Swiper from "$lib/utils/Swiper.svelte";
+  import Swiper from "$lib/components/MediaRow/Swiper.svelte";
   export let media: ApiResult[] = undefined;
   export let title: string;
   export let link: string = undefined;
@@ -17,41 +17,45 @@
   <div>No media here...</div>
 {:else}
   <!--determine inner width first-->
-  <div class="flex items-end gap-4 p-2 text-slate-100">
-    <h2 class="text-slate-100 font-bold text-xl">{title}</h2>
-    {#if link}
-      <a class="text-sm text-slate-400" id="linkID" href={link}>{linkTitle}</a>
-    {/if}
-  </div>
-  {#if innerWidth < 1200}
-    <!-- Mobile -->
-    <div
-      id="mediaRow"
-      class="flex flex-1 p-2 w-full max-w-7xl gap-2 overflow-auto"
-    >
-      {#if !media}
-        {#each listItemsArray as listItem}
-          <MediaPreviewMobile {listItem} />
-        {/each}
-      {:else}
-        {#each media as mediaItem}
-          <MediaPreviewMobile {mediaItem} />
-        {/each}
+  <div class="flex flex-col gap-2">
+    <div class="flex items-end gap-4 text-slate-100">
+      <h2 class="text-slate-100 font-bold text-xl">{title}</h2>
+      {#if link}
+        <a class="text-sm text-slate-400" id="linkID" href={link}>{linkTitle}</a
+        >
       {/if}
     </div>
-  {:else}
-    <!-- Desktop -->
-    {#if !media}
-      <div class="p-2">
-        <Swiper {listItemsArray} />
+
+    {#if innerWidth < 1200}
+      <!-- Mobile -->
+      <div
+        id="mediaRow"
+        class="flex flex-1 p-2 w-full max-w-7xl gap-2 overflow-auto"
+      >
+        {#if !media}
+          {#each listItemsArray as listItem}
+            <MediaPreviewMobile {listItem} />
+          {/each}
+        {:else}
+          {#each media as mediaItem}
+            <MediaPreviewMobile {mediaItem} />
+          {/each}
+        {/if}
       </div>
     {:else}
-      <div class="p-2">
-        <Swiper {media} />
-      </div>
+      <!-- Desktop -->
+      {#if !media}
+        <div class="">
+          <Swiper {listItemsArray} />
+        </div>
+      {:else}
+        <div class="">
+          <Swiper {media} />
+        </div>
+      {/if}
+      <!-- Desktop -->
     {/if}
-    <!-- Desktop -->
-  {/if}
+  </div>
 {/if}
 
 <style>

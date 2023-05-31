@@ -6,7 +6,7 @@
     addListItem,
     deleteListItem,
   } from "$lib/stores/listItems";
-  import AddRemoveBtn from "./AddRemoveBtn.svelte";
+  import AddRemoveBtn from "../../utils/AddRemoveBtn.svelte";
   let listItemsArray: ListItemPlusMedia[];
   let loading: boolean = false;
   let onList: boolean;
