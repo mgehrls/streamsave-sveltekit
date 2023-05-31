@@ -23,8 +23,6 @@
   <img src="/images/oops.gif" alt="a guy saying whoops..." />
   <p class="text-center">
     Something went wrong. If it keeps happening,<br />
-    <a class="underline" href="mailto:matt.gehrls@gmail.com"
-      >send me an email and let me know!</a
-    >
+    <a class="underline" href="/contact">let me know!</a>
   </p>
 </div>
