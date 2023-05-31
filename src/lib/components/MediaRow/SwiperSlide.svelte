@@ -7,6 +7,10 @@
     deleteListItem,
   } from "$lib/stores/listItems";
   import AddRemoveBtn from "../../utils/AddRemoveBtn.svelte";
+  import Page from "../../../routes/+page.svelte";
+  import type { PageData } from "../../../routes/$types";
+  import { onMount } from "svelte";
+  import { redirect } from "@sveltejs/kit";
   let listItemsArray: ListItemPlusMedia[];
   let loading: boolean = false;
   let onList: boolean;
@@ -29,9 +33,9 @@
       listItemsArray.find((i) => i.media.id === item.id)
     );
   }
-  $: if ($listItems) {
+  $: if ($listItems.length) {
     loading = false;
-    userID = $listItems[0].user_id;
+    userID = listItemsArray[0].user_id;
   }
   register();
 
