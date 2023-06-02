@@ -73,17 +73,17 @@
       document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
     on:mouseleave={() =>
       document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
-    class="relative"
+    class="relative rounded-lg"
   >
     <img
-      class="w-52 relative transition-all"
+      class="w-52 relative transition-all rounded-lg"
       style="height: 307.5px"
       src={basePath + item.poster_path}
       alt={item.title + "poster."}
     />
     <div
       id={"hiddenDiv" + i}
-      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2"
+      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
       style="background-color: rgba(0,0,0,.7);"
     >
       <!--Todo add like button to this, then do all of this for media below-->
@@ -109,17 +109,17 @@
       document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
     on:mouseleave={() =>
       document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
-    class="relative"
+    class="relative rounded-lg"
   >
     <img
-      class="w-52 relative transition-all"
+      class="w-52 relative transition-all rounded-lg"
       style="height: 307.5px"
       src={basePath + mediaItem.poster_path}
       alt={mediaItem.title + "poster."}
     />
     <div
       id={"hiddenDiv" + i}
-      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2"
+      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
       style="background-color: rgba(0,0,0,.7);"
     >
       <!--Todo add like button to this, then do all of this for media below-->
