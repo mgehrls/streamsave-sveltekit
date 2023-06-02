@@ -1,13 +1,9 @@
-# Streamsave w/ sveltekit
+# Streamsave
 
-A fullstack app built with sveltekit, supabase, and themovidbd.org's api.
+*A fullstack app built with Sveltekit, Supabase, and themovidbd.org's api.*
 
-A previous version was made in Next.JS. See that significantly inferior versions repo here: https://github.com/mgehrls/streamsavepro
+![Image](https://www.streamsave.app/images/desktopheroes.png)
 
-Todo:
-get rid of email options
-login/register pages
-continue redesign
+Users can create their own profile, and make a watchlist by 'favoriting' shows and movies.
 
-Recent additions:
-I wasn't maintaining this for a while while working on other projects and designing the redesign. Recent changes were mostly to fix what has been broken.
+I made this project to learn Sveltekit, to replace a text file of me and my wife's favorite shows, and as a portfolio show piece.
