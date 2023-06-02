@@ -2,7 +2,14 @@
   import type { PageData } from "./$types";
   import UnAuthedHome from "$lib/components/UnAuthed/UnAuthedHome.svelte";
   import MediaRow from "$lib/components/MediaRow/MediaRow.svelte";
+  import { onMount } from "svelte";
+  import Loading from "$lib/utils/Loading.svelte";
   export let data: PageData;
+  let loading: boolean = true;
+  onMount(() => {
+    loading = false;
+    console.log(data);
+  });
 </script>
 
 <svelte:head>
@@ -30,8 +37,11 @@
     }
   </style>
 </svelte:head>
-
-{#if !data.session}
+{#if loading}
+  <div class="flex justify-center items-center h-full w-full p-96">
+    <Loading />
+  </div>
+{:else if !data.session}
   <UnAuthedHome />
 {:else}
   <div class="flex w-full mt-16 lg:mt-8 overflow-hidden 2xl:justify-center">

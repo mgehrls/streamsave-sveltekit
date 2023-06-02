@@ -14,6 +14,8 @@
   import { register } from "swiper/element/bundle";
   import type { PageData } from "./$types";
 
+  let loading: boolean = true;
+
   export let data: PageData;
   register();
   onMount(() => {
@@ -35,18 +37,27 @@
       invalidateAll();
     });
   });
+  loading = false;
 </script>
 
-<Analytics />
-<div class="flex flex-col min-h-screen bg-zinc-900">
-  <Header {data} />
-  <div class="flex-1">
-    <LayoutWrapper>
-      <slot />
-    </LayoutWrapper>
+{#if loading}
+  <div
+    class="flex flex-col min-h-screen bg-zinc-900 justify-center items-center"
+  >
+    <Loading />
   </div>
-  <Footer />
-</div>
+{:else}
+  <Analytics />
+  <div class="flex flex-col min-h-screen bg-zinc-900">
+    <Header {data} />
+    <div class="flex-1">
+      <LayoutWrapper>
+        <slot />
+      </LayoutWrapper>
+    </div>
+    <Footer />
+  </div>
+{/if}
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap");
