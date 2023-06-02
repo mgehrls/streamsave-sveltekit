@@ -18,6 +18,7 @@
     name="description"
     content="Watchlist and favorite tv/movie application"
   />
+  <meta property="og:image" content="/images/desktopheroes.png" />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
