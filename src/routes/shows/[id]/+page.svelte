@@ -59,7 +59,7 @@
   >
     <button
       on:click={() => goto(previousPage)}
-      class="absolute top-0 left-4 text-2xl text-slate-50 z-50"
+      class="fixed md:absolute md:top-0 top-40 left-4 text-2xl text-slate-50 z-50"
     >
       <ArrowLeft size={45} />
     </button>
