@@ -88,11 +88,13 @@
           />
           {#if password1.length > 0 && password2.length > 0 && !passwordsMatchAndValid}
             {#if password1.length < 8}
-              <p class="text-red-400 text-center">
+              <p class="text-red-400 text-center transition-all">
                 Password must be at least<br /> 8 characters
               </p>
             {:else}
-              <p class="text-red-400 text-center">Passwords do not match</p>
+              <p class="text-red-400 text-center transition-all">
+                Passwords do not match
+              </p>
             {/if}
           {/if}
         </div>
