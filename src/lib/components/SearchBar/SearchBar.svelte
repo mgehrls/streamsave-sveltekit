@@ -59,9 +59,11 @@
       }
     }}
   />
-  <button on:click={clearSearch} class="text-slate-300 px-4 lg:p-4 lg:pr-6"
-    >X</button
-  >
+  {#if searchQuery !== ""}
+    <button on:click={clearSearch} class="text-slate-300 px-4 lg:p-4 lg:pr-6"
+      >X</button
+    >
+  {/if}
 </div>
 {#if results.query !== ""}
   <div

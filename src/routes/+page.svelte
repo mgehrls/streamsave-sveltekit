@@ -45,7 +45,9 @@
 {:else if !data.session}
   <UnAuthedHome />
 {:else}
-  <div class="flex w-full mt-16 lg:mt-8 overflow-hidden 2xl:justify-center">
+  <div
+    class="flex w-full mt-16 lg:mt-8 overflow-hidden 2xl:justify-center px-2"
+  >
     <div class="overflow-hidden flex flex-col gap-6 mt-4">
       <MediaRow title={"Your List"} link="/list" linkTitle="See more..." />
       <MediaRow title={"Trending Shows"} media={data.trendingShowData} />

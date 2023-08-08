@@ -1,37 +1,33 @@
 <script lang="ts">
   import { register } from "swiper/element/bundle";
   import type { ApiResult, SbMedia } from "$lib/utils/types";
-  import { onMount } from "svelte";
   import SwiperSlide from "./SwiperSlide.svelte";
   import { v4 as uuidv4 } from "uuid";
+  import { onMount } from "svelte";
 
   register();
 
   export let media: ApiResult[] = undefined;
   export let listItemsArray: SbMedia[] = undefined;
-  const swiperClasses = "h-68";
-  const slideClasses = "overflow-auto w-40 h-full";
+  const swiperClasses = "h-50 lg:h-68";
+  const slideClasses = "overflow-auto w-12 lg:w-40 h-full";
   const spaceBetween = 10;
-  const basePath = "https://image.tmdb.org/t/p/w342";
-
-  onMount(() => {
-    const swiperEl = document.querySelector("swiper-container");
-    const swiperParams = {
-      slidesPerView: 6,
-      on: {
-        init() {
-          // ...
-        },
-      },
-    };
-
-    Object.assign(swiperEl, swiperParams);
-  });
+  $: innerWidth = innerWidth;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <swiper-container
   class={swiperClasses}
-  slides-per-view={6}
+  slides-per-view={innerWidth < 435
+    ? 2
+    : innerWidth < 600
+    ? 3
+    : innerWidth < 765
+    ? 4
+    : innerWidth < 930
+    ? 5
+    : 6}
   space-between={spaceBetween}
   loop={true}
   scrollbar={true}

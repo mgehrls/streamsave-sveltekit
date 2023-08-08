@@ -16,7 +16,7 @@
 <header class="bg-slate-800 text-white sticky top-0 z-30">
   <LayoutWrapper>
     <div
-      class="py-4 flex gap-2 px-2 lg:px-0 justify-between items-center relative"
+      class="py-4 flex gap-2 px-4 lg:px-0 justify-between items-center relative"
     >
       <div class={"flex items-center"}>
         <a
@@ -73,7 +73,7 @@
           {/if}
         </div>
       {:else}
-        <div class="flex justify-center items-center gap-8">
+        <div class="flex justify-center items-center gap-4">
           <a
             data-sveltekit-reload
             class="px-6 py-2 bg-pink-600"

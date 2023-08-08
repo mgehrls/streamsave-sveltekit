@@ -7,10 +7,6 @@
     deleteListItem,
   } from "$lib/stores/listItems";
   import AddRemoveBtn from "../../utils/AddRemoveBtn.svelte";
-  import Page from "../../../routes/+page.svelte";
-  import type { PageData } from "../../../routes/$types";
-  import { onMount } from "svelte";
-  import { redirect } from "@sveltejs/kit";
   let listItemsArray: ListItemPlusMedia[];
   let loading: boolean = false;
   let onList: boolean;
@@ -49,7 +45,7 @@
       {
         title: mediaItem.title ? mediaItem.title : mediaItem.name,
         description: mediaItem.overview,
-        type: mediaItem.media_type === "movie" ? "movie" : "show",
+        type: mediaItem.media_type === "tv" ? "show" : "movie",
         poster_path: mediaItem.poster_path,
         backdrop_path: mediaItem.backdrop_path,
         id: mediaItem.id,
@@ -67,80 +63,56 @@
   }
 </script>
 
-{#if item !== undefined && item !== null}
+<div
+  on:mouseenter={() =>
+    document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
+  on:mouseleave={() =>
+    document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
+  class="relative w-32 rounded-lg"
+>
+  <img
+    class="w-32 relative transition-all rounded-lg"
+    style="height: 200px"
+    src={item
+      ? basePath + item.poster_path
+      : mediaItem
+      ? basePath + mediaItem.poster_path
+      : undefined}
+    alt={item
+      ? item.title + "poster."
+      : mediaItem
+      ? mediaItem.title + "poster."
+      : undefined}
+  />
   <div
-    on:mouseenter={() =>
-      document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
-    on:mouseleave={() =>
-      document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
-    class="relative rounded-lg"
+    id={"hiddenDiv" + i}
+    class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
+    style="background-color: rgba(0,0,0,.7);"
   >
-    <img
-      class="w-52 relative transition-all rounded-lg"
-      style="height: 307.5px"
-      src={basePath + item.poster_path}
-      alt={item.title + "poster."}
+    <AddRemoveBtn
+      {loading}
+      {onList}
+      handleDelete={item
+        ? () => handleDeleteForListItems()
+        : () => handleDeleteForOtherItems()}
+      handleAdd={item
+        ? () => handleAddForListItems()
+        : () => handleAddForOtherItems()}
     />
-    <div
-      id={"hiddenDiv" + i}
-      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
-      style="background-color: rgba(0,0,0,.7);"
+    <h1 class="text-md text-slate-100 font-bold">
+      {item
+        ? item.title
+        : mediaItem.media_type === "tv"
+        ? mediaItem.name
+        : mediaItem.title}
+    </h1>
+    <a
+      class="text-sm text-slate-100 p-4 mt-2 bg-slate-900 absolute bottom-0 right-0 rounded-tl-lg"
+      href={item
+        ? `/${item.type}s/${item.id}`
+        : mediaItem.media_type === "tv"
+        ? `/shows/${mediaItem.id}`
+        : `movies/${mediaItem.id}`}>{"See more ->"}</a
     >
-      <!--Todo add like button to this, then do all of this for media below-->
-      <AddRemoveBtn
-        {loading}
-        {onList}
-        handleDelete={() => handleDeleteForListItems()}
-        handleAdd={() => handleAddForListItems()}
-      />
-      <h1 class="text-lg text-slate-100 font-bold">{item.title}</h1>
-      <p class="text-sm text-slate-100">
-        {item.description.substring(0, 100) + "..."}
-      </p>
-      <a
-        class="text-lg text-slate-100 p-4 mt-2 bg-slate-900 absolute bottom-0 right-0 rounded-tl-lg"
-        href={`/${item.type}s/${item.id}`}>{"See more ->"}</a
-      >
-    </div>
   </div>
-{:else if mediaItem !== undefined && mediaItem !== null}
-  <div
-    on:mouseenter={() =>
-      document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
-    on:mouseleave={() =>
-      document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
-    class="relative rounded-lg"
-  >
-    <img
-      class="w-52 relative transition-all rounded-lg"
-      style="height: 307.5px"
-      src={basePath + mediaItem.poster_path}
-      alt={mediaItem.title + "poster."}
-    />
-    <div
-      id={"hiddenDiv" + i}
-      class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
-      style="background-color: rgba(0,0,0,.7);"
-    >
-      <!--Todo add like button to this, then do all of this for media below-->
-      <AddRemoveBtn
-        {loading}
-        {onList}
-        handleDelete={() => handleDeleteForOtherItems()}
-        handleAdd={() => handleAddForOtherItems()}
-      />
-      <h1 class="text-lg text-slate-100 font-bold">
-        {mediaItem.title ? mediaItem.title : mediaItem.name}
-      </h1>
-      <p class="text-sm text-slate-100">
-        {mediaItem.overview.substring(0, 100) + "..."}
-      </p>
-      <a
-        class="text-lg text-slate-100 p-4 mt-2 bg-slate-900 absolute bottom-0 right-0 rounded-tl-lg"
-        href={`/${mediaItem.media_type === "movie" ? "movie" : "show"}s/${
-          mediaItem.id
-        }`}>{"See more ->"}</a
-      >
-    </div>
-  </div>
-{/if}
+</div>

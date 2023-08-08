@@ -9,7 +9,7 @@
   class="flex w-full flex-col lg:flex-row justify-start text-white h-full mb-2"
 >
   <div
-    class="flex justify-center items-center w-full lg:w-1/2 px-4 py-20 lg:py-52 gap-4 lg:pr-12"
+    class="flex justify-center items-center w-full lg:w-2/3 px-4 py-20 lg:py-52 gap-4 lg:pr-12"
   >
     <img
       src="/images/streamsave_logo.png"
@@ -39,14 +39,14 @@
   </div>
   <div
     style="background: rgb(24, 24, 27); background: linear-gradient(90deg, rgba(219, 39, 119,0.50) 0%, rgba(2, 132, 199, .7) 100%);"
-    class="w-full lg:w-1/2 flex justify-center lg:justify-start items-center lg:pl-12 py-20 lg:py-40"
+    class="w-full lg:w-1/3 flex justify-center lg:justify-start items-center lg:pl-12 py-20 lg:py-40"
   >
     <p class="w-48 font-bold text-center">
       Organize your favorite shows and movies, or discover new ones!
     </p>
   </div>
 </div>
-{#if innerWidth > 1024}
+{#if innerWidth > 800}
   <img
     class="w-full mb-4 relative"
     src="/images/desktopheroes.png"
@@ -55,7 +55,7 @@
 {:else}
   <img
     class="w-full mb-4 relative"
-    src="/images/mobileheroes.png"
+    src="/images/mobile.png"
     alt="a display of popular movies and shows on mobile"
   />
 {/if}
