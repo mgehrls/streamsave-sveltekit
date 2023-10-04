@@ -8,9 +8,6 @@
   export let handleAdd: () => void;
   export let size: "sm" | "md" | "lg" = "md";
 
-  const smallButtonClasses =
-    "w-1/2 text-white bg-sky-600 flex gap-2 text-sm px-6 py-3 justify-center items-center";
-
   let hovered: boolean = false;
 
   function unHoverDelete() {
@@ -40,10 +37,10 @@
   >
     {#if !hovered}
       <Heart color={"red"} fill={"red"} />
-      <h3 class="text-sm">Favorited</h3>
+      <p class="text-sm">Favorited</p>
     {:else}
       <HeartCrack color={"red"} />
-      <h3>Unfavorite</h3>
+      <p>Unfavorite</p>
     {/if}
   </button>
 {:else}
@@ -58,6 +55,6 @@
     {:else}
       <Heart />
     {/if}
-    <h3 class="text-sm">Favorite!</h3>
+    <p class="text-sm">Favorite!</p>
   </button>
 {/if}

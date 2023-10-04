@@ -8,6 +8,7 @@
   register();
 
   export let media: ApiResult[] = undefined;
+  export let mediaType: "tv" | "movie" = undefined;
   export let listItemsArray: SbMedia[] = undefined;
   const swiperClasses = "h-50 lg:h-68";
   const slideClasses = "overflow-auto w-12 lg:w-40 h-full";
@@ -43,7 +44,7 @@
   {:else}
     {#each media as mediaItem, i}
       <swiper-slide class={slideClasses}>
-        <SwiperSlide {mediaItem} i={uuidv4()} />
+        <SwiperSlide {mediaItem} i={uuidv4()} {mediaType} />
       </swiper-slide>
     {/each}
   {/if}
