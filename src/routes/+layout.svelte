@@ -48,7 +48,7 @@
   </div>
 {:else}
   <Analytics />
-  <div class="flex flex-col min-h-screen bg-zinc-900">
+  <body class="flex flex-col min-h-screen bg-zinc-900">
     <Header {data} />
     <div class="flex-1">
       <LayoutWrapper>
@@ -56,7 +56,7 @@
       </LayoutWrapper>
     </div>
     <Footer />
-  </div>
+  </body>
 {/if}
 
 <style>

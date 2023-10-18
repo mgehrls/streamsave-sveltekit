@@ -85,6 +85,7 @@
       ? mediaItem.title + "poster."
       : undefined}
   />
+  <!-- flex and hidden are both required for this to work. Ignore the error -->
   <div
     id={"hiddenDiv" + i}
     class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"

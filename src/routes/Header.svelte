@@ -16,9 +16,9 @@
 <header class="bg-slate-800 text-white sticky top-0 z-30">
   <LayoutWrapper>
     <div
-      class="py-4 flex gap-2 px-4 lg:px-0 justify-between items-center relative"
+      class="py-4 flex gap-2 mx-4 lg:px-0 justify-between items-center relative"
     >
-      <div class={"flex items-center"}>
+      <div class="flex items-center">
         <a
           href="/"
           class="text-xl flex gap-1 items-end font-bold tracking-wide"
@@ -87,4 +87,5 @@
       <SearchBar {data} />
     {/if}
   </LayoutWrapper>
+  <hr />
 </header>
