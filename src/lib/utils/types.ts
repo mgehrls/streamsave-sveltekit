@@ -1,3 +1,6 @@
+import type { Session } from "@supabase/supabase-js"
+import type { List } from "lucide-svelte"
+
 export type ApiResult = {
     adult: boolean,
     backdrop_path: string,
@@ -60,4 +63,15 @@ export type UserListItems = {
     error: null | any,
     status:number,
     statusText:string,
+}
+
+export type PageData = {
+    listItems: {
+        count: number,
+        data: ListItemPlusMedia[],
+        error: null | any,
+        status: number,
+        statusText: string,
+    },
+    session: Session | null,
 }

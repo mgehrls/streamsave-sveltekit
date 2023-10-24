@@ -31,7 +31,7 @@ export const updateListItemDate = async (item: ListItem) => {
 		lastSeen: item.lastSeen
 	}).eq('id', item.id)
 	if(error){
-		console.log(error)
+		throw error
 	}else{
 		loadListItems()
 		invalidateAll()

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import UnAuthedHome from "$lib/components/UnAuthed/UnAuthedHome.svelte";
+  import UnAuthedHome from "$lib/components/UnAuthedHome.svelte";
   import MediaRow from "$lib/components/MediaRow/MediaRow.svelte";
   import { onMount } from "svelte";
   import Loading from "$lib/utils/Loading.svelte";
@@ -8,7 +8,6 @@
   let loading: boolean = true;
   onMount(() => {
     loading = false;
-    console.log(data);
   });
 </script>
 

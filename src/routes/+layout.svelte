@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Header from "./Header.svelte";
-  import Footer from "./Footer.svelte";
+  import Header from "$lib/components/Header.svelte";
+  import Footer from "$lib/components/Footer.svelte";
   import Loading from "$lib/utils/Loading.svelte";
   import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
   import SearchBar from "$lib/components/SearchBar/SearchBar.svelte";

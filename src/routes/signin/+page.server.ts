@@ -12,7 +12,6 @@ export const actions: Actions = {
 				provider: provider
 			})
 			if(err){
-				console.log(err)
 				return fail(400, {
 					message:"Something went wrong"
 				})

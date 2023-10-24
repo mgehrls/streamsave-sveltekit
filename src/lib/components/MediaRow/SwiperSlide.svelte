@@ -16,7 +16,7 @@
   export let mediaType: "tv" | "movie" = undefined;
   export let item: SbMedia = undefined;
   export let i: string;
-  console.log(item);
+
   $: {
     loading = false;
     listItemsArray = $listItems;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import type { PageData } from "$lib/utils/types";
   import { fade } from "svelte/transition";
 
   import LayoutWrapper from "$lib/utils/LayoutWrapper.svelte";
