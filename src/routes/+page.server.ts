@@ -5,6 +5,7 @@ import { fail, redirect } from "@sveltejs/kit"
 import type { Actions, PageServerLoad } from "./$types"
 
 export const load = (async (event) => {
+	console.log(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
 	const fetchPopularMovies = async ()=>{
 		const res = await event.fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
 		const popularMoviesData = await res.json()
