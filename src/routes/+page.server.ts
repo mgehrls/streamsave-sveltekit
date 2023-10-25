@@ -22,9 +22,9 @@ export const load = (async (event) => {
     }
 
 	return {
+        popularMovieData: fetchPopularMovies(),
 		trendingShowData: fetchTrendingShows(),
         popularShowData: fetchPopularShows(),
-        popularMovieData: fetchPopularMovies(),
 	}
 
 }) satisfies PageServerLoad
