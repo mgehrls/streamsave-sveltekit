@@ -64,33 +64,25 @@
   }
 </script>
 
-<div
-  on:mouseenter={() =>
-    document.getElementById(`hiddenDiv${i}`).classList.remove("hidden")}
-  on:mouseleave={() =>
-    document.getElementById(`hiddenDiv${i}`).classList.add("hidden")}
-  class="relative w-32 rounded-lg"
->
-  <img
-    class="w-32 relative transition-all rounded-lg"
-    style="height: 200px"
-    src={item
-      ? basePath + item.poster_path
-      : mediaItem
-      ? basePath + mediaItem.poster_path
-      : undefined}
-    alt={item
-      ? item.title + "poster."
-      : mediaItem
-      ? mediaItem.title + "poster."
-      : undefined}
-  />
-  <!-- flex and hidden are both required for this to work. Ignore the error -->
-  <div
-    id={"hiddenDiv" + i}
-    class="flex flex-col justify-center items-start hidden absolute top-0 left-0 w-full h-full transition-all gap-2 p-2 rounded-lg"
-    style="background-color: rgba(0,0,0,.7);"
-  >
+<!-- image aspect ratio to deal with outliers and genre / tags -->
+
+<div id={i} class="p-2 bg-slate-800">
+  s
+  <!-- image -->
+  <div class="relative">
+    <img
+      class="w-full h-full relative transition-all"
+      src={item
+        ? basePath + item.poster_path
+        : mediaItem
+        ? basePath + mediaItem.poster_path
+        : undefined}
+      alt={item
+        ? item.title + "poster."
+        : mediaItem
+        ? mediaItem.title + "poster."
+        : undefined}
+    />
     <AddRemoveBtn
       {loading}
       {onList}
@@ -101,21 +93,36 @@
         ? () => handleAddForListItems()
         : () => handleAddForOtherItems()}
     />
-    <!-- popular show data doesn't have a media type, so  -->
-    <h1 class="text-md text-slate-100 font-bold">
-      {item
-        ? item.title
-        : mediaItem.media_type === "tv" || mediaType === "tv"
-        ? mediaItem.name
-        : mediaItem.title}
-    </h1>
-    <a
-      class="text-sm text-slate-100 p-4 mt-2 bg-slate-900 absolute bottom-0 right-0 rounded-tl-lg"
-      href={item
-        ? `/${item.type}s/${item.id}`
-        : mediaItem.media_type === "tv" || mediaType === "tv"
-        ? `/shows/${mediaItem.id}`
-        : `movies/${mediaItem.id}`}>{"See more ->"}</a
-    >
+  </div>
+
+  <!-- title & genre-->
+  <div class="h-20 p-2">
+    <div class="h-2/3">
+      <a
+        href={item
+          ? `/${item.type}s/${item.id}`
+          : mediaItem.media_type === "tv" || mediaType === "tv"
+          ? `/shows/${mediaItem.id}`
+          : `movies/${mediaItem.id}`}
+      >
+        <h2
+          class="text-lg text-slate-100 font-bold leading-5 tracking-wider"
+          style="overflow: hidden; display:-webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"
+        >
+          {item
+            ? item.title
+            : mediaItem.media_type === "tv" || mediaType === "tv"
+            ? mediaItem.name
+            : mediaItem.title}
+        </h2>
+      </a>
+    </div>
+    <div class="h-1/3 text-slate-100">
+      {#if item}
+        <p>tags coming soon</p>
+      {:else if mediaItem}
+        <p>media Item tags</p>
+      {/if}
+    </div>
   </div>
 </div>
