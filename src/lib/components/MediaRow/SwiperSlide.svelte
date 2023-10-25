@@ -67,7 +67,6 @@
 <!-- image aspect ratio to deal with outliers and genre / tags -->
 
 <div id={i} class="p-2 bg-slate-800">
-  s
   <!-- image -->
   <div class="relative">
     <img
