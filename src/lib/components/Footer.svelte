@@ -1,6 +1,5 @@
-<hr />
 <footer
-  class="text-center text-white self-end bg-slate-800 w-full px-4 py-2 justify-self-end flex justify-center items-center relative"
+  class="text-center text-white self-end bg-slate-800 w-full px-4 py-2 justify-self-end flex justify-center items-center relative border-t border-slate-100"
 >
   <div
     class="max-w-7xl p-4 flex flex-col md:flex-row items-center gap-6 md:gap-16"

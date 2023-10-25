@@ -36,15 +36,17 @@
       }
       invalidateAll();
     });
+    loading = false;
   });
-  loading = false;
 </script>
 
 {#if loading}
-  <div
-    class="flex flex-col min-h-screen bg-zinc-900 justify-center items-center"
-  >
-    <Loading />
+  <div class="flex flex-col justify-between min-h-screen bg-zinc-900">
+    <Header {data} />
+    <div class="self-center">
+      <Loading />
+    </div>
+    <Footer />
   </div>
 {:else}
   <Analytics />
