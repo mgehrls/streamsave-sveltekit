@@ -5,15 +5,15 @@ import { fail, redirect } from "@sveltejs/kit"
 import type { Actions, PageServerLoad } from "./$types"
 
 export const load = (async (event) => {
+	const fetchPopularMovies = async ()=>{
+		const res = await event.fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
+		const popularMoviesData = await res.json()
+		return popularMoviesData.results  as ApiResult[]
+	}
 	const fetchTrendingShows = async ()=>{
         const res = await event.fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
         const trendingShowsData = await res.json()
         return trendingShowsData.results as ApiResult[]
-    }
-    const fetchPopularMovies = async ()=>{
-        const res = await event.fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
-        const popularMoviesData = await res.json()
-        return popularMoviesData.results  as ApiResult[]
     }
     const fetchPopularShows = async ()=>{
         const res = await event.fetch(` https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY_SECRET}&language=en-US&adult=false`)
