@@ -6,7 +6,6 @@
   export let title: string;
   export let link: string = undefined;
   export let linkTitle: string = undefined;
-  export let mediaType: "tv" | "movie" = undefined;
   $: listItemsArray = $listItems.map((listItem) => listItem.media);
   $: innerWidth = innerWidth;
 </script>
@@ -27,7 +26,7 @@
       {#if !media}
         <Swiper {listItemsArray} />
       {:else}
-        <Swiper {media} {mediaType} />
+        <Swiper {media} />
       {/if}
     </div>
   </div>

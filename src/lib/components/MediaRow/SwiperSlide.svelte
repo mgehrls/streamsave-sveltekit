@@ -13,7 +13,6 @@
   let userID: string = undefined;
   const basePath = "https://image.tmdb.org/t/p/w342";
   export let mediaItem: ApiResult = undefined;
-  export let mediaType: "tv" | "movie" = undefined;
   export let item: SbMedia = undefined;
   export let i: string;
 
@@ -100,11 +99,10 @@
         ? () => handleAddForListItems()
         : () => handleAddForOtherItems()}
     />
-    <!-- popular show data doesn't have a media type, so  -->
     <h1 class="text-md text-slate-100 font-bold">
       {item
         ? item.title
-        : mediaItem.media_type === "tv" || mediaType === "tv"
+        : mediaItem.media_type === "tv"
         ? mediaItem.name
         : mediaItem.title}
     </h1>
@@ -112,7 +110,7 @@
       class="text-sm text-slate-100 p-4 mt-2 bg-slate-900 absolute bottom-0 right-0 rounded-tl-lg"
       href={item
         ? `/${item.type}s/${item.id}`
-        : mediaItem.media_type === "tv" || mediaType === "tv"
+        : mediaItem.media_type === "tv"
         ? `/shows/${mediaItem.id}`
         : `movies/${mediaItem.id}`}>{"See more ->"}</a
     >

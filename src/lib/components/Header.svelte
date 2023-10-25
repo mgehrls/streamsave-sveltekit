@@ -34,32 +34,44 @@
         </a>
       </div>
       {#if gotUser}
-        <button
-          class="flex justify-center items-center gap-2"
-          on:keydown={(e) => {
-            if (e.key === "Enter")
-              document.getElementById("menu").classList.toggle("hidden");
-          }}
-          on:click={() => {
-            document.getElementById("menu").classList.toggle("hidden");
-          }}
-        >
+        <div class="flex justify-center items-center gap-2">
           {#if data.session.user.user_metadata.name}
             <img
               class="rounded-full w-12"
+              on:keydown={(e) => {
+                if (e.key === "Enter")
+                  document.getElementById("menu").classList.toggle("hidden");
+              }}
+              on:click={() => {
+                document.getElementById("menu").classList.toggle("hidden");
+              }}
               src={data.session.user.user_metadata.avatar_url
                 ? data.session.user.user_metadata.avatar_url
                 : "/images/missingprofilepic.png"}
-              alt=""
+              alt={data.session.user.user_metadata.name
+                .split(" ")[0]
+                .slice(0, 1)
+                .toUpperCase() +
+                data.session.user.user_metadata.name
+                  .split(" ")[1]
+                  .slice(0, 1)
+                  .toUpperCase()}
             />
           {:else}
             <img
               class="rounded-full w-12"
               src="/images/missingprofilepic.png"
-              alt=""
+              alt="missing profile"
+              on:keydown={(e) => {
+                if (e.key === "Enter")
+                  document.getElementById("menu").classList.toggle("hidden");
+              }}
+              on:click={() => {
+                document.getElementById("menu").classList.toggle("hidden");
+              }}
             />
           {/if}
-        </button>
+        </div>
       {:else}
         <div class="flex justify-center items-center gap-4">
           <a

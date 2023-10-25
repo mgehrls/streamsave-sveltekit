@@ -49,21 +49,9 @@
   >
     <div class="overflow-hidden flex flex-col gap-6 mt-4">
       <MediaRow title={"Your List"} link="/list" linkTitle="See more..." />
-      <MediaRow
-        title={"Trending Shows"}
-        media={data.trendingShowData}
-        mediaType={"tv"}
-      />
-      <MediaRow
-        title={"Popular Movies"}
-        media={data.popularMovieData}
-        mediaType={"movie"}
-      />
-      <MediaRow
-        title={"Popular Shows"}
-        media={data.popularShowData}
-        mediaType={"tv"}
-      />
+      <MediaRow title={"Trending Shows"} media={data.trendingShowData} />
+      <MediaRow title={"Popular Movies"} media={data.popularMovieData} />
+      <MediaRow title={"Popular Shows"} media={data.popularShowData} />
     </div>
   </div>
 {/if}
